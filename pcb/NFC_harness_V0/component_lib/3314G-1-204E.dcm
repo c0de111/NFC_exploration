@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 3314G-1-204E
+D Bourns 3314G Series SMD Trimmer Resistor with Gull Wing Terminations, 200k +/-20% 0.25W +/-100ppm/C Top Adjust
+K
+F https://www.bourns.com/docs/Product-Datasheets/3314.pdf
+$ENDCMP
+#
+#End Doc Library

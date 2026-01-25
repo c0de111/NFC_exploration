@@ -1,0 +1,33 @@
+# Build artifacts
+build/
+*.elf
+*.hex
+*.map
+
+# KiCad generated files
+*.bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-backups/
+fp-info-cache
+sym-lib-table-bak
+
+# FreeCAD backup files
+*.FCBak
+
+# CAM outputs
+pcb/*/cam/pcb2gcode/output/*.nc
+pcb/*/cam/pcb2gcode/output/*.svg
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# KiCad lock files
+*.lck
