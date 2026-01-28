@@ -12,6 +12,7 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 ## Repository layout
 - `context.md` – running notes, decisions, and current status
 - `firmware/c/` – Pico SDK firmware scaffold (RP2040) for ST25 I²C exploration
+  - `firmware/c/third_party/` – vendored ST25DV I²C driver (`stm32-st25dv`) via git subtree
 - `pcb/NFC_harness_V0/` – KiCad starting point copied from the proven Sentinel V2 workflow (CAM + pcb2gcode profiles)
 - `pcb/tools/run_pcb2gcode.sh` – shared pcb2gcode runner
 - `pcb/components/` – shared KiCad libs referenced by the project

@@ -21,8 +21,8 @@ Validate an end‑to‑end flow where:
   - `firmware/c/main.c` (Pico/RP2040 I²C scan stub)
 - KiCad harness starter:
   - `pcb/NFC_harness_V0/`
-- External ST driver reference (local clone, **not** in this repo):
-  - `~/github/stm32-st25dv/`
+- ST25DV I²C driver (vendored):
+  - `firmware/c/third_party/` (git subtree of `STMicroelectronics/stm32-st25dv`)
 
 ## Android app: `InkiNfcTapToBook`
 
@@ -82,7 +82,7 @@ On a normal 7‑bit I²C API, this typically means:
 - `AEh >> 1 = 0x57` (write), `AFh >> 1 = 0x57` (read)
 
 ## Can we reuse `stm32-st25dv` (ST25DV driver) with Pico firmware?
-Short version: not directly (it’s an STM32‑style driver), but it’s a great reference for registers/access patterns and should be much more feasible on Pico/RP2040 than on an ATtiny.
+Short version: yes — by providing a small bus-IO adapter layer (I²C read/write + tick + ready) for the driver.
 
 ### Why it didn’t fit the earlier ATtiny idea
 - ATtiny202 has ~2 KB flash; ST’s driver is a fairly complete feature driver (register layer + high‑level API), so it won’t fit without heavy pruning.
@@ -97,7 +97,7 @@ Short version: not directly (it’s an STM32‑style driver), but it’s a great
   - port selected parts of ST’s driver with Pico SDK I²C hooks.
 
 ## Firmware status (Pico/RP2040)
-- `firmware/c/main.c` is currently an I²C scan / bring‑up stub (helps validate wiring and expected ST25DV 7‑bit addresses `0x53` / `0x57`).
+- `firmware/c/main.c` reads the last 16 bytes of ST25DV user memory (Android “INKI” request payload), prints it, and clears it when present.
 - Build (Pico SDK):
 ```bash
 cd firmware/c
@@ -115,3 +115,4 @@ cd firmware/c
 - 2026-01-25: Travel notes: no ISO15693 tag available. Hello APK installs cleanly; NFC APK can trigger Play Protect scan but installs after scan.
 - 2026-01-27: Added notes from AN5733 + ST25DV04KC datasheet and reviewed ST’s `stm32-st25dv` driver for reuse (good for Pico, too big for ATtiny202 as‑is).
 - 2026-01-28: Switched harness firmware to Pico/RP2040 (Pico SDK + `firmware/c` workflow) and removed the AVR/ATtiny build/flash scaffolding.
+- 2026-01-28: Vendored ST’s `stm32-st25dv` driver as a git subtree and wired it into the Pico harness firmware.
