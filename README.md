@@ -10,10 +10,12 @@ Build a small, reproducible test platform (ST25DV04KC + ATtiny202/megaAVR + ante
 - End-to-end timing assumptions for a future “tap-to-book” workflow
 
 ## Repository layout
+- `context.md` – running notes, decisions, and current status
 - `firmware/nfc_harness/` – minimal ATtiny202 firmware target (will grow into ST25 I²C readout + request handling)
 - `pcb/NFC_harness_V0/` – KiCad starting point copied from the proven Sentinel V2 workflow (CAM + pcb2gcode profiles)
 - `pcb/tools/run_pcb2gcode.sh` – shared pcb2gcode runner
 - `pcb/components/` – shared KiCad libs referenced by the project
+- `android/` – Android apps for NFC‑V/ISO15693 testing (writer app + sideload workflow)
 
 ## Build & flash (ATtiny202)
 ```bash
@@ -28,3 +30,6 @@ From repo root:
 pcb/tools/run_pcb2gcode.sh -b NFC_harness_V0
 ```
 The profile lives at `pcb/NFC_harness_V0/cam/pcb2gcode/profiles/default.millprojects` and uses repo-relative paths.
+
+## Android NFC‑V app
+See `android/README.md`.

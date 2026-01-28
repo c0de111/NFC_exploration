@@ -1,6 +1,6 @@
 (fp_lib_table
   (version 7)
-  (lib (name "SMS7630")(type "KiCad")(uri "${KIPRJMOD}/component_lib/footprints/SMS7630.pretty")(options "")(descr "SMS7630 dual diode footprints"))
   (lib (name "Pot_3314G")(type "KiCad")(uri "${KIPRJMOD}/component_lib/footprints/Pot_3314G.pretty")(options "")(descr "Bourns 3314G trim-pot footprints"))
   (lib (name "Inductor Coilcraft")(type "KiCad")(uri "${KIPRJMOD}/../components/Inductor_SMD.pretty")(options "")(descr "Inductor Coils"))
+  (lib (name "Module_RaspberryPi_Pico")(type "KiCad")(uri "/home/nicolas/codeberg/NFC_exploration/pcb/project-libraries/ki-lime-pi-pico/Module_RaspberryPi_Pico.pretty")(options "")(descr ""))
 )

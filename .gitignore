@@ -31,3 +31,15 @@ Thumbs.db
 
 # KiCad lock files
 *.lck
+
+# Android / Gradle
+.gradle/
+**/.gradle/
+**/.cxx/
+**/.externalNativeBuild/
+**/*.iml
+**/local.properties
+**/captures/
+
+# Android project build outputs (nested)
+**/build/
