@@ -142,17 +142,17 @@ int main(void) {
     }
   }
 
-  ret = ST25DV_Init(&st);
+  ret = St25Dv_Drv.Init(&st);
   if (ret != NFCTAG_OK) {
-    printf("ST25DV_Init failed: %ld\n", (long)ret);
+    printf("St25Dv_Drv.Init failed: %ld\n", (long)ret);
   }
 
   uint8_t icref = 0;
-  ret = ST25DV_ReadID(&st, &icref);
+  ret = St25Dv_Drv.ReadID(&st, &icref);
   if (ret == NFCTAG_OK) {
     printf("ICREF: 0x%02X\n", icref);
   } else {
-    printf("ReadID failed: %ld\n", (long)ret);
+    printf("St25Dv_Drv.ReadID failed: %ld\n", (long)ret);
   }
 
   ST25DV_MEM_SIZE mem = {0};
@@ -190,7 +190,7 @@ int main(void) {
       continue;
     }
 
-    ret = ST25DV_ReadData(&st, req, req_addr, (uint16_t)sizeof(req));
+    ret = St25Dv_Drv.ReadData(&st, req, req_addr, (uint16_t)sizeof(req));
     if (ret != NFCTAG_OK) {
       printf("ReadData failed: %ld\n", (long)ret);
       gpio_put(NFC_STATUS_LED_PIN, 0);
@@ -219,7 +219,7 @@ int main(void) {
              (unsigned long)nonce);
 
       uint8_t zeros[16] = {0};
-      ret = ST25DV_WriteData(&st, zeros, req_addr, (uint16_t)sizeof(zeros));
+      ret = St25Dv_Drv.WriteData(&st, zeros, req_addr, (uint16_t)sizeof(zeros));
       if (ret == NFCTAG_OK) {
         printf("Cleared request (16 bytes @ 0x%04X)\n", req_addr);
       } else {
