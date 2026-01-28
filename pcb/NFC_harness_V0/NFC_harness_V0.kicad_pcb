@@ -161,6 +161,14 @@
 	(net 37 "unconnected-(A1-GPIO1-Pad2)")
 	(net 38 "unconnected-(A1-GPIO13-Pad17)")
 	(net 39 "/Vcc_5V")
+	(net 40 "unconnected-(IC1-SCL-Pad6)")
+	(net 41 "unconnected-(IC1-GPO_(OPEN_DRAIN)-Pad7)")
+	(net 42 "unconnected-(IC1-SDA-Pad5)")
+	(net 43 "unconnected-(IC1-AC0-Pad2)")
+	(net 44 "unconnected-(IC1-VSS-Pad4)")
+	(net 45 "unconnected-(IC1-AC1-Pad3)")
+	(net 46 "unconnected-(IC1-VCC-Pad8)")
+	(net 47 "unconnected-(IC1-V_EH-Pad1)")
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "4c11a33b-9c2e-4e6d-9255-7f35b142fe12")
@@ -3419,6 +3427,364 @@
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "ST25DV04KC-IE6S3:SOIC127P600X175-8N"
+		(layer "F.Cu")
+		(uuid "eadc07cf-8445-4406-a6f0-5e17c2aa6dd7")
+		(at 89.288 99.095)
+		(descr "SO8N")
+		(tags "Integrated Circuit")
+		(property "Reference" "IC1"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "e503084f-7c74-4235-a0f0-51c7b30bb15a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+				)
+			)
+		)
+		(property "Value" "ST25DV04KC-IE6S3"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "80b99902-5cd3-41c9-a2b0-0ddf922c54c7")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.st.com/resource/en/datasheet/st25dv04kc.pdf"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7ca7858d-4395-4621-92ab-52887e8ea891")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "Dynamic NFC/RFID tag IC with 4-, 16-, or 64-Kbit EEPROM, fast transfer mode capability, and optimized I2C"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c486870d-040c-4dd0-a2c8-fef59d988498")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Height" "1.75"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "1c63bd9a-f175-45ed-b9b3-8bead6fe41e2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Mouser Part Number" "511-ST25DV04KC-IE6S3"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4569e404-c619-46c3-90d5-7b801a92525f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/STMicroelectronics/ST25DV04KC-IE6S3?qs=QNEnbhJQKvZQBnG6g7VtqA%3D%3D"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "182f85e4-0552-4895-9f9a-f1b1bff505e0")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer_Name" "STMicroelectronics"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "2de16197-45fd-4139-b1f2-f393aa920b73")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "ST25DV04KC-IE6S3"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "05f7d4f4-578e-450b-9210-6f3954500080")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/1df788b1-4382-47be-a2c1-004ac112f20e")
+		(sheetname "/")
+		(sheetfile "NFC_harness_V0.kicad_sch")
+		(attr smd)
+		(fp_line
+			(start -3.475 -2.58)
+			(end -1.95 -2.58)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "28148089-dca8-4480-8d38-e40b779cae2e")
+		)
+		(fp_line
+			(start -1.6 -2.45)
+			(end 1.6 -2.45)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "dc8f4cce-d60e-4293-9bda-068f8f884201")
+		)
+		(fp_line
+			(start -1.6 2.45)
+			(end -1.6 -2.45)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "e3104884-439a-4899-b476-a69c733a3000")
+		)
+		(fp_line
+			(start 1.6 -2.45)
+			(end 1.6 2.45)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "e81630d5-283d-4219-ad93-c87a4973420d")
+		)
+		(fp_line
+			(start 1.6 2.45)
+			(end -1.6 2.45)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "ac63e423-7f19-4ebb-801b-dd548d934046")
+		)
+		(fp_line
+			(start -3.725 -2.75)
+			(end 3.725 -2.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "2218eb77-d331-49f8-9719-a02836d304ae")
+		)
+		(fp_line
+			(start -3.725 2.75)
+			(end -3.725 -2.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "5cd7a7ae-dad2-4752-9033-04acd66a728f")
+		)
+		(fp_line
+			(start 3.725 -2.75)
+			(end 3.725 2.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "53c96974-b891-49bd-a41d-5d6b6844ce89")
+		)
+		(fp_line
+			(start 3.725 2.75)
+			(end -3.725 2.75)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "2c66f403-571d-47c2-9a9f-2865efd7d88a")
+		)
+		(fp_line
+			(start -1.95 -2.45)
+			(end 1.95 -2.45)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "ccd13641-ad52-4eb4-b159-70b23373c330")
+		)
+		(fp_line
+			(start -1.95 -1.18)
+			(end -0.68 -2.45)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "a7b127e4-5112-4aa0-88f5-018368063cbc")
+		)
+		(fp_line
+			(start -1.95 2.45)
+			(end -1.95 -2.45)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "024ce132-5a02-48f5-ab82-0ce1384666c6")
+		)
+		(fp_line
+			(start 1.95 -2.45)
+			(end 1.95 2.45)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "15120425-1707-4d62-9761-bcf57c6a53bd")
+		)
+		(fp_line
+			(start 1.95 2.45)
+			(end -1.95 2.45)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "cfff02af-ebe0-4d43-bd44-1c15d14dbe1b")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "ca6bce41-426a-4ae9-b4d3-74a277204a32")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.254)
+				)
+			)
+		)
+		(pad "1" smd rect
+			(at -2.712 -1.905 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 47 "unconnected-(IC1-V_EH-Pad1)")
+			(pinfunction "V_EH")
+			(pintype "passive")
+			(uuid "eb33275f-3a84-4a65-888e-9bbd7b3fc52b")
+		)
+		(pad "2" smd rect
+			(at -2.712 -0.635 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 43 "unconnected-(IC1-AC0-Pad2)")
+			(pinfunction "AC0")
+			(pintype "passive")
+			(uuid "5b9eb5b4-33a9-43ae-8f31-c7a23dd966ea")
+		)
+		(pad "3" smd rect
+			(at -2.712 0.635 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 45 "unconnected-(IC1-AC1-Pad3)")
+			(pinfunction "AC1")
+			(pintype "passive")
+			(uuid "c776cf53-5852-4613-bab8-e37bc803bdcb")
+		)
+		(pad "4" smd rect
+			(at -2.712 1.905 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 44 "unconnected-(IC1-VSS-Pad4)")
+			(pinfunction "VSS")
+			(pintype "passive")
+			(uuid "7e5d9016-43db-4cf9-9e3e-ddf7e17ad924")
+		)
+		(pad "5" smd rect
+			(at 2.712 1.905 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 42 "unconnected-(IC1-SDA-Pad5)")
+			(pinfunction "SDA")
+			(pintype "passive")
+			(uuid "302769ad-cc7d-4ced-bbe3-4a3c5f316fd5")
+		)
+		(pad "6" smd rect
+			(at 2.712 0.635 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 40 "unconnected-(IC1-SCL-Pad6)")
+			(pinfunction "SCL")
+			(pintype "passive")
+			(uuid "1b5256a6-48cd-4e5d-b975-b42e18164385")
+		)
+		(pad "7" smd rect
+			(at 2.712 -0.635 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 41 "unconnected-(IC1-GPO_(OPEN_DRAIN)-Pad7)")
+			(pinfunction "GPO_(OPEN_DRAIN)")
+			(pintype "passive")
+			(uuid "2338e8cc-4c34-46e7-9f44-a75275068295")
+		)
+		(pad "8" smd rect
+			(at 2.712 -1.905 90)
+			(size 0.65 1.525)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(net 46 "unconnected-(IC1-VCC-Pad8)")
+			(pinfunction "VCC")
+			(pintype "passive")
+			(uuid "e942c23a-2a84-4d30-8333-a7d2e927dfe7")
+		)
+		(embedded_fonts no)
+		(model "ST25DV04KC-IE6S3.stp"
 			(offset
 				(xyz 0 0 0)
 			)

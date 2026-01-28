@@ -4,4 +4,5 @@
   (lib (name "Inductor Coilcraft")(type "KiCad")(uri "${KIPRJMOD}/../components/Inductor_SMD.pretty")(options "")(descr "Inductor Coils"))
   (lib (name "Module_RaspberryPi_Pico")(type "KiCad")(uri "/home/nicolas/codeberg/NFC_exploration/pcb/project-libraries/ki-lime-pi-pico/Module_RaspberryPi_Pico.pretty")(options "")(descr ""))
   (lib (name "ST25")(type "KiCad")(uri "/home/nicolas/codeberg/NFC_exploration/pcb/project-libraries/ST25DV04KC-IE6S3/KiCad")(options "")(descr ""))
+  (lib (name "ST25DV04KC-IE6S3")(type "KiCad")(uri "/home/nicolas/codeberg/NFC_exploration/pcb/project-libraries/ST25DV04KC-IE6S3/ST25DV04KC-IE6S3.pretty")(options "")(descr ""))
 )
