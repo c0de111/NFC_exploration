@@ -3,7 +3,7 @@
 New running notes live in `context.md`. This file is kept for early project history.
 
 ## Plan
-- Bring up ST25DV04KC + ATtiny202 harness (power, I²C, antenna)
+- Bring up ST25DV04KC + Pico/RP2040 harness (power, I²C, antenna)
 - Validate phone → EEPROM writes (NfcV)
 - Implement MCU-side request parsing + clearing
 - Measure timing and range with enclosure + ferrite
@@ -16,3 +16,5 @@ New running notes live in `context.md`. This file is kept for early project hist
 - 2026-01-25: Built APKs for sideload testing via Syncthing: `android/InkiHello_androidstudio/` (hello app) → `~/Sync/inki_hello-debug.apk`; and updated `android/InkiNfcTapToBook_androidstudio/` (minSdk 21, NFC optional) → `~/Sync/inki_nfc_tap_to_book-debug.apk`.
 
 - 2026-01-25: Travel notes: no ISO15693 tag available to test. Hello APK installs cleanly; NFC APK can trigger Play Protect scan but installs after scan. App currently logs only to its on-screen log (no Logcat/exports).
+
+- 2026-01-28: Switched harness firmware plan to Pico/RP2040 to match inki’s Pico SDK workflow; removed AVR/ATtiny build/flash scaffolding from this repo.

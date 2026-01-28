@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "Pot_3314G")(type "KiCad")(uri "${KIPRJMOD}/component_lib/3314G-1-204E.kicad_sym")(options "")(descr "Bourns 3314G trim-pot"))
   (lib (name "TSP")(type "Legacy")(uri "${KIPRJMOD}/../components/Regulator_Switching.lib")(options "")(descr "Regulators"))
+  (lib (name "ST25DV04KC-IE6S3")(type "KiCad")(uri "/home/nicolas/codeberg/NFC_exploration/pcb/project-libraries/ST25DV04KC-IE6S3/KiCad/ST25DV04KC-IE6S3.kicad_sym")(options "")(descr ""))
 )

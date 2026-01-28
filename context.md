@@ -18,7 +18,7 @@ Validate an end‑to‑end flow where:
   - Request format: `android/inki_nfc_tap_to_book/REQUEST_FORMAT.md`
   - “Hello” sanity app: `android/InkiHello_androidstudio/`
 - Firmware (currently minimal):
-  - `firmware/nfc_harness/main.c` (ATtiny202 blink)
+  - `firmware/c/main.c` (Pico/RP2040 I²C scan stub)
 - KiCad harness starter:
   - `pcb/NFC_harness_V0/`
 - External ST driver reference (local clone, **not** in this repo):
@@ -81,29 +81,31 @@ On a normal 7‑bit I²C API, this typically means:
 - `A6h >> 1 = 0x53` (write), `A7h >> 1 = 0x53` (read)
 - `AEh >> 1 = 0x57` (write), `AFh >> 1 = 0x57` (read)
 
-## Can we use `stm32-st25dv` for AVR tiny firmware?
-Short version: as‑is, not really for ATtiny202; yes as a reference (and very likely usable on Pico/RP2040).
+## Can we reuse `stm32-st25dv` (ST25DV driver) with Pico firmware?
+Short version: not directly (it’s an STM32‑style driver), but it’s a great reference for registers/access patterns and should be much more feasible on Pico/RP2040 than on an ATtiny.
 
-### Why it doesn’t fit ATtiny202 well
+### Why it didn’t fit the earlier ATtiny idea
 - ATtiny202 has ~2 KB flash; ST’s driver is a fairly complete feature driver (register layer + high‑level API), so it won’t fit without heavy pruning.
 
 ### What is still useful from that repo
 - `st25dv_reg.h`: register addresses and bitfield masks (great for implementing a minimal subset)
 - `st25dv.c/h`: shows how ST expects access patterns to work (two I²C “device selects”, dynamic regs at `0x2000+`, mailbox region, etc.)
 
-### What to do instead (two good options)
-- Option A (recommended): use a **Pico/RP2040** for the harness and reuse the ST driver by implementing the I²C hooks (`Read/Write/IsReady/GetTick`).
-- Option B: write a **tiny** ATtiny I²C mini‑driver that only reads what we need (UID, mem size, a small request area, maybe GPO/field status).
+### What to do instead
+- Use Pico/RP2040 for the harness and either:
+  - implement a tiny “just what we need” ST25DV I²C layer, or
+  - port selected parts of ST’s driver with Pico SDK I²C hooks.
 
-## Firmware status (ATtiny202)
-- `firmware/nfc_harness/main.c` is currently only a blink / bring‑up stub.
-- Build:
+## Firmware status (Pico/RP2040)
+- `firmware/c/main.c` is currently an I²C scan / bring‑up stub (helps validate wiring and expected ST25DV 7‑bit addresses `0x53` / `0x57`).
+- Build (Pico SDK):
 ```bash
-make nfc_harness
+cd firmware/c
+./build.sh
 ```
 
 ## Next steps
-- Decide harness MCU (Pico now vs ATtiny now) and define “minimum viable” I²C commands/regs to support the phone→tag→MCU flow.
+- Define the harness pinout (I²C pins, optional status LED pin) and then implement the “minimum viable” ST25DV I²C reads/writes for the request blocks.
 - Add a first “ST25 explore” schematic to `pcb/NFC_harness_V0/` based on AN5733 + ST25DV04KC datasheet (VCC strategy, GPO pull‑ups, decoupling, antenna matching).
 - Once hardware is available: validate on a real tag (RF writes, wake behavior, timing, and robustness).
 
@@ -112,4 +114,4 @@ make nfc_harness
 - 2026-01-25: Added Android NFC‑V writer app sources under `android/inki_nfc_tap_to_book/` and created Android Studio projects for sideload tests.
 - 2026-01-25: Travel notes: no ISO15693 tag available. Hello APK installs cleanly; NFC APK can trigger Play Protect scan but installs after scan.
 - 2026-01-27: Added notes from AN5733 + ST25DV04KC datasheet and reviewed ST’s `stm32-st25dv` driver for reuse (good for Pico, too big for ATtiny202 as‑is).
-
+- 2026-01-28: Switched harness firmware to Pico/RP2040 (Pico SDK + `firmware/c` workflow) and removed the AVR/ATtiny build/flash scaffolding.
