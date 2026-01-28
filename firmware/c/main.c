@@ -179,7 +179,15 @@ int main(void) {
       continue;
     }
 
-    const uint16_t req_addr = (uint16_t)(total_bytes - 16);
+    const uint32_t blocks_needed = (16u + bytes_per_block - 1u) / bytes_per_block;
+    const uint32_t region_bytes = blocks_needed * bytes_per_block;
+    if (region_bytes > total_bytes) {
+      printf("Invalid request region: %lu > %lu\n", (unsigned long)region_bytes, (unsigned long)total_bytes);
+      sleep_ms(1000);
+      continue;
+    }
+
+    const uint16_t req_addr = (uint16_t)(total_bytes - region_bytes);
     uint8_t req[16] = {0};
 
     ret = st25_is_ready(ST25DV_ADDR_DATA_I2C, 1);
@@ -218,10 +226,10 @@ int main(void) {
              (unsigned long)unix_seconds,
              (unsigned long)nonce);
 
-      uint8_t zeros[16] = {0};
-      ret = St25Dv_Drv.WriteData(&st, zeros, req_addr, (uint16_t)sizeof(zeros));
+      uint8_t zeros[ST25DV_MAX_WRITE_BYTE] = {0};
+      ret = St25Dv_Drv.WriteData(&st, zeros, req_addr, (uint16_t)region_bytes);
       if (ret == NFCTAG_OK) {
-        printf("Cleared request (16 bytes @ 0x%04X)\n", req_addr);
+        printf("Cleared request (%lu bytes @ 0x%04X)\n", (unsigned long)region_bytes, req_addr);
       } else {
         printf("Clear failed: %ld\n", (long)ret);
       }
