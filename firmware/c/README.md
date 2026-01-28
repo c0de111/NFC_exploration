@@ -47,6 +47,7 @@ For ST25DV, you typically expect these 7‑bit I²C addresses:
 - **Pico SDK include**: `pico_sdk_import.cmake` finds your local `pico-sdk` (via `PICO_SDK_PATH`) and pulls in its CMake helpers.
 - **ST driver include**: `third_party/st25dv.c` and `third_party/st25dv_reg.c` are compiled into the firmware and their headers are added to the include path.
 - **Bus adapter**: `main.c` provides `ST25DV_IO_t` callbacks (`Init/Read/Write/IsReady/GetTick`) implemented using Pico SDK I²C calls. The ST driver stays “platform-agnostic” and calls into these callbacks.
+- **Driver entrypoints**: `main.c` uses `St25Dv_Drv.*` (the driver’s exported API table). Some internal `ST25DV_*` functions exist in the sources but are not declared in the public header.
 
 ### Addressing note (7-bit vs 8-bit)
 ST’s driver uses “8-bit I²C addresses” like `0xA6/0xAE` (includes the R/W bit in the LSB).
