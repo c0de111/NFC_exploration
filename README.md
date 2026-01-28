@@ -23,6 +23,7 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 Build (Pico SDK):
 ```bash
 cd firmware/c
+# pico-sdk is expected at $PICO_SDK_PATH (defaults to $HOME/pico/pico-sdk)
 ./build.sh
 ```
 
