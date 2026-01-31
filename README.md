@@ -10,7 +10,7 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 - End-to-end timing assumptions for a future “tap-to-book” workflow
 
 ## Repository layout
-- `context.md` – running notes, decisions, current status
+- `docs/context.md` – running notes, decisions, history, and solved problems
 - `firmware/` – Pico SDK firmware scaffold (RP2040) for ST25 I²C exploration  
   - `src/` app entry (`main.c`) and bus adapter  
   - `third_party/st25dv/` vendored ST25DV driver (git subtree)  
@@ -32,16 +32,16 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 
 ## Build & flash (Pico / RP2040)
 
-Build (Pico SDK):
+### Build
 ```bash
-# from repo root
+# from repo root (recommended)
 make firmware
 
 # or inside firmware/
 cd firmware
-# pico-sdk is expected at $PICO_SDK_PATH (defaults to $HOME/pico/pico-sdk)
-./scripts/build.sh
+./scripts/build.sh   # expects $PICO_SDK_PATH (defaults to $HOME/pico/pico-sdk)
 ```
+More detail (pin overrides, UF2 path, picotool toggles): see `firmware/README.md`.
 
 Notes:
 - Picotool is disabled by default to avoid downloads. The build script auto-fetches `uf2conv.py` (Microsoft UF2 tool) on first run and converts `nfc_harness.bin` → `nfc_harness.uf2`.
@@ -59,6 +59,11 @@ Flash options:
   cd firmware
   ./scripts/flash.sh
   ```
+
+### Root make targets (quick reference)
+- `make firmware` – configure & build firmware into `firmware/build/`
+- `make firmware-flash` – flash over SWD (OpenOCD + CMSIS‑DAP)
+- `make clean` – remove `firmware/build/` only
 
 ## CAM workflow (pcb2gcode)
 From repo root:

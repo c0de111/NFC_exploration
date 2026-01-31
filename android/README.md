@@ -1,28 +1,21 @@
 # Android (ISO15693 / NFC‑V)
 
-This repo includes a minimal Android app to write a tiny “booking request” into an **ISO15693 / NFC‑V (Type 5)** tag (e.g. **ST25DV04KC**) and read it back for verification.
+Android pieces are optional for the Pico harness; use them only if you want to exercise phone→tag writes. The minimal app writes a tiny “booking request” into an **ISO15693 / NFC‑V (Type 5)** tag (e.g. **ST25DV04KC**) and reads it back for verification.
 
 ## What you can (and can’t) test without hardware
 - You **need a physical NFC‑V / ISO15693 tag** to exercise the actual read/write logic.
 - Phones generally **cannot emulate ISO15693 tags** (Android HCE targets ISO14443 types), so there’s no realistic “tag emulator” substitute.
 
-## Folders
-- `android/inki_nfc_tap_to_book/`
-  - “Drop‑in” sources (Manifest + `MainActivity.kt` + layout + tech filter).
-  - The app uses `android.nfc.tech.NfcV` and raw ISO15693 commands:
-    - Get System Info `0x2B`
-    - Read Single Block `0x20`
-    - Write Single Block `0x21`
-  - Request payload spec lives in `android/inki_nfc_tap_to_book/REQUEST_FORMAT.md`.
-
-- `android/InkiNfcTapToBook_androidstudio/`
-  - Android Studio project (created via “Empty Views Activity”) that the drop‑in sources were copied into.
-  - Tweaks made for travel/sideload testing:
-    - `minSdk` lowered to 21
-    - NFC feature set to `required="false"` (APK can install even on devices without NFC; app obviously still needs NFC to do anything)
-
+## Folders (choose based on need)
+- `android/inki_nfc_tap_to_book/` (drop‑in)
+  - Minimal source set (Manifest + `MainActivity.kt` + layout + tech filter).
+  - Uses `android.nfc.tech.NfcV` with raw ISO15693 commands: Get System Info `0x2B`, Read Single Block `0x20`, Write Single Block `0x21`.
+  - Request payload spec: `android/inki_nfc_tap_to_book/REQUEST_FORMAT.md` (16‑byte `INKI` payload, little‑endian fields).
+- `android/InkiNfcTapToBook_androidstudio/` (full project)
+  - Android Studio project built from “Empty Views Activity”; sources copied from the drop‑in.
+  - Tweaks for sideloading: `minSdk=21`, `uses-feature android.hardware.nfc required="false"` so it installs on non‑NFC devices (app still needs NFC to function).
 - `android/InkiHello_androidstudio/`
-  - Super simple “Hello (install test)” app used to validate the sideload workflow.
+  - Tiny “hello” app used only to validate the sideload workflow/Play Protect.
 
 ## Build (CLI)
 If Gradle complains about the system Java toolchain, use Android Studio’s bundled JDK:
@@ -37,6 +30,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 
 APK output:
 - `android/InkiNfcTapToBook_androidstudio/app/build/outputs/apk/debug/app-debug.apk`
+- `android/InkiHello_androidstudio/app/build/outputs/apk/debug/app-debug.apk`
 
 ## Install without USB cable (Syncthing)
 - Copy the debug APK into a Syncthing-synced folder (e.g. `~/Sync/`).
@@ -46,3 +40,12 @@ APK output:
 Convenience copies used during travel testing:
 - `~/Sync/inki_hello-debug.apk`
 - `~/Sync/inki_nfc_tap_to_book-debug.apk`
+
+## Quick start (sideload path)
+1) Build: run the CLI build above (or Android Studio → Build APK).  
+2) Copy `app-debug.apk` to your phone (e.g., Syncthing).  
+3) Open the APK; Play Protect may scan NFC apps—proceed after scan.  
+4) Enable “Write on tap” in the app, then tap a physical ISO15693/NFC‑V tag.  
+
+## Not needed for Pico-only tests
+If you’re only working on the Pico harness, you can ignore the Android folder; firmware tests don’t depend on it.***
