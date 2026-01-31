@@ -29,6 +29,7 @@ Builds the RP2040/Pico NFC harness firmware using the Pico SDK.
 Environment:
   PICO_SDK_PATH   Path to pico-sdk (default: $HOME/pico/pico-sdk)
   PICO_BOARD      Default board if --board is not provided (default: pico)
+  --clean         Remove firmware/build and exit (no configure/build)
 EOF
 }
 
@@ -58,14 +59,17 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-patch_pioasm_headers
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BUILD_DIR="$SCRIPT_DIR/build"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+BUILD_DIR="$ROOT_DIR/build"
 
 if $CLEAN; then
   rm -rf "$BUILD_DIR"
+  echo "Removed $BUILD_DIR"
+  exit 0
 fi
+
+patch_pioasm_headers
 
 mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
@@ -73,10 +77,33 @@ cd "$BUILD_DIR"
 echo "PICO_SDK_PATH=$PICO_SDK_PATH"
 echo "PICO_BOARD=$BOARD"
 
-cmake -DPICO_BOARD="$BOARD" "$SCRIPT_DIR"
+cmake -DPICO_BOARD="$BOARD" "$ROOT_DIR"
 make -j"$(nproc 2>/dev/null || echo 4)"
 
 echo
 echo "Build outputs:"
 ls -1 nfc_harness.* 2>/dev/null || true
 
+# Picotool-free UF2 generation using uf2conv.py (downloaded/cached locally if missing).
+UF2_TOOL="$ROOT_DIR/scripts/uf2conv.py"
+UF2_FAMILIES="$ROOT_DIR/scripts/uf2families.json"
+ensure_uf2_tool() {
+  if [[ -f "$UF2_TOOL" && -f "$UF2_FAMILIES" ]]; then
+    return
+  fi
+  echo "Fetching uf2conv.py + uf2families.json (picotool-free UF2 conversion)..."
+  mkdir -p "$(dirname "$UF2_TOOL")"
+  curl -fsSL -o "$UF2_TOOL" https://raw.githubusercontent.com/microsoft/uf2/master/utils/uf2conv.py
+  curl -fsSL -o "$UF2_FAMILIES" https://raw.githubusercontent.com/microsoft/uf2/master/utils/uf2families.json
+  chmod +x "$UF2_TOOL"
+}
+
+if [[ -f "nfc_harness.bin" ]]; then
+  if ensure_uf2_tool; then
+    echo "Converting BIN to UF2 via uf2conv.py..."
+    python3 "$UF2_TOOL" --base 0x10000000 --family 0xe48bff56 \
+      --output nfc_harness.uf2 nfc_harness.bin || echo "UF2 conversion failed"
+  fi
+else
+  echo "UF2 not generated (nfc_harness.bin missing)."
+fi

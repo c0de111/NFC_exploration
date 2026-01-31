@@ -43,3 +43,7 @@ Thumbs.db
 
 # Android project build outputs (nested)
 **/build/
+
+# Downloaded UF2 helper (picotool-free)
+firmware/scripts/uf2conv.py
+firmware/scripts/uf2families.json

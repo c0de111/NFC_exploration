@@ -5,7 +5,11 @@ if(NOT DEFINED PICO_BOARD)
   set(PICO_BOARD pico CACHE STRING "Pico board type (e.g. pico, pico_w)")
 endif()
 
-include(pico_sdk_import.cmake)
+# Default: avoid fetching/building picotool (SWD users don't need it); UF2 via picotool is disabled.
+set(PICO_NO_PICOTOOL ON CACHE BOOL "Disable picotool (skips picotool-based UF2/signing)")
+set(PICO_NO_UF2 ON CACHE BOOL "Disable UF2 generation via picotool")
+
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/pico_sdk_import.cmake)
 
 project(nfc_exploration C CXX ASM)
 
@@ -15,9 +19,9 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 add_executable(nfc_harness
-  main.c
-  third_party/st25dv.c
-  third_party/st25dv_reg.c
+  src/main.c
+  third_party/st25dv/st25dv.c
+  third_party/st25dv/st25dv_reg.c
 )
 
 set(NFC_I2C_BAUDRATE_HZ 100000 CACHE STRING "I2C baudrate in Hz")
@@ -38,8 +42,8 @@ target_link_libraries(nfc_harness
 )
 
 target_include_directories(nfc_harness PRIVATE
-  ${CMAKE_CURRENT_LIST_DIR}
-  ${CMAKE_CURRENT_LIST_DIR}/third_party
+  ${CMAKE_CURRENT_LIST_DIR}/include
+  ${CMAKE_CURRENT_LIST_DIR}/third_party/st25dv
 )
 
 pico_enable_stdio_usb(nfc_harness 1)

@@ -2,7 +2,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BUILD_DIR="$SCRIPT_DIR/build"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+BUILD_DIR="$ROOT_DIR/build"
 
 ELF="${1:-$BUILD_DIR/nfc_harness.elf}"
 OPENOCD_SPEED="${OPENOCD_SPEED:-5000}"
@@ -34,4 +35,3 @@ openocd --debug=0 \
   -f target/rp2040.cfg \
   -c "adapter speed ${OPENOCD_SPEED}" \
   -c "program ${ELF} verify reset exit"
-

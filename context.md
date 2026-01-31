@@ -18,11 +18,11 @@ Validate an end‑to‑end flow where:
   - Request format: `android/inki_nfc_tap_to_book/REQUEST_FORMAT.md`
   - “Hello” sanity app: `android/InkiHello_androidstudio/`
 - Firmware (currently minimal):
-  - `firmware/c/main.c` (Pico/RP2040 I²C scan stub)
+  - `firmware/src/main.c` (Pico/RP2040 I²C scan stub)
 - KiCad harness starter:
   - `pcb/NFC_harness_V0/`
 - ST25DV I²C driver (vendored):
-  - `firmware/c/third_party/` (git subtree of `STMicroelectronics/stm32-st25dv`)
+  - `firmware/third_party/st25dv/` (git subtree of `STMicroelectronics/stm32-st25dv`)
 
 ## Android app: `InkiNfcTapToBook`
 
@@ -97,11 +97,11 @@ Short version: yes — by providing a small bus-IO adapter layer (I²C read/writ
   - port selected parts of ST’s driver with Pico SDK I²C hooks.
 
 ## Firmware status (Pico/RP2040)
-- `firmware/c/main.c` reads the last 16 bytes of ST25DV user memory (Android “INKI” request payload), prints it, and clears it when present.
+- `firmware/src/main.c` reads the last 16 bytes of ST25DV user memory (Android “INKI” request payload), prints it, and clears it when present.
 - Build (Pico SDK):
 ```bash
-cd firmware/c
-./build.sh
+cd firmware
+./scripts/build.sh
 ```
 
 ## Next steps
@@ -114,5 +114,5 @@ cd firmware/c
 - 2026-01-25: Added Android NFC‑V writer app sources under `android/inki_nfc_tap_to_book/` and created Android Studio projects for sideload tests.
 - 2026-01-25: Travel notes: no ISO15693 tag available. Hello APK installs cleanly; NFC APK can trigger Play Protect scan but installs after scan.
 - 2026-01-27: Added notes from AN5733 + ST25DV04KC datasheet and reviewed ST’s `stm32-st25dv` driver for reuse (good for Pico, too big for ATtiny202 as‑is).
-- 2026-01-28: Switched harness firmware to Pico/RP2040 (Pico SDK + `firmware/c` workflow) and removed the AVR/ATtiny build/flash scaffolding.
+- 2026-01-28: Switched harness firmware to Pico/RP2040 (Pico SDK + `firmware` workflow) and removed the AVR/ATtiny build/flash scaffolding.
 - 2026-01-28: Vendored ST’s `stm32-st25dv` driver as a git subtree and wired it into the Pico harness firmware.

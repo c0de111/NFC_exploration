@@ -10,29 +10,54 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 - End-to-end timing assumptions for a future “tap-to-book” workflow
 
 ## Repository layout
-- `context.md` – running notes, decisions, and current status
-- `firmware/c/` – Pico SDK firmware scaffold (RP2040) for ST25 I²C exploration
-  - `firmware/c/third_party/` – vendored ST25DV I²C driver (`stm32-st25dv`) via git subtree
-- `pcb/NFC_harness_V0/` – KiCad starting point copied from the proven Sentinel V2 workflow (CAM + pcb2gcode profiles)
+- `context.md` – running notes, decisions, current status
+- `firmware/` – Pico SDK firmware scaffold (RP2040) for ST25 I²C exploration  
+  - `src/` app entry (`main.c`) and bus adapter  
+  - `third_party/st25dv/` vendored ST25DV driver (git subtree)  
+  - `scripts/` build/flash/reset helpers  
+  - `cmake/` Pico SDK import helper  
+- `pcb/NFC_harness_V0/` – KiCad project (schematic, layout, CAM profile)
 - `pcb/tools/run_pcb2gcode.sh` – shared pcb2gcode runner
-- `pcb/components/` – shared KiCad libs referenced by the project
-- `android/` – Android apps for NFC‑V/ISO15693 testing (writer app + sideload workflow)
+- `pcb/components/` + `pcb/project-libraries/` – KiCad symbols/footprints (includes ST25DV package lib submodule)
+- `datasheet/` – ST25DV04KC datasheet + app notes
+- `android/` – NFC‑V test apps (writer + hello) *(not needed for Pico-only workflow)*
+
+## Typical workflow (from repo root)
+1) **Build firmware**: `make firmware` (uses `PICO_SDK_PATH`, default `$HOME/pico/pico-sdk`).
+2) **Flash**:  
+   - Drag‑and‑drop: copy `firmware/build/nfc_harness.uf2` to Pico in BOOTSEL mode, or  
+   - SWD: `make firmware-flash` (OpenOCD + CMSIS-DAP).
+3) **Iterate**: edit `firmware/src/main.c` (and future helpers), rebuild, and re‑flash.
+4) **CAM / milling** (optional): `pcb/tools/run_pcb2gcode.sh -b NFC_harness_V0` to regenerate toolpaths.
 
 ## Build & flash (Pico / RP2040)
 
 Build (Pico SDK):
 ```bash
-cd firmware/c
+# from repo root
+make firmware
+
+# or inside firmware/
+cd firmware
 # pico-sdk is expected at $PICO_SDK_PATH (defaults to $HOME/pico/pico-sdk)
-./build.sh
+./scripts/build.sh
+```
+
+Notes:
+- Picotool is disabled by default to avoid downloads. The build script auto-fetches `uf2conv.py` (Microsoft UF2 tool) on first run and converts `nfc_harness.bin` → `nfc_harness.uf2`.
+- Set `-DPICO_NO_PICOTOOL=OFF` in `cmake` if you prefer the picotool UF2/signing path.
+
+Clean build artifacts:
+```bash
+make clean   # removes firmware/build only
 ```
 
 Flash options:
-- **USB drag‑and‑drop**: copy `firmware/c/build/nfc_harness.uf2` to the Pico mass‑storage device (BOOTSEL).
+- **USB drag‑and‑drop**: copy `firmware/build/nfc_harness.uf2` to the Pico mass‑storage device (BOOTSEL).
 - **SWD (OpenOCD + CMSIS‑DAP probe)**:
   ```bash
-  cd firmware/c
-  ./flash.sh
+  cd firmware
+  ./scripts/flash.sh
   ```
 
 ## CAM workflow (pcb2gcode)
