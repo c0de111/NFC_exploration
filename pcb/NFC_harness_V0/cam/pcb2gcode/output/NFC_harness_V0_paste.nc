@@ -1,0 +1,12050 @@
+( pcb2gcode 2.5.0 )
+( Software-independent Gcode )
+
+G94 ( Millimeters per minute feed rate. )
+G21 ( Units == Millimeters. )
+
+G90 ( Absolute coordinates. )
+G00 S12000 ( RPM spindle speed. )
+G01 F20.00000 ( Feedrate. )
+
+
+G00 Z0.50000 (Retract to tool change height)
+T1
+M5      (Spindle stop.)
+G04 P1.00000 (Wait for spindle to stop)
+(MSG, Change tool bit to mill diameter 0.50000mm)
+M3 ( Spindle on clockwise. )
+G04 P1.00000 (Wait for spindle to get up to speed)
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X0.28046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y19.66050
+G01 X0.28046 Y22.96050
+G01 X1.98048 Y22.96050
+G01 X1.98048 Y19.66050
+G01 X0.28046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X2.82046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y19.66050
+G01 X2.82046 Y22.96050
+G01 X4.52048 Y22.96050
+G01 X4.52048 Y19.66050
+G01 X2.82046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X5.36046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y19.66050
+G01 X5.36046 Y22.96050
+G01 X7.06045 Y22.96050
+G01 X7.06045 Y19.66050
+G01 X5.36046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X7.90046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y19.66050
+G01 X7.90046 Y22.96050
+G01 X9.60048 Y22.96050
+G01 X9.60048 Y19.66050
+G01 X7.90046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X10.44046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y19.66050
+G01 X10.44046 Y22.96050
+G01 X12.14048 Y22.96050
+G01 X12.14048 Y19.66050
+G01 X10.44046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X12.98046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y19.66050
+G01 X12.98046 Y22.96050
+G01 X14.68048 Y22.96050
+G01 X14.68048 Y19.66050
+G01 X12.98046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X15.52046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y19.66050
+G01 X15.52046 Y22.96050
+G01 X17.22048 Y22.96050
+G01 X17.22048 Y19.66050
+G01 X15.52046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X18.06046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y19.66050
+G01 X18.06046 Y22.96050
+G01 X19.76048 Y22.96050
+G01 X19.76048 Y19.66050
+G01 X18.06046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X20.60046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y19.66050
+G01 X20.60046 Y22.96050
+G01 X22.30048 Y22.96050
+G01 X22.30048 Y19.66050
+G01 X20.60046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X23.14046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y19.66050
+G01 X23.14046 Y22.96050
+G01 X24.84048 Y22.96050
+G01 X24.84048 Y19.66050
+G01 X23.14046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X27.51568 Y24.89567 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.51568 Y24.89567
+G01 X27.51833 Y24.88676
+G01 X28.13910 Y24.88714
+G01 X28.13882 Y26.13395
+G01 X27.51703 Y26.13382
+G01 X27.51568 Y24.89567
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X24.66568 Y29.25568 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X24.66568 Y29.25568
+G01 X24.66702 Y30.49383
+G01 X25.28881 Y30.49396
+G01 X25.28909 Y29.24715
+G01 X24.66834 Y29.24677
+G01 X24.66568 Y29.25568
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X27.59069 Y29.25568 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X27.59069 Y29.25568
+G01 X27.59204 Y30.49383
+G01 X28.21383 Y30.49396
+G01 X28.21411 Y29.24715
+G01 X27.59333 Y29.24677
+G01 X27.59069 Y29.25568
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X32.44547 Y31.77798 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y31.77798
+G01 X32.44547 Y32.80300
+G01 X32.59545 Y32.80300
+G01 X32.59545 Y31.77798
+G01 X32.44547 Y31.77798
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X33.71547 Y31.77798 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y31.77798
+G01 X33.71547 Y32.80300
+G01 X33.86545 Y32.80300
+G01 X33.86545 Y31.77798
+G01 X33.71547 Y31.77798
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X34.98547 Y31.77798 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y31.77798
+G01 X34.98547 Y32.80300
+G01 X35.13546 Y32.80300
+G01 X35.13546 Y31.77798
+G01 X34.98547 Y31.77798
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X36.25547 Y31.77798 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y31.77798
+G01 X36.25547 Y32.80300
+G01 X36.40545 Y32.80300
+G01 X36.40545 Y31.77798
+G01 X36.25547 Y31.77798
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X32.44547 Y26.35399 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X32.44547 Y26.35399
+G01 X32.59545 Y26.35399
+G01 X32.59545 Y27.37898
+G01 X32.44547 Y27.37898
+G01 X32.44547 Y26.35399
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X33.71547 Y26.35399 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.71547 Y26.35399
+G01 X33.86545 Y26.35399
+G01 X33.86545 Y27.37898
+G01 X33.71547 Y27.37898
+G01 X33.71547 Y26.35399
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X34.98547 Y26.35399 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X34.98547 Y26.35399
+G01 X35.13546 Y26.35399
+G01 X35.13546 Y27.37898
+G01 X34.98547 Y27.37898
+G01 X34.98547 Y26.35399
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X36.25547 Y26.35399 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X36.25547 Y26.35399
+G01 X36.40545 Y26.35399
+G01 X36.40545 Y27.37898
+G01 X36.25547 Y27.37898
+G01 X36.25547 Y26.35399
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X39.30629 Y27.14218 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y27.14218
+G01 X40.25368 Y27.14213
+G01 X40.25383 Y27.63890
+G01 X39.30702 Y27.63882
+G01 X39.30629 Y27.14218
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X39.30629 Y25.24218 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X39.30629 Y25.24218
+G01 X40.25368 Y25.24213
+G01 X40.25383 Y25.73890
+G01 X39.30702 Y25.73883
+G01 X39.30629 Y25.24218
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X48.54046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y19.66050
+G01 X50.24048 Y19.66050
+G01 X50.24048 Y22.96050
+G01 X48.54046 Y22.96050
+G01 X48.54046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X46.00046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y19.66050
+G01 X47.70048 Y19.66050
+G01 X47.70048 Y22.96050
+G01 X46.00046 Y22.96050
+G01 X46.00046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X43.46046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y19.66050
+G01 X45.16048 Y19.66050
+G01 X45.16048 Y22.96050
+G01 X43.46046 Y22.96050
+G01 X43.46046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X40.92046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y19.66050
+G01 X42.62048 Y19.66050
+G01 X42.62048 Y22.96050
+G01 X40.92046 Y22.96050
+G01 X40.92046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X38.38046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y19.66050
+G01 X40.08048 Y19.66050
+G01 X40.08048 Y22.96050
+G01 X38.38046 Y22.96050
+G01 X38.38046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X35.84046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y19.66050
+G01 X37.54048 Y19.66050
+G01 X37.54048 Y22.96050
+G01 X35.84046 Y22.96050
+G01 X35.84046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X33.30046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y19.66050
+G01 X33.30046 Y22.96050
+G01 X35.00048 Y22.96050
+G01 X35.00048 Y19.66050
+G01 X33.30046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X30.44070 Y24.89567 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.44070 Y24.89567
+G01 X30.44204 Y26.13382
+G01 X31.06383 Y26.13395
+G01 X31.06409 Y24.88714
+G01 X30.44334 Y24.88676
+G01 X30.44070 Y24.89567
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X30.76046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y19.66050
+G01 X30.76046 Y22.96050
+G01 X32.46048 Y22.96050
+G01 X32.46048 Y19.66050
+G01 X30.76046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X30.42335 Y17.28540 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y17.28540
+G01 X30.42627 Y17.22914
+G01 X30.43485 Y17.17430
+G01 X30.44926 Y17.11982
+G01 X30.46589 Y17.07504
+G01 X30.48649 Y17.03193
+G01 X30.51603 Y16.98299
+G01 X30.54407 Y16.94532
+G01 X30.58195 Y16.90361
+G01 X30.62391 Y16.86602
+G01 X30.66175 Y16.83821
+G01 X30.71017 Y16.80941
+G01 X30.76056 Y16.78611
+G01 X30.81387 Y16.76788
+G01 X30.85957 Y16.75706
+G01 X30.91618 Y16.74931
+G01 X30.96312 Y16.74748
+G01 X31.01936 Y16.75076
+G01 X31.07417 Y16.75970
+G01 X31.12853 Y16.77445
+G01 X31.17247 Y16.79109
+G01 X31.22370 Y16.81642
+G01 X31.26358 Y16.84121
+G01 X31.30897 Y16.87590
+G01 X31.34395 Y16.90847
+G01 X31.37582 Y16.94408
+G01 X31.40917 Y16.98947
+G01 X31.43767 Y17.03808
+G01 X31.45738 Y17.08070
+G01 X31.47623 Y17.13465
+G01 X31.48735 Y17.18030
+G01 X31.49546 Y17.23686
+G01 X31.49757 Y17.28378
+G01 X31.49467 Y17.34004
+G01 X31.48608 Y17.39490
+G01 X31.47168 Y17.44936
+G01 X31.45505 Y17.49416
+G01 X31.43442 Y17.53727
+G01 X31.40491 Y17.58619
+G01 X31.37686 Y17.62386
+G01 X31.33899 Y17.66559
+G01 X31.29703 Y17.70315
+G01 X31.25919 Y17.73097
+G01 X31.21077 Y17.75977
+G01 X31.16035 Y17.78306
+G01 X31.10707 Y17.80130
+G01 X31.06137 Y17.81215
+G01 X31.00475 Y17.81987
+G01 X30.95782 Y17.82170
+G01 X30.90158 Y17.81842
+G01 X30.84677 Y17.80948
+G01 X30.79241 Y17.79472
+G01 X30.74847 Y17.77808
+G01 X30.69724 Y17.75279
+G01 X30.65733 Y17.72800
+G01 X30.61194 Y17.69327
+G01 X30.57699 Y17.66071
+G01 X30.54509 Y17.62513
+G01 X30.51177 Y17.57971
+G01 X30.48327 Y17.53112
+G01 X30.46356 Y17.48847
+G01 X30.44471 Y17.43452
+G01 X30.43358 Y17.38891
+G01 X30.42548 Y17.33234
+G01 X30.42335 Y17.28540
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X28.22046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y19.66050
+G01 X29.92048 Y19.66050
+G01 X29.92048 Y22.96050
+G01 X28.22046 Y22.96050
+G01 X28.22046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X25.68046 Y19.66050 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y19.66050
+G01 X27.38048 Y19.66050
+G01 X27.38048 Y22.96050
+G01 X25.68046 Y22.96050
+G01 X25.68046 Y19.66050
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X30.42335 Y14.74540 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42335 Y14.74540
+G01 X30.42548 Y14.79234
+G01 X30.43358 Y14.84891
+G01 X30.44471 Y14.89452
+G01 X30.46356 Y14.94847
+G01 X30.48327 Y14.99112
+G01 X30.51177 Y15.03971
+G01 X30.54509 Y15.08513
+G01 X30.57699 Y15.12071
+G01 X30.61194 Y15.15327
+G01 X30.65733 Y15.18800
+G01 X30.69724 Y15.21279
+G01 X30.74776 Y15.23773
+G01 X30.80056 Y15.25734
+G01 X30.84598 Y15.26935
+G01 X30.90158 Y15.27842
+G01 X30.95782 Y15.28170
+G01 X31.00475 Y15.27987
+G01 X31.06137 Y15.27215
+G01 X31.10707 Y15.26130
+G01 X31.16035 Y15.24306
+G01 X31.21077 Y15.21977
+G01 X31.25919 Y15.19097
+G01 X31.29703 Y15.16315
+G01 X31.33899 Y15.12559
+G01 X31.37686 Y15.08386
+G01 X31.40491 Y15.04619
+G01 X31.43442 Y14.99727
+G01 X31.45505 Y14.95416
+G01 X31.47168 Y14.90936
+G01 X31.48608 Y14.85490
+G01 X31.49467 Y14.80004
+G01 X31.49757 Y14.74378
+G01 X31.49546 Y14.69686
+G01 X31.48735 Y14.64030
+G01 X31.47623 Y14.59465
+G01 X31.45738 Y14.54070
+G01 X31.43767 Y14.49808
+G01 X31.40917 Y14.44947
+G01 X31.37582 Y14.40408
+G01 X31.34395 Y14.36847
+G01 X31.30897 Y14.33590
+G01 X31.26358 Y14.30121
+G01 X31.22370 Y14.27642
+G01 X31.17318 Y14.25145
+G01 X31.12038 Y14.23184
+G01 X31.07496 Y14.21982
+G01 X31.01936 Y14.21076
+G01 X30.96312 Y14.20748
+G01 X30.91618 Y14.20931
+G01 X30.86038 Y14.21693
+G01 X30.80564 Y14.23029
+G01 X30.76130 Y14.24578
+G01 X30.71017 Y14.26941
+G01 X30.66175 Y14.29821
+G01 X30.62391 Y14.32602
+G01 X30.58195 Y14.36361
+G01 X30.54407 Y14.40532
+G01 X30.51603 Y14.44299
+G01 X30.48649 Y14.49193
+G01 X30.46589 Y14.53504
+G01 X30.44926 Y14.57982
+G01 X30.43485 Y14.63430
+G01 X30.42627 Y14.68914
+G01 X30.42335 Y14.74540
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X30.42307 Y11.66758 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.42307 Y11.66758
+G01 X30.42312 Y12.74198
+G01 X31.49784 Y12.74185
+G01 X31.49762 Y11.66723
+G01 X30.42307 Y11.66758
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X13.76049 Y8.68204 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X13.76049 Y8.68204
+G01 X13.76232 Y8.66251
+G01 X13.77012 Y8.64323
+G01 X13.78264 Y8.63007
+G01 X13.80502 Y8.62177
+G01 X14.69938 Y8.62055
+G01 X14.73014 Y8.62596
+G01 X14.74779 Y8.63881
+G01 X14.75554 Y8.65105
+G01 X14.75978 Y8.66934
+G01 X14.76029 Y9.56375
+G01 X14.75714 Y9.58684
+G01 X14.75086 Y9.59901
+G01 X14.73151 Y9.61511
+G01 X14.70936 Y9.62024
+G01 X13.81873 Y9.62039
+G01 X13.78800 Y9.61399
+G01 X13.77367 Y9.60282
+G01 X13.76572 Y9.59073
+G01 X13.76153 Y9.57455
+G01 X13.76049 Y8.68204
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X11.26047 Y8.68204 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X11.26047 Y8.68204
+G01 X11.26233 Y8.66251
+G01 X11.27012 Y8.64323
+G01 X11.28262 Y8.63007
+G01 X11.30500 Y8.62177
+G01 X12.19938 Y8.62055
+G01 X12.23014 Y8.62596
+G01 X12.24779 Y8.63881
+G01 X12.25554 Y8.65105
+G01 X12.25978 Y8.66934
+G01 X12.26029 Y9.56375
+G01 X12.25714 Y9.58684
+G01 X12.25084 Y9.59901
+G01 X12.23151 Y9.61511
+G01 X12.20936 Y9.62024
+G01 X11.31874 Y9.62039
+G01 X11.28800 Y9.61399
+G01 X11.27368 Y9.60282
+G01 X11.26573 Y9.59073
+G01 X11.26151 Y9.57455
+G01 X11.26047 Y8.68204
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X8.76045 Y8.68204 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X8.76045 Y8.68204
+G01 X8.76230 Y8.66251
+G01 X8.77013 Y8.64323
+G01 X8.78262 Y8.63007
+G01 X8.80500 Y8.62177
+G01 X9.69939 Y8.62055
+G01 X9.73012 Y8.62596
+G01 X9.74780 Y8.63881
+G01 X9.75555 Y8.65105
+G01 X9.75979 Y8.66934
+G01 X9.76030 Y9.56375
+G01 X9.75710 Y9.58684
+G01 X9.75085 Y9.59901
+G01 X9.73152 Y9.61511
+G01 X9.70937 Y9.62024
+G01 X8.81872 Y9.62039
+G01 X8.78801 Y9.61399
+G01 X8.77368 Y9.60282
+G01 X8.76573 Y9.59073
+G01 X8.76152 Y9.57455
+G01 X8.76045 Y8.68204
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X3.81601 Y14.05704 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y14.05704
+G01 X3.81903 Y14.00329
+G01 X3.83247 Y13.95114
+G01 X3.85584 Y13.90263
+G01 X3.88822 Y13.85960
+G01 X3.92838 Y13.82371
+G01 X3.97908 Y13.79443
+G01 X4.03397 Y13.77672
+G01 X4.09742 Y13.77050
+G01 X4.49198 Y13.77070
+G01 X4.54019 Y13.77578
+G01 X4.58106 Y13.78663
+G01 X4.61974 Y13.80362
+G01 X4.65688 Y13.82732
+G01 X4.68182 Y13.84868
+G01 X4.70509 Y13.87433
+G01 X4.73912 Y13.92905
+G01 X4.75233 Y13.96295
+G01 X4.76429 Y14.02625
+G01 X4.76455 Y14.06090
+G01 X4.75345 Y14.12435
+G01 X4.74103 Y14.15762
+G01 X4.72492 Y14.18825
+G01 X4.70509 Y14.21665
+G01 X4.68182 Y14.24230
+G01 X4.62998 Y14.28200
+G01 X4.57387 Y14.30712
+G01 X4.51654 Y14.31871
+G01 X4.09401 Y14.32038
+G01 X4.04189 Y14.31563
+G01 X3.98454 Y14.29889
+G01 X3.93470 Y14.27167
+G01 X3.91037 Y14.25279
+G01 X3.86821 Y14.20684
+G01 X3.84133 Y14.16120
+G01 X3.83117 Y14.13621
+G01 X3.82353 Y14.11038
+G01 X3.81601 Y14.05704
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X0.61078 Y14.34139 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y14.34139
+G01 X0.61200 Y14.37255
+G01 X0.62328 Y14.43090
+G01 X0.63651 Y14.46646
+G01 X0.65612 Y14.50357
+G01 X0.67721 Y14.53336
+G01 X0.70230 Y14.56084
+G01 X0.73060 Y14.58500
+G01 X0.76169 Y14.60545
+G01 X0.79443 Y14.62158
+G01 X0.83486 Y14.63532
+G01 X0.86593 Y14.64172
+G01 X0.90868 Y14.64535
+G01 X1.60131 Y14.64550
+G01 X1.65429 Y14.64159
+G01 X1.69854 Y14.63169
+G01 X1.73275 Y14.61896
+G01 X1.76158 Y14.60415
+G01 X1.79303 Y14.58294
+G01 X1.82107 Y14.55848
+G01 X1.84632 Y14.53019
+G01 X1.86488 Y14.50362
+G01 X1.88279 Y14.47019
+G01 X1.89641 Y14.43481
+G01 X1.90438 Y14.40339
+G01 X1.90928 Y14.36580
+G01 X1.90951 Y14.32859
+G01 X1.90502 Y14.29092
+G01 X1.89740 Y14.25942
+G01 X1.88419 Y14.22386
+G01 X1.86699 Y14.19087
+G01 X1.84464 Y14.15851
+G01 X1.80573 Y14.11812
+G01 X1.75932 Y14.08541
+G01 X1.73151 Y14.07131
+G01 X1.68094 Y14.05414
+G01 X1.60682 Y14.04553
+G01 X0.90936 Y14.04563
+G01 X0.86329 Y14.04980
+G01 X0.82168 Y14.05937
+G01 X0.79435 Y14.06920
+G01 X0.74774 Y14.09381
+G01 X0.70268 Y14.12950
+G01 X0.66296 Y14.17654
+G01 X0.63392 Y14.23004
+G01 X0.61708 Y14.28426
+G01 X0.61078 Y14.34139
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X0.46049 Y12.18203 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y12.18203
+G01 X0.46153 Y13.07451
+G01 X0.46572 Y13.09072
+G01 X0.47502 Y13.10446
+G01 X0.49003 Y13.11470
+G01 X0.51873 Y13.12039
+G01 X1.40936 Y13.12023
+G01 X1.43151 Y13.11510
+G01 X1.45086 Y13.09900
+G01 X1.45917 Y13.07901
+G01 X1.46029 Y13.06801
+G01 X1.45978 Y12.16933
+G01 X1.45554 Y12.15105
+G01 X1.44779 Y12.13883
+G01 X1.43014 Y12.12595
+G01 X1.39938 Y12.12051
+G01 X0.50502 Y12.12176
+G01 X0.48264 Y12.13004
+G01 X0.47012 Y12.14322
+G01 X0.46232 Y12.16248
+G01 X0.46049 Y12.18203
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X0.46049 Y10.18206 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.46049 Y10.18206
+G01 X0.46153 Y11.07452
+G01 X0.46572 Y11.09072
+G01 X0.47368 Y11.10281
+G01 X0.49344 Y11.11640
+G01 X0.51873 Y11.12041
+G01 X1.40936 Y11.12026
+G01 X1.43151 Y11.11511
+G01 X1.45041 Y11.09943
+G01 X1.45917 Y11.07901
+G01 X1.46029 Y11.06801
+G01 X1.45978 Y10.16934
+G01 X1.45554 Y10.15102
+G01 X1.44779 Y10.13881
+G01 X1.43014 Y10.12595
+G01 X1.39938 Y10.12052
+G01 X0.50502 Y10.12176
+G01 X0.48264 Y10.13007
+G01 X0.47012 Y10.14323
+G01 X0.46232 Y10.16248
+G01 X0.46049 Y10.18206
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X0.61078 Y8.89139 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.61078 Y8.89139
+G01 X0.61200 Y8.92255
+G01 X0.62328 Y8.98092
+G01 X0.63674 Y9.01712
+G01 X0.65394 Y9.05011
+G01 X0.67469 Y9.08013
+G01 X0.70283 Y9.11130
+G01 X0.73060 Y9.13500
+G01 X0.76169 Y9.15545
+G01 X0.79443 Y9.17157
+G01 X0.83486 Y9.18532
+G01 X0.86593 Y9.19174
+G01 X0.90868 Y9.19535
+G01 X1.60131 Y9.19550
+G01 X1.65429 Y9.19159
+G01 X1.69923 Y9.18156
+G01 X1.72836 Y9.17091
+G01 X1.76217 Y9.15374
+G01 X1.79303 Y9.13297
+G01 X1.82160 Y9.10800
+G01 X1.84332 Y9.08394
+G01 X1.86521 Y9.05301
+G01 X1.88279 Y9.02019
+G01 X1.89641 Y8.98483
+G01 X1.90438 Y8.95339
+G01 X1.90928 Y8.91580
+G01 X1.90951 Y8.87861
+G01 X1.90502 Y8.84092
+G01 X1.89740 Y8.80942
+G01 X1.88419 Y8.77389
+G01 X1.86699 Y8.74087
+G01 X1.84464 Y8.70851
+G01 X1.80885 Y8.67079
+G01 X1.76166 Y8.63670
+G01 X1.70946 Y8.61262
+G01 X1.68490 Y8.60521
+G01 X1.65643 Y8.59946
+G01 X1.60682 Y8.59553
+G01 X0.90936 Y8.59563
+G01 X0.86329 Y8.59982
+G01 X0.79877 Y8.61737
+G01 X0.74373 Y8.64645
+G01 X0.70268 Y8.67950
+G01 X0.66296 Y8.72657
+G01 X0.63550 Y8.77627
+G01 X0.61698 Y8.83495
+G01 X0.61078 Y8.89139
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X3.76049 Y11.18206 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.76049 Y11.18206
+G01 X3.76231 Y11.16248
+G01 X3.77011 Y11.14322
+G01 X3.78263 Y11.13004
+G01 X3.80501 Y11.12176
+G01 X4.69937 Y11.12052
+G01 X4.73016 Y11.12595
+G01 X4.74781 Y11.13883
+G01 X4.75553 Y11.15102
+G01 X4.75980 Y11.16934
+G01 X4.76028 Y12.06801
+G01 X4.75916 Y12.07901
+G01 X4.75040 Y12.09941
+G01 X4.73150 Y12.11510
+G01 X4.70935 Y12.12026
+G01 X3.81875 Y12.12039
+G01 X3.79343 Y12.11640
+G01 X3.77367 Y12.10284
+G01 X3.76572 Y12.09075
+G01 X3.76153 Y12.07451
+G01 X3.76049 Y11.18206
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X3.81601 Y9.20706 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X3.81601 Y9.20706
+G01 X3.82353 Y9.26037
+G01 X3.83117 Y9.28623
+G01 X3.85345 Y9.33429
+G01 X3.87105 Y9.36063
+G01 X3.91393 Y9.40591
+G01 X3.93397 Y9.42123
+G01 X3.98454 Y9.44892
+G01 X4.04189 Y9.46563
+G01 X4.09401 Y9.47041
+G01 X4.51654 Y9.46870
+G01 X4.57387 Y9.45712
+G01 X4.62998 Y9.43205
+G01 X4.68182 Y9.39233
+G01 X4.70509 Y9.36667
+G01 X4.72492 Y9.33827
+G01 X4.74103 Y9.30762
+G01 X4.75345 Y9.27437
+G01 X4.76465 Y9.21000
+G01 X4.76465 Y9.18097
+G01 X4.76041 Y9.14574
+G01 X4.75200 Y9.11216
+G01 X4.72543 Y9.05344
+G01 X4.70509 Y9.02436
+G01 X4.68182 Y8.99870
+G01 X4.65688 Y8.97732
+G01 X4.61974 Y8.95362
+G01 X4.58106 Y8.93662
+G01 X4.54019 Y8.92578
+G01 X4.49198 Y8.92072
+G01 X4.09742 Y8.92050
+G01 X4.02851 Y8.92791
+G01 X3.97908 Y8.94445
+G01 X3.92838 Y8.97371
+G01 X3.88822 Y9.00960
+G01 X3.85584 Y9.05263
+G01 X3.83247 Y9.10117
+G01 X3.81903 Y9.15331
+G01 X3.81601 Y9.20706
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X0.28046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X0.28046 Y0.28048
+G01 X1.98048 Y0.28048
+G01 X1.98048 Y3.58050
+G01 X0.28046 Y3.58050
+G01 X0.28046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X2.82046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X2.82046 Y0.28048
+G01 X4.52048 Y0.28048
+G01 X4.52048 Y3.58050
+G01 X2.82046 Y3.58050
+G01 X2.82046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X5.36046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X5.36046 Y0.28048
+G01 X7.06045 Y0.28048
+G01 X7.06045 Y3.58050
+G01 X5.36046 Y3.58050
+G01 X5.36046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X7.90046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X7.90046 Y0.28048
+G01 X9.60048 Y0.28048
+G01 X9.60048 Y3.58050
+G01 X7.90046 Y3.58050
+G01 X7.90046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X10.44046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X10.44046 Y0.28048
+G01 X12.14048 Y0.28048
+G01 X12.14048 Y3.58050
+G01 X10.44046 Y3.58050
+G01 X10.44046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X12.98046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X12.98046 Y0.28048
+G01 X14.68048 Y0.28048
+G01 X14.68048 Y3.58050
+G01 X12.98046 Y3.58050
+G01 X12.98046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X15.52046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X15.52046 Y0.28048
+G01 X17.22048 Y0.28048
+G01 X17.22048 Y3.58050
+G01 X15.52046 Y3.58050
+G01 X15.52046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X18.06046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X18.06046 Y0.28048
+G01 X19.76048 Y0.28048
+G01 X19.76048 Y3.58050
+G01 X18.06046 Y3.58050
+G01 X18.06046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X20.60046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X20.60046 Y0.28048
+G01 X22.30048 Y0.28048
+G01 X22.30048 Y3.58050
+G01 X20.60046 Y3.58050
+G01 X20.60046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X23.14046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X23.14046 Y0.28048
+G01 X23.14046 Y3.58050
+G01 X24.84048 Y3.58050
+G01 X24.84048 Y0.28048
+G01 X23.14046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X25.68046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X25.68046 Y0.28048
+G01 X25.68046 Y3.58050
+G01 X27.38048 Y3.58050
+G01 X27.38048 Y0.28048
+G01 X25.68046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X28.22046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X28.22046 Y0.28048
+G01 X28.22046 Y3.58050
+G01 X29.92048 Y3.58050
+G01 X29.92048 Y0.28048
+G01 X28.22046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X30.76046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X30.76046 Y0.28048
+G01 X30.76046 Y3.58050
+G01 X32.46048 Y3.58050
+G01 X32.46048 Y0.28048
+G01 X30.76046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X33.30046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X33.30046 Y0.28048
+G01 X33.30046 Y3.58050
+G01 X35.00048 Y3.58050
+G01 X35.00048 Y0.28048
+G01 X33.30046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X35.84046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X35.84046 Y0.28048
+G01 X35.84046 Y3.58050
+G01 X37.54048 Y3.58050
+G01 X37.54048 Y0.28048
+G01 X35.84046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X38.38046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X38.38046 Y0.28048
+G01 X38.38046 Y3.58050
+G01 X40.08048 Y3.58050
+G01 X40.08048 Y0.28048
+G01 X38.38046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X40.92046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X40.92046 Y0.28048
+G01 X40.92046 Y3.58050
+G01 X42.62048 Y3.58050
+G01 X42.62048 Y0.28048
+G01 X40.92046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X43.46046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X43.46046 Y0.28048
+G01 X43.46046 Y3.58050
+G01 X45.16048 Y3.58050
+G01 X45.16048 Y0.28048
+G01 X43.46046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X46.00046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X46.00046 Y0.28048
+G01 X46.00046 Y3.58050
+G01 X47.70048 Y3.58050
+G01 X47.70048 Y0.28048
+G01 X46.00046 Y0.28048
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.50000 ( retract )
+
+G00 X48.54046 Y0.28048 ( rapid move to begin. )
+G01 F30.00000
+( Mill infeed pass 1/12 )
+G01 Z-0.05000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 2/12 )
+G01 Z-0.10000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 3/12 )
+G01 Z-0.15000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 4/12 )
+G01 Z-0.20000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 5/12 )
+G01 Z-0.25000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 6/12 )
+G01 Z-0.30000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 7/12 )
+G01 Z-0.35000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 8/12 )
+G01 Z-0.40000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 9/12 )
+G01 Z-0.45000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 10/12 )
+G01 Z-0.50000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 11/12 )
+G01 Z-0.55000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+( Mill infeed pass 12/12 )
+G01 Z-0.60000
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G01 F20.00000
+G01 X48.54046 Y0.28048
+G01 X48.54046 Y3.58050
+G01 X50.24048 Y3.58050
+G01 X50.24048 Y0.28048
+G01 X48.54046 Y0.28048
+
+G04 P0 ( dwell for no time -- G64 should not smooth over this point )
+G00 Z0.500000 ( retract )
+
+M5 ( Spindle off. )
+G04 P1.000000
+M9 ( Coolant off. )
+M2 ( Program end. )
+

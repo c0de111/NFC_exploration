@@ -16,8 +16,8 @@ sym-lib-table-bak
 *.FCBak
 
 # CAM outputs
-pcb/*/cam/pcb2gcode/output/*.nc
-pcb/*/cam/pcb2gcode/output/*.svg
+#pcb/*/cam/pcb2gcode/output/*.nc
+#pcb/*/cam/pcb2gcode/output/*.svg
 
 # OS cruft
 .DS_Store
