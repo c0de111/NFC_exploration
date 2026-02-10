@@ -185,6 +185,75 @@ static bool is_inki_request(const uint8_t req16[16]) {
   return req16[0] == 'I' && req16[1] == 'N' && req16[2] == 'K' && req16[3] == 'I';
 }
 
+typedef struct {
+  uint8_t version;
+  uint8_t opcode;
+  uint16_t duration_min;
+  uint32_t unix_seconds;
+  uint32_t nonce;
+} InkiRequest;
+
+static bool decode_inki_request(const uint8_t req16[16], InkiRequest* out) {
+  if (!is_inki_request(req16)) {
+    return false;
+  }
+
+  if (out != NULL) {
+    out->version = req16[4];
+    out->opcode = req16[5];
+    out->duration_min = (uint16_t)req16[6] | ((uint16_t)req16[7] << 8);
+    out->unix_seconds = (uint32_t)req16[8] | ((uint32_t)req16[9] << 8) |
+                        ((uint32_t)req16[10] << 16) | ((uint32_t)req16[11] << 24);
+    out->nonce = (uint32_t)req16[12] | ((uint32_t)req16[13] << 8) |
+                 ((uint32_t)req16[14] << 16) | ((uint32_t)req16[15] << 24);
+  }
+
+  return true;
+}
+
+static bool validate_inki_request(const InkiRequest* req, const char** reason) {
+  if (req->version != 1u) {
+    if (reason != NULL) {
+      *reason = "version";
+    }
+    return false;
+  }
+  if (req->opcode == 0u) {
+    if (reason != NULL) {
+      *reason = "opcode";
+    }
+    return false;
+  }
+  if (req->duration_min == 0u || req->duration_min > (24u * 60u)) {
+    if (reason != NULL) {
+      *reason = "duration";
+    }
+    return false;
+  }
+  if (req->unix_seconds == 0u) {
+    if (reason != NULL) {
+      *reason = "unix";
+    }
+    return false;
+  }
+  if (req->nonce == 0u) {
+    if (reason != NULL) {
+      *reason = "nonce";
+    }
+    return false;
+  }
+  return true;
+}
+
+static bool request_is_all_zero(const uint8_t req16[16]) {
+  for (size_t i = 0; i < 16; i++) {
+    if (req16[i] != 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 static void log_request_bytes(uint16_t addr, const uint8_t req16[16]) {
   printf("%s[INFO]%s Request@0x%04X: ", COLOR_CYAN, COLOR_RESET, addr);
   dump_hex(req16, 16);
@@ -482,6 +551,30 @@ static int32_t st25_write_data_retry(ST25DV_Object_t* st,
   if (elapsed_ms != NULL) {
     *elapsed_ms = st25_get_tick() - t0;
   }
+  if (attempts != NULL) {
+    *attempts = tries;
+  }
+  return ret;
+}
+
+static int32_t st25_get_rf_field_retry(ST25DV_Object_t* st,
+                                       ST25DV_FIELD_STATUS* field,
+                                       uint32_t timeout_ms,
+                                       uint32_t retry_delay_ms,
+                                       uint32_t* attempts) {
+  const uint32_t t0 = st25_get_tick();
+  uint32_t tries = 0;
+  int32_t ret = NFCTAG_ERROR;
+
+  do {
+    tries++;
+    ret = ST25DV_GetRFField_Dyn(st, field);
+    if (ret == NFCTAG_OK) {
+      break;
+    }
+    sleep_ms(retry_delay_ms);
+  } while ((st25_get_tick() - t0) < timeout_ms);
+
   if (attempts != NULL) {
     *attempts = tries;
   }
@@ -863,9 +956,23 @@ static void run_optional_startup_diagnostics(HarnessState* state, StartupDiag* d
 }
 
 static void poll_request_loop(HarnessState* state) {
-  while (true) {
-    gpio_put(NFC_STATUS_LED_PIN, 1);
+  const uint32_t rf_poll_ms = 120u;
+  const uint32_t rf_field_timeout_ms = 12u;
+  const uint32_t rf_field_retry_delay_ms = 2u;
+  const uint32_t req_read_timeout_ms = 40u;
+  const uint32_t req_read_retry_delay_ms = 2u;
+  const uint32_t req_clear_timeout_ms = (uint32_t)ST25DV_WRITE_TIMEOUT + 200u;
+  const uint32_t req_clear_retry_delay_ms = 2u;
 
+  bool have_rf_state = false;
+  bool rf_on = false;
+  uint32_t rf_field_fail_streak = 0;
+  bool req_read_error = false;
+  bool have_last_req = false;
+  bool pending_clear = false;
+  uint8_t last_req[16] = {0};
+
+  while (true) {
     if (!state->region_ok) {
       log_warn("Request region not available\n");
       gpio_put(NFC_STATUS_LED_PIN, 0);
@@ -873,59 +980,126 @@ static void poll_request_loop(HarnessState* state) {
       continue;
     }
 
-    uint8_t req[16] = {0};
-    int32_t ret = st25_is_ready(ST25DV_ADDR_DATA_I2C, 1);
+    ST25DV_FIELD_STATUS field = ST25DV_FIELD_OFF;
+    uint32_t rf_field_attempts = 0;
+    int32_t ret = st25_get_rf_field_retry(
+        &state->st, &field, rf_field_timeout_ms, rf_field_retry_delay_ms, &rf_field_attempts);
     if (ret != NFCTAG_OK) {
-      log_warn("ST25DV not ready (RF busy?): %ld\n", (long)ret);
+      rf_field_fail_streak++;
+      if (rf_field_fail_streak == 1) {
+        log_warn("RF field read transient failure after %lu attempt(s): %ld\n",
+                 (unsigned long)rf_field_attempts,
+                 (long)ret);
+      } else if (rf_field_fail_streak == 5) {
+        log_err("RF field read still failing (5 consecutive polls)\n");
+      }
       gpio_put(NFC_STATUS_LED_PIN, 0);
-      sleep_ms(200);
+      sleep_ms(rf_poll_ms);
+      continue;
+    }
+    if (rf_field_fail_streak > 0) {
+      log_ok("RF field read recovered after %lu failed poll(s)\n", (unsigned long)rf_field_fail_streak);
+      rf_field_fail_streak = 0;
+    }
+
+    const bool rf_now_on = (field == ST25DV_FIELD_ON);
+    if (!have_rf_state || rf_now_on != rf_on) {
+      have_rf_state = true;
+      rf_on = rf_now_on;
+      log_info("RF field: %s\n", rf_on ? "ON" : "OFF");
+      if (rf_on) {
+        // Start each RF session with a fresh request-change baseline.
+        have_last_req = false;
+      }
+    }
+
+    gpio_put(NFC_STATUS_LED_PIN, rf_on ? 1 : 0);
+    if (!rf_on) {
+      if (pending_clear) {
+        uint8_t zeros[ST25DV_MAX_WRITE_BYTE] = {0};
+        uint32_t clear_elapsed_ms = 0;
+        uint32_t clear_attempts = 0;
+        ret = st25_write_data_retry(&state->st,
+                                    zeros,
+                                    state->req_addr,
+                                    (uint16_t)state->region_bytes,
+                                    req_clear_timeout_ms,
+                                    req_clear_retry_delay_ms,
+                                    &clear_elapsed_ms,
+                                    &clear_attempts);
+        if (ret == NFCTAG_OK) {
+          log_ok("Cleared request after RF OFF (%lu bytes @ 0x%04X, attempts=%lu, %lums)\n",
+                 (unsigned long)state->region_bytes,
+                 state->req_addr,
+                 (unsigned long)clear_attempts,
+                 (unsigned long)clear_elapsed_ms);
+          pending_clear = false;
+          memset(last_req, 0, sizeof(last_req));
+          have_last_req = false;
+        } else {
+          log_err("Deferred clear failed after %lu attempt(s): %ld\n", (unsigned long)clear_attempts, (long)ret);
+        }
+      }
+      sleep_ms(rf_poll_ms);
       continue;
     }
 
+    uint8_t req[16] = {0};
+    uint32_t read_attempts = 0;
     ret = st25_read_data_retry(&state->st,
                                req,
                                state->req_addr,
                                (uint16_t)sizeof(req),
-                               20u,
-                               2u,
+                               req_read_timeout_ms,
+                               req_read_retry_delay_ms,
                                NULL,
-                               NULL);
+                               &read_attempts);
     if (ret != NFCTAG_OK) {
-      log_err("ReadData failed: %ld\n", (long)ret);
-      gpio_put(NFC_STATUS_LED_PIN, 0);
-      sleep_ms(500);
+      if (!req_read_error) {
+        log_err("RF request read failed after %lu attempt(s): %ld\n", (unsigned long)read_attempts, (long)ret);
+        req_read_error = true;
+      }
+      sleep_ms(rf_poll_ms);
+      continue;
+    }
+    if (req_read_error) {
+      log_ok("RF request read recovered\n");
+      req_read_error = false;
+    }
+
+    if (have_last_req && memcmp(req, last_req, sizeof(req)) == 0) {
+      sleep_ms(rf_poll_ms);
       continue;
     }
 
+    memcpy(last_req, req, sizeof(req));
+    have_last_req = true;
+
     log_request_bytes(state->req_addr, req);
 
-    if (is_inki_request(req)) {
-      const uint8_t version = req[4];
-      const uint8_t opcode = req[5];
-      const uint16_t duration_min = (uint16_t)req[6] | ((uint16_t)req[7] << 8);
-      const uint32_t unix_seconds = (uint32_t)req[8] | ((uint32_t)req[9] << 8) |
-                                    ((uint32_t)req[10] << 16) | ((uint32_t)req[11] << 24);
-      const uint32_t nonce = (uint32_t)req[12] | ((uint32_t)req[13] << 8) | ((uint32_t)req[14] << 16) |
-                             ((uint32_t)req[15] << 24);
-
-      log_ok("INKI request: version=%u opcode=0x%02X duration_min=%u unix=%lu nonce=0x%08lX\n",
-             version,
-             opcode,
-             duration_min,
-             (unsigned long)unix_seconds,
-             (unsigned long)nonce);
-
-      uint8_t zeros[ST25DV_MAX_WRITE_BYTE] = {0};
-      ret = St25Dv_Drv.WriteData(&state->st, zeros, state->req_addr, (uint16_t)state->region_bytes);
-      if (ret == NFCTAG_OK) {
-        log_ok("Cleared request (%lu bytes @ 0x%04X)\n", (unsigned long)state->region_bytes, state->req_addr);
+    if (request_is_all_zero(req)) {
+      log_info("RF request slot is empty\n");
+    } else if (is_inki_request(req)) {
+      InkiRequest parsed = {0};
+      (void)decode_inki_request(req, &parsed);
+      const char* invalid_reason = NULL;
+      if (validate_inki_request(&parsed, &invalid_reason)) {
+        log_ok("INKI request: version=%u opcode=0x%02X duration_min=%u unix=%lu nonce=0x%08lX\n",
+               parsed.version,
+               parsed.opcode,
+               parsed.duration_min,
+               (unsigned long)parsed.unix_seconds,
+               (unsigned long)parsed.nonce);
+        pending_clear = true;
+        log_info("Queued clear after RF field OFF\n");
       } else {
-        log_err("Clear failed: %ld\n", (long)ret);
+        log_warn("INKI request ignored: invalid/incomplete (%s)\n", invalid_reason != NULL ? invalid_reason : "format");
       }
+    } else {
+      log_warn("RF request ignored: missing INKI magic\n");
     }
 
-    gpio_put(NFC_STATUS_LED_PIN, 0);
-    sleep_ms(1000);
+    sleep_ms(rf_poll_ms);
   }
 }
 
