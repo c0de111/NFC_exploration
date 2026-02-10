@@ -59,6 +59,33 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-02-10: Added explicit boot log for configured GPO pulse duration (`IT_TIME`) so startup diagnostics now print both raw enum value and approximate pulse width in microseconds (e.g. `DYN GPO IT pulse: IT_TIME=0 (~302 us)`). This clarifies that `DYN GPO` itself is dynamic status, while pulse length comes from static GPO2 configuration.
+- 2026-02-10: Added short inline hints to startup dynamic-status logs in firmware (`DYN I2C session`, `DYN EH`, `DYN RF field`, `DYN VCC`, `DYN RF mngt`, `DYN IT`, `DYN GPO`, `DYN mailbox`, `DYN mailbox length`) so boot diagnostics are self-explanatory without changing behavior.
+- 2026-02-10: Reduced runtime serial noise during RF/V_EH testing by removing per-edge `RF/EH state: ...` logging from the steady-state loop; kept startup diagnostics unchanged (`DYN EH`, `DYN GPO`, EH test-mode snapshot, and `SELFTEST` summary still printed at boot).
+- 2026-02-10: Detailed protocol note for integrating ST25DV wake into the inki-style gate-latch architecture (RTC/user wake baseline + added NFC wake path):
+  - Clarified baseline: inki is currently **not** using NFC for wake; existing wake is RTC (`DS3231 ~INT`) or user pushbutton pulling the shared gate node low, then Pico firmware latches power via `Q2`/`GP22`.
+  - ST25DV04KC-IE (`SO8`, open-drain GPO) behavior relevant to this integration:
+    - `GPO` requires a pull-up supply and signals interrupts by pulling low (open-drain sink).
+    - `GPO` source/pulse are configurable through `GPO1/GPO2` static registers (driver APIs `ST25DV_ConfigureGPO`, `ST25DV_WriteITPulse`).
+    - For wake testing, target configuration is `FIELD_CHANGE` (and optionally `RF_WRITE`) with longest pulse (`IT_TIME=000`, about `301 us` nominal).
+    - Datasheet caveat for `RF ON + VCC OFF`: RF events can be reflected on GPO if pull-up is powered, but `FIELD_CHANGE` on RF field falling is not reported when VCC is off.
+  - `V_EH` observation from bench discussion: measured around `30 mV` when phone is tapped in current setup, therefore not a viable direct wake source in the current antenna/coupling/tuning state.
+  - Shared-node RC caution and decision:
+    - RC on the shared OR node (Q1 gate / RTC INT / manual trigger node) affects all wake channels.
+    - If that RC is moved away from the shared node, a **dedicated GPO pulse-stretch branch** must be added because raw GPO pulses are short.
+  - Low-leakage stretcher branch proposed for trials (compatible with sub-`5 uA` standby target if implemented carefully):
+    - `GPO_STR` node: pull-up `1M..2.2M` to always-on rail + capacitor `22..47 nF` to GND.
+    - Schottky isolation diode from shared gate node to `GPO_STR` (`anode=shared gate`, `cathode=GPO_STR`) so GPO pulses pull gate low while isolating other OR sources.
+    - Keep wake branch isolated from switched `3V3`/MCU GPIO rails to avoid back-power/leakage when Pico is off.
+  - Validation protocol before adopting in hardware:
+    - Scope `GPO raw`, `GPO_STR`, shared gate node, and `VSYS` during phone tap.
+    - Confirm Pico boot + latch success rate across phones/orientations/coupling.
+    - Verify off-state current remains at baseline (order of a few microamps).
+    - Confirm no unintended I2C back-power paths when ST25 VCC is off and RF is present.
+- 2026-02-10: Hardened RF request transaction behavior to avoid partial-write races during phone taps: firmware now validates full `INKI` payload semantics (not magic-only), ignores incomplete/invalid frames (e.g. `INKI` + zeros), and defers clearing request memory until `RF field` transitions `OFF` to reduce RF-session interference with phone readback.
+- 2026-02-10: Android tap-to-book app write path updated for better transactional behavior on marginal coupling: transceive retries added, NFC-V timeout increased, post-write readback downgraded to warning when tag is lost after a successful write, and request blocks are now written in reverse order so the `INKI` magic block is written last.
+- 2026-02-10: Reduced runtime RF-field poll noise from transient I2C read glitches: RF field status reads now use a short bounded retry window, first miss logs as transient warning, persistent misses escalate only after consecutive failures, and successful read logs a recovery message. This keeps normal tap interactions clean while still surfacing real faults.
+- 2026-02-10: Switched runtime (post-startup) logging to RF-event-driven behavior: no continuous 1 Hz request dump while idle, RF field ON/OFF edge logs, request-slot reads only while RF field is ON, and action-focused logs only when content changes (`INKI` parse/clear, empty slot, non-INKI payload ignored, and read/clear error + recovery events).
 - 2026-02-10: Hardened boot request-slot R/W timing test against transient EEPROM busy/NACK windows: added bounded retry helpers for ST25 data read/write around verify/restore phases, guaranteed best-effort backup restore on error paths, and added explicit warning when boot snapshot equals the known self-test pattern (`A5 98 DF 12 51 94 CB 0E 4D 80 C7 3A 79 BC F3 36`) left by earlier failed boots.
 - 2026-02-10: Fixed false-positive ST25 "ready" probing on RP2040: `i2c_address_acks()` previously used a zero-length `i2c_write_blocking()` call, which can return success without a real bus transaction in this SDK path. Updated probe/readiness checks to send a real 2-byte address pointer (`0x0000`) so ACK/NACK reflects actual device availability (important for EEPROM write-cycle busy handling and boot R/W timing test correctness).
 - 2026-02-10: Refactored `firmware/src/main.c` startup flow for readability and production gating: split boot path into focused subroutines (`boot_log_banner`, power/LED init, bus registration, identity/memory bring-up, optional diagnostics, steady-state poll loop), introduced `HarnessState`/`StartupDiag` structs, and added CMake-exposed `NFC_ENABLE_STARTUP_DIAGNOSTICS` (default `1`) so startup diagnostics can be disabled cleanly for production builds.

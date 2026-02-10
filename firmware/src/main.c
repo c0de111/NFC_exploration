@@ -43,6 +43,14 @@
 #define NFC_ENABLE_STARTUP_DIAGNOSTICS 1
 #endif
 
+#ifndef NFC_ENABLE_EH_TEST_MODE
+#define NFC_ENABLE_EH_TEST_MODE 1
+#endif
+
+#ifndef NFC_I2C_OP_TIMEOUT_US
+#define NFC_I2C_OP_TIMEOUT_US 20000
+#endif
+
 #define COLOR_RESET "\033[0m"
 #define COLOR_RED "\033[31m"
 #define COLOR_GREEN "\033[32m"
@@ -110,8 +118,8 @@ static void st25_power_on(void) {
 
 static bool i2c_address_acks(uint8_t address_7bit) {
   const uint8_t probe_addr[2] = {0x00, 0x00};
-  const int res =
-      i2c_write_blocking(NFC_I2C_INSTANCE, address_7bit, probe_addr, (size_t)sizeof(probe_addr), false);
+  const int res = i2c_write_timeout_us(
+      NFC_I2C_INSTANCE, address_7bit, probe_addr, (size_t)sizeof(probe_addr), false, NFC_I2C_OP_TIMEOUT_US);
   return res == (int)sizeof(probe_addr);
 }
 
@@ -151,7 +159,7 @@ static int32_t st25_write(uint16_t dev_addr, uint16_t reg, const uint8_t* data, 
     memcpy(&tmp[2], data, len);
   }
 
-  const int res = i2c_write_blocking(NFC_I2C_INSTANCE, addr7, tmp, (int)(len + 2), false);
+  const int res = i2c_write_timeout_us(NFC_I2C_INSTANCE, addr7, tmp, (size_t)(len + 2), false, NFC_I2C_OP_TIMEOUT_US);
   return (res < 0) ? NFCTAG_NACK : NFCTAG_OK;
 }
 
@@ -163,12 +171,12 @@ static int32_t st25_read(uint16_t dev_addr, uint16_t reg, uint8_t* data, uint16_
       (uint8_t)(reg & 0xFF),
   };
 
-  int res = i2c_write_blocking(NFC_I2C_INSTANCE, addr7, addr_buf, 2, true);
+  int res = i2c_write_timeout_us(NFC_I2C_INSTANCE, addr7, addr_buf, sizeof(addr_buf), true, NFC_I2C_OP_TIMEOUT_US);
   if (res < 0) {
     return NFCTAG_NACK;
   }
 
-  res = i2c_read_blocking(NFC_I2C_INSTANCE, addr7, data, len, false);
+  res = i2c_read_timeout_us(NFC_I2C_INSTANCE, addr7, data, len, false, NFC_I2C_OP_TIMEOUT_US);
   return (res < 0) ? NFCTAG_NACK : NFCTAG_OK;
 }
 
@@ -307,6 +315,17 @@ static const char* st25_uid_product_code_name(uint8_t product_code) {
   }
 }
 
+static const char* st25_eh_mode_name(ST25DV_EH_MODE_STATUS mode) {
+  switch (mode) {
+    case ST25DV_EH_ACTIVE_AFTER_BOOT:
+      return "ACTIVE_AFTER_BOOT";
+    case ST25DV_EH_ON_DEMAND:
+      return "ON_DEMAND";
+    default:
+      return "UNKNOWN";
+  }
+}
+
 static const char* st25_en_name(ST25DV_EN_STATUS status) {
   return (status == ST25DV_ENABLE) ? "ON" : "OFF";
 }
@@ -333,6 +352,29 @@ static const char* st25_current_msg_name(ST25DV_CURRENT_MSG msg) {
       return "RF_MSG";
     default:
       return "UNKNOWN";
+  }
+}
+
+static uint32_t st25_it_pulse_us(ST25DV_PULSE_DURATION pulse) {
+  switch (pulse) {
+    case ST25DV_302_US:
+      return 302u;
+    case ST25DV_264_US:
+      return 264u;
+    case ST25DV_226_US:
+      return 226u;
+    case ST25DV_188_US:
+      return 188u;
+    case ST25DV_151_US:
+      return 151u;
+    case ST25DV_113_US:
+      return 113u;
+    case ST25DV_75_US:
+      return 75u;
+    case ST25DV_37_US:
+      return 37u;
+    default:
+      return 0u;
   }
 }
 
@@ -370,7 +412,7 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   ST25DV_I2CSSO_STATUS session = ST25DV_SESSION_CLOSED;
   ret = ST25DV_ReadI2CSecuritySession_Dyn(st, &session);
   if (ret == NFCTAG_OK) {
-    log_info("DYN I2C session: %s\n", st25_session_name(session));
+    log_info("DYN I2C session: %s (security session)\n", st25_session_name(session));
   } else {
     log_err("DYN I2C session read failed: %ld\n", (long)ret);
     all_ok = false;
@@ -379,7 +421,7 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   ST25DV_EH_CTRL eh = {0};
   ret = ST25DV_ReadEHCtrl_Dyn(st, &eh);
   if (ret == NFCTAG_OK) {
-    log_info("DYN EH: EH_EN=%s EH_ON=%s FIELD_ON=%s VCC_ON=%s\n",
+    log_info("DYN EH: EH_EN=%s EH_ON=%s FIELD_ON=%s VCC_ON=%s (EH ctrl bits)\n",
              st25_en_name(eh.EH_EN_Mode),
              st25_en_name(eh.EH_on),
              st25_en_name(eh.Field_on),
@@ -392,7 +434,7 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   ST25DV_FIELD_STATUS rf_field = ST25DV_FIELD_OFF;
   ret = ST25DV_GetRFField_Dyn(st, &rf_field);
   if (ret == NFCTAG_OK) {
-    log_info("DYN RF field: %s\n", st25_field_name(rf_field));
+    log_info("DYN RF field: %s (carrier detect)\n", st25_field_name(rf_field));
   } else {
     log_err("DYN RF field read failed: %ld\n", (long)ret);
     all_ok = false;
@@ -401,7 +443,7 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   ST25DV_VCC_STATUS vcc = ST25DV_VCC_OFF;
   ret = ST25DV_GetVCC_Dyn(st, &vcc);
   if (ret == NFCTAG_OK) {
-    log_info("DYN VCC seen by ST25: %s\n", st25_vcc_name(vcc));
+    log_info("DYN VCC seen by ST25: %s (tag VCC state)\n", st25_vcc_name(vcc));
   } else {
     log_err("DYN VCC status read failed: %ld\n", (long)ret);
     all_ok = false;
@@ -410,7 +452,7 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   ST25DV_RF_MNGT rf_mngt = {0};
   ret = ST25DV_ReadRFMngt_Dyn(st, &rf_mngt);
   if (ret == NFCTAG_OK) {
-    log_info("DYN RF mngt: RF_DISABLE=%s RF_SLEEP=%s\n",
+    log_info("DYN RF mngt: RF_DISABLE=%s RF_SLEEP=%s (RF interface ctrl)\n",
              st25_en_name(rf_mngt.RfDisable),
              st25_en_name(rf_mngt.RfSleep));
   } else {
@@ -421,7 +463,7 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   uint8_t it_status = 0;
   ret = ST25DV_ReadITSTStatus_Dyn(st, &it_status);
   if (ret == NFCTAG_OK) {
-    log_info("DYN IT status: 0x%02X\n", it_status);
+    log_info("DYN IT status: 0x%02X (latched event bits)\n", it_status);
   } else {
     log_err("DYN IT status read failed: %ld\n", (long)ret);
     all_ok = false;
@@ -430,16 +472,27 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   uint8_t gpo_dyn = 0;
   ret = ST25DV_ReadGPO_Dyn(st, &gpo_dyn);
   if (ret == NFCTAG_OK) {
-    log_info("DYN GPO: 0x%02X\n", gpo_dyn);
+    log_info("DYN GPO: 0x%02X (GPO dynamic reg)\n", gpo_dyn);
   } else {
     log_err("DYN GPO read failed: %ld\n", (long)ret);
+    all_ok = false;
+  }
+
+  ST25DV_PULSE_DURATION it_pulse = ST25DV_188_US;
+  ret = ST25DV_ReadITPulse(st, &it_pulse);
+  if (ret == NFCTAG_OK) {
+    log_info("DYN GPO IT pulse: IT_TIME=%u (~%lu us)\n",
+             (unsigned)it_pulse,
+             (unsigned long)st25_it_pulse_us(it_pulse));
+  } else {
+    log_err("DYN GPO IT pulse read failed: %ld\n", (long)ret);
     all_ok = false;
   }
 
   ST25DV_MB_CTRL_DYN_STATUS mb = {0};
   ret = ST25DV_ReadMBCtrl_Dyn(st, &mb);
   if (ret == NFCTAG_OK) {
-    log_info("DYN mailbox: MBEN=%u HOSTPUT=%u RFPUT=%u HOSTMISS=%u RFMISS=%u CUR=%s\n",
+    log_info("DYN mailbox: MBEN=%u HOSTPUT=%u RFPUT=%u HOSTMISS=%u RFMISS=%u CUR=%s (FTM status)\n",
              (unsigned)mb.MbEnable,
              (unsigned)mb.HostPutMsg,
              (unsigned)mb.RfPutMsg,
@@ -454,7 +507,7 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
   uint8_t mb_len = 0;
   ret = ST25DV_ReadMBLength_Dyn(st, &mb_len);
   if (ret == NFCTAG_OK) {
-    log_info("DYN mailbox length: %u\n", (unsigned)mb_len);
+    log_info("DYN mailbox length: %u (FTM bytes)\n", (unsigned)mb_len);
   } else {
     log_err("DYN mailbox length read failed: %ld\n", (long)ret);
     all_ok = false;
@@ -464,6 +517,69 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
     log_ok("Dynamic status diagnostics passed\n");
   }
   return all_ok;
+}
+
+static bool configure_eh_test_mode(ST25DV_Object_t* st) {
+  bool ok = true;
+  int32_t ret = NFCTAG_OK;
+
+  ST25DV_EH_MODE_STATUS eh_mode = ST25DV_EH_ACTIVE_AFTER_BOOT;
+  ret = ST25DV_ReadEHMode(st, &eh_mode);
+  if (ret == NFCTAG_OK) {
+    log_info("EH mode (before): %s\n", st25_eh_mode_name(eh_mode));
+  } else {
+    log_warn("EH mode read failed: %ld\n", (long)ret);
+    ok = false;
+  }
+
+  log_info("EH mode write request: ACTIVE_AFTER_BOOT\n");
+  ret = ST25DV_WriteEHMode(st, ST25DV_EH_ACTIVE_AFTER_BOOT);
+  if (ret == NFCTAG_OK) {
+    log_ok("EH mode write: ACTIVE_AFTER_BOOT\n");
+  } else {
+    log_err("EH mode write failed: %ld\n", (long)ret);
+    ok = false;
+  }
+
+  eh_mode = ST25DV_EH_ACTIVE_AFTER_BOOT;
+  ret = ST25DV_ReadEHMode(st, &eh_mode);
+  if (ret == NFCTAG_OK) {
+    log_info("EH mode (after): %s\n", st25_eh_mode_name(eh_mode));
+    if (eh_mode != ST25DV_EH_ACTIVE_AFTER_BOOT) {
+      log_warn("EH mode verify mismatch\n");
+      ok = false;
+    }
+  } else {
+    log_warn("EH mode verify read failed: %ld\n", (long)ret);
+    ok = false;
+  }
+
+#if NFC_ENABLE_EH_TEST_MODE
+  ret = ST25DV_SetEHENMode_Dyn(st);
+  if (ret == NFCTAG_OK) {
+    log_ok("EH test mode: dynamic EH_EN set ON\n");
+  } else {
+    log_err("EH test mode enable failed: %ld\n", (long)ret);
+    ok = false;
+  }
+#else
+  log_info("EH test mode disabled (NFC_ENABLE_EH_TEST_MODE=0)\n");
+#endif
+
+  ST25DV_EH_CTRL eh = {0};
+  ret = ST25DV_ReadEHCtrl_Dyn(st, &eh);
+  if (ret == NFCTAG_OK) {
+    log_info("EH state: EH_EN=%s EH_ON=%s FIELD_ON=%s VCC_ON=%s\n",
+             st25_en_name(eh.EH_EN_Mode),
+             st25_en_name(eh.EH_on),
+             st25_en_name(eh.Field_on),
+             st25_en_name(eh.VCC_on));
+  } else {
+    log_warn("EH state read failed: %ld\n", (long)ret);
+    ok = false;
+  }
+
+  return ok;
 }
 
 static bool compute_request_region(uint32_t total_bytes,
@@ -869,6 +985,9 @@ static void run_identity_and_memory_bringup(HarnessState* state, StartupDiag* di
   }
   if (!diag->init_ok && diag->id_ok && diag->mem_ok) {
     log_warn("Diag: ST driver init failed but core I2C diagnostics succeeded\n");
+  }
+  if (diag->init_ok) {
+    (void)configure_eh_test_mode(&state->st);
   }
   log_info("Expected ST25DV addresses (7-bit): 0x53 (user/dynamic), 0x57 (system)\n");
 
