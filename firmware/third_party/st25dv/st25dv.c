@@ -187,9 +187,12 @@ int32_t ST25DV_Init( ST25DV_Object_t *pObj )
 {
   if (pObj->IsInitialized == 0U)
   {
-    uint8_t nfctag_id;
-    ST25DV_ReadID(pObj,&nfctag_id);
-    if( (nfctag_id != I_AM_ST25DV04) && (nfctag_id != I_AM_ST25DV64) )
+    uint8_t nfctag_id = 0;
+    if (ST25DV_ReadID(pObj, &nfctag_id) != NFCTAG_OK)
+    {
+      return NFCTAG_ERROR;
+    }
+    if (!ST25DV_AM_I_SUPPORTED(nfctag_id))
     {
       return NFCTAG_ERROR;
     }

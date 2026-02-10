@@ -335,11 +335,18 @@ typedef struct
 #define I_AM_ST25DV04                        0x24
 /** @brief ST25DV 16/64Kbits ICref */
 #define I_AM_ST25DV64                        0x26
+/** @brief ST25DVxxKC 4Kbits ICref */
+#define I_AM_ST25DV04KC                      0x50
+/** @brief ST25DVxxKC 16/64Kbits ICref */
+#define I_AM_ST25DV64KC                      0x51
 
 /** @brief Check ST25DV Open Drain version */
 #define ST25DV_AM_I_OPEN_DRAIN(x)     (((x) == 0x26) || ((x) == 0x24))
 /** @brief Check ST25DV CMOS version */
 #define ST25DV_AM_I_CMOS(x)           (((x) == 0x27) || ((x) == 0x25))
+/** @brief Check ST25DV family IDs accepted by the driver init path */
+#define ST25DV_AM_I_SUPPORTED(x)      (((x) == I_AM_ST25DV04) || ((x) == I_AM_ST25DV64) || \
+                                       ((x) == I_AM_ST25DV04KC) || ((x) == I_AM_ST25DV64KC))
 
 
 #ifndef NULL
