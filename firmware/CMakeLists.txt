@@ -30,6 +30,7 @@ set(NFC_I2C_SCL_PIN 5 CACHE STRING "I2C SCL GPIO (RP2040 pin number)")
 set(NFC_STATUS_LED_PIN 15 CACHE STRING "Status LED GPIO (RP2040 pin number)")
 set(NFC_ST25_VCC_EN_PIN 18 CACHE STRING "GPIO used to enable ST25 VCC (set -1 to disable)")
 set(NFC_ST25_POWER_ON_DELAY_MS 10 CACHE STRING "Delay after enabling ST25 VCC before I2C access")
+set(NFC_I2C_OP_TIMEOUT_US 20000 CACHE STRING "I2C op timeout in microseconds for read/write/probe transactions")
 set(NFC_ENABLE_STARTUP_DIAGNOSTICS 1 CACHE STRING "Run startup diagnostics (probe/status/selftest)")
 set(NFC_ENABLE_BOOT_RW_TIMING_TEST 1 CACHE STRING "Run one-shot request-slot write/read/restore timing test at boot")
 
@@ -40,6 +41,7 @@ target_compile_definitions(nfc_harness PRIVATE
   NFC_STATUS_LED_PIN=${NFC_STATUS_LED_PIN}
   NFC_ST25_VCC_EN_PIN=${NFC_ST25_VCC_EN_PIN}
   NFC_ST25_POWER_ON_DELAY_MS=${NFC_ST25_POWER_ON_DELAY_MS}
+  NFC_I2C_OP_TIMEOUT_US=${NFC_I2C_OP_TIMEOUT_US}
   NFC_ENABLE_STARTUP_DIAGNOSTICS=${NFC_ENABLE_STARTUP_DIAGNOSTICS}
   NFC_ENABLE_BOOT_RW_TIMING_TEST=${NFC_ENABLE_BOOT_RW_TIMING_TEST}
 )
