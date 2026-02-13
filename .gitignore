@@ -11,13 +11,19 @@ build/
 *-backups/
 fp-info-cache
 sym-lib-table-bak
+**/#auto_saved_files#
+**/_autosave-*.kicad_sch
+**/_autosave-*.kicad_pcb
+*.kicad_prl
 
 # FreeCAD backup files
 *.FCBak
 
 # CAM outputs
-#pcb/*/cam/pcb2gcode/output/*.nc
-#pcb/*/cam/pcb2gcode/output/*.svg
+pcb/*/cam/pcb2gcode/output/
+pcb/*/cam/pcb2gcode/input/*.gbr
+pcb/*/cam/pcb2gcode/input/*.drl
+pcb/*/cam/pcb2gcode/input/*.nc
 
 # OS cruft
 .DS_Store
