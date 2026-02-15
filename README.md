@@ -15,11 +15,11 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 - Firmware parses 16-byte `INKI` request payloads from the last user-memory slot (`0x01F0` on ST25DV04KC).
 - Firmware command opcode handling is active:
   - `0x11` -> `LED1` slow blink
-  - `0x12` -> `LED2` fast blink
+  - `0x12` -> `LED1` fast blink (same onboard LED)
   - `0x01` -> legacy alias mapped to `LED1` slow blink
 - Incomplete/invalid `INKI` frames are ignored (to avoid partial-write races).
 - Valid requests are cleared only after `RF field` goes `OFF` (reduces interference with phone-side readback).
-- Power latch is asserted early by Pico on boot (`GP28`) and auto-released after `NFC_AUTO_POWER_OFF_MS` (default `5000` ms).
+- Power latch is asserted early by Pico on boot (`GP28`) and auto-released after `NFC_AUTO_POWER_OFF_MS` (default `10000` ms).
 - Runtime logging is event-driven: startup diagnostics once, then RF field edges and request actions only.
 
 ## Current Wake/Latch Circuitry (PCB: `NFC_harness_V0`)
@@ -36,8 +36,8 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
   - `Q2` collector also sinks the same gate-control net
 - On this PCB revision, Pico `GPIO19` is unconnected.
 - LED wiring status on this PCB revision:
-  - `LED1` command uses firmware power-LED output (onboard Pico/Pico W path).
-  - `LED2` command uses `NFC_STATUS_LED_PIN` (default `GP15`), which is not routed to a dedicated onboard LED footprint here (external LED/wire may be needed).
+  - Both blink commands (`0x11` slow, `0x12` fast) use the firmware power-LED output (onboard Pico/Pico W path).
+  - `NFC_STATUS_LED_PIN` (default `GP15`) is currently not routed to a dedicated onboard LED footprint here (external LED/wire may be needed).
 
 ## Command Flow (Phone -> ST25 -> Pico)
 1. Board is fully off (`Vbatt` connected, no USB, Pico unpowered).
@@ -48,9 +48,11 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
    - Pico powers ST25 VCC via `GP18`
    - firmware reads request bytes from the last ST25 user-memory slot
 6. Firmware validates the payload, applies opcode behavior, queues clear for RF-OFF, and later clears the slot.
-7. Firmware releases the latch after timeout (`NFC_AUTO_POWER_OFF_MS`, default `5000` ms; re-armed on accepted commands).
+7. Firmware releases the latch after timeout (`NFC_AUTO_POWER_OFF_MS`, default `10000` ms; re-armed on accepted commands).
 
-Note: in current runtime logic, request processing is performed while RF field is ON; clear is deferred to RF field OFF.
+Note:
+- Runtime-loop request processing still runs while RF field is ON, with clear deferred to RF field OFF.
+- Additionally, at boot firmware now checks for a stored valid request. If RF field is already OFF, it applies the command immediately and clears it at boot.
 
 ## Repository layout
 - `docs/context.md` – running notes, decisions, history, and solved problems

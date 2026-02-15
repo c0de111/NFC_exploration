@@ -34,6 +34,8 @@ cd firmware
 ./scripts/build.sh
 ```
 
+`scripts/build.sh` passes `NFC_AUTO_POWER_OFF_MS` into CMake; default is `10000` ms (override per build, e.g. `NFC_AUTO_POWER_OFF_MS=5000 make firmware`).
+
 Picotool is disabled by default to avoid fetching/building it. On first run the build script downloads `uf2conv.py` and `uf2families.json` (Microsoft UF2 tool) into `firmware/scripts/` and converts `nfc_harness.bin` → `nfc_harness.uf2` without picotool. To re-enable picotool-based UF2/signing instead, configure CMake with `-DPICO_NO_PICOTOOL=OFF -DPICO_NO_UF2=OFF`.
 
 Clean build directory (no rebuild):
@@ -58,7 +60,7 @@ By default the firmware drives `NFC_ST25_VCC_EN_PIN` high (`GP18`) and waits `NF
 `NFC_ENABLE_WAKE_GPO_CONFIG=1` configures ST25 GPO for wake sources (`FIELD_CHANGE` + `RF_WRITE`) and sets longest pulse (`IT_TIME=0`, ~302 us) during startup.
 `NFC_WAKE_GPO_SELFTEST_STRICT=0` keeps startup `SELFTEST` non-fatal for transient wake-GPO boot configuration failures (recommended while validating real wake behavior). Set it to `1` if you want strict bring-up gating.
 At boot it also runs diagnostics (I2C address probe, dynamic status registers, self-test summary). Set `-DNFC_ENABLE_STARTUP_DIAGNOSTICS=0` for production-style minimal boot logs. `NFC_ENABLE_BOOT_RW_TIMING_TEST=1` enables a one-shot request-slot write/read/restore timing test (auto-skipped if a live `INKI` request is present).
-`NFC_AUTO_POWER_OFF_MS` controls automatic latch release timeout (default `5000` ms). Set `0` to disable automatic power-off.
+`NFC_AUTO_POWER_OFF_MS` controls automatic latch release timeout (default `10000` ms). Set `0` to disable automatic power-off.
 `NFC_LED_SLOW_PERIOD_MS` and `NFC_LED_FAST_PERIOD_MS` control blink periods for command-driven LED modes.
 
 ## Flash
@@ -74,7 +76,7 @@ At boot it also runs diagnostics (I2C address probe, dynamic status registers, s
 
 Current opcode mapping:
 - `0x11` (and legacy `0x01`) -> LED1 slow blink
-- `0x12` -> LED2 fast blink
+- `0x12` -> LED1 fast blink (single onboard LED on current PCB)
 
 For ST25DV, you typically expect these 7‑bit I²C addresses:
 - `0x53` (user memory + dynamic regs)

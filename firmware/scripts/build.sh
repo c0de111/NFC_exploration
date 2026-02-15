@@ -29,11 +29,13 @@ Builds the RP2040/Pico NFC harness firmware using the Pico SDK.
 Environment:
   PICO_SDK_PATH   Path to pico-sdk (default: $HOME/pico/pico-sdk)
   PICO_BOARD      Default board if --board is not provided (default: pico_w)
+  NFC_AUTO_POWER_OFF_MS  Auto power-off timeout passed to CMake (default: 10000)
   --clean         Remove firmware/build and exit (no configure/build)
 EOF
 }
 
 BOARD="${PICO_BOARD:-pico_w}"
+AUTO_POWER_OFF_MS="${NFC_AUTO_POWER_OFF_MS:-10000}"
 CLEAN=false
 
 while [[ $# -gt 0 ]]; do
@@ -76,8 +78,9 @@ cd "$BUILD_DIR"
 
 echo "PICO_SDK_PATH=$PICO_SDK_PATH"
 echo "PICO_BOARD=$BOARD"
+echo "NFC_AUTO_POWER_OFF_MS=$AUTO_POWER_OFF_MS"
 
-cmake -DPICO_BOARD="$BOARD" "$ROOT_DIR"
+cmake -DPICO_BOARD="$BOARD" -DNFC_AUTO_POWER_OFF_MS="$AUTO_POWER_OFF_MS" "$ROOT_DIR"
 make -j"$(nproc 2>/dev/null || echo 4)"
 
 echo

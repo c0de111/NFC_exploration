@@ -75,7 +75,7 @@
 #endif
 
 #ifndef NFC_AUTO_POWER_OFF_MS
-#define NFC_AUTO_POWER_OFF_MS 5000
+#define NFC_AUTO_POWER_OFF_MS 10000
 #endif
 
 #ifndef NFC_LED_SLOW_PERIOD_MS
@@ -1267,11 +1267,11 @@ static bool apply_inki_opcode(RuntimeControl* runtime, uint8_t opcode) {
         log_info("Opcode 0x%02X mapped to LED1 slow blink (legacy)\n", opcode);
       }
       runtime_set_led_modes(runtime, LED_MODE_SLOW, LED_MODE_OFF);
-      log_ok("Command applied: opcode=0x%02X -> LED1 slow blink\n", opcode);
+      log_ok("Command applied: opcode=0x%02X -> LED1 slow blink (power LED)\n", opcode);
       return true;
     case INKI_OPCODE_LED2_FAST:
-      runtime_set_led_modes(runtime, LED_MODE_OFF, LED_MODE_FAST);
-      log_ok("Command applied: opcode=0x%02X -> LED2 fast blink\n", opcode);
+      runtime_set_led_modes(runtime, LED_MODE_FAST, LED_MODE_OFF);
+      log_ok("Command applied: opcode=0x%02X -> LED1 fast blink (power LED)\n", opcode);
       return true;
     default:
       log_warn("INKI request ignored: unsupported opcode 0x%02X\n", opcode);
@@ -1480,6 +1480,104 @@ static void run_optional_startup_diagnostics(HarnessState* state, StartupDiag* d
 #endif
 }
 
+static void process_boot_stored_request(HarnessState* state, RuntimeControl* runtime) {
+  if (!state->region_ok) {
+    return;
+  }
+
+  const uint32_t req_read_timeout_ms = 40u;
+  const uint32_t req_read_retry_delay_ms = 2u;
+  const uint32_t rf_field_timeout_ms = 12u;
+  const uint32_t rf_field_retry_delay_ms = 2u;
+  const uint32_t req_clear_timeout_ms = (uint32_t)ST25DV_WRITE_TIMEOUT + 200u;
+  const uint32_t req_clear_retry_delay_ms = 2u;
+
+  uint8_t req[16] = {0};
+  uint32_t req_read_attempts = 0;
+  int32_t ret = st25_read_data_retry(&state->st,
+                                     req,
+                                     state->req_addr,
+                                     (uint16_t)sizeof(req),
+                                     req_read_timeout_ms,
+                                     req_read_retry_delay_ms,
+                                     NULL,
+                                     &req_read_attempts);
+  if (ret != NFCTAG_OK) {
+    log_warn("Boot command check skipped: request read failed after %lu attempt(s): %ld\n",
+             (unsigned long)req_read_attempts,
+             (long)ret);
+    return;
+  }
+
+  if (request_is_all_zero(req)) {
+    log_info("Boot request slot empty (no stored command)\n");
+    return;
+  }
+
+  log_request_bytes(state->req_addr, req);
+  if (!is_inki_request(req)) {
+    log_warn("Boot request ignored: missing INKI magic\n");
+    return;
+  }
+
+  InkiRequest parsed = {0};
+  (void)decode_inki_request(req, &parsed);
+  const char* invalid_reason = NULL;
+  if (!validate_inki_request(&parsed, &invalid_reason)) {
+    log_warn("Boot request ignored: invalid/incomplete (%s)\n", invalid_reason != NULL ? invalid_reason : "format");
+    return;
+  }
+
+  ST25DV_FIELD_STATUS field = ST25DV_FIELD_OFF;
+  uint32_t rf_field_attempts = 0;
+  ret = st25_get_rf_field_retry(
+      &state->st, &field, rf_field_timeout_ms, rf_field_retry_delay_ms, &rf_field_attempts);
+  if (ret != NFCTAG_OK) {
+    log_warn("Boot request deferred: RF field state unreadable after %lu attempt(s)\n",
+             (unsigned long)rf_field_attempts);
+    return;
+  }
+
+  if (field == ST25DV_FIELD_ON) {
+    log_info("Boot request is valid but RF field is ON; deferring command handling to live RF loop\n");
+    return;
+  }
+
+  log_info("Boot request is valid and RF field is OFF; applying stored command now\n");
+  log_ok("Boot INKI request: version=%u opcode=0x%02X duration_min=%u unix=%lu nonce=0x%08lX\n",
+         parsed.version,
+         parsed.opcode,
+         parsed.duration_min,
+         (unsigned long)parsed.unix_seconds,
+         (unsigned long)parsed.nonce);
+  if (!apply_inki_opcode(runtime, parsed.opcode)) {
+    return;
+  }
+
+  runtime_arm_auto_power_off(runtime);
+
+  uint8_t zeros[ST25DV_MAX_WRITE_BYTE] = {0};
+  uint32_t clear_elapsed_ms = 0;
+  uint32_t clear_attempts = 0;
+  ret = st25_write_data_retry(&state->st,
+                              zeros,
+                              state->req_addr,
+                              (uint16_t)state->region_bytes,
+                              req_clear_timeout_ms,
+                              req_clear_retry_delay_ms,
+                              &clear_elapsed_ms,
+                              &clear_attempts);
+  if (ret == NFCTAG_OK) {
+    log_ok("Boot stored request applied and cleared (%lu bytes @ 0x%04X, attempts=%lu, %lums)\n",
+           (unsigned long)state->region_bytes,
+           state->req_addr,
+           (unsigned long)clear_attempts,
+           (unsigned long)clear_elapsed_ms);
+  } else {
+    log_err("Boot stored request clear failed after %lu attempt(s): %ld\n", (unsigned long)clear_attempts, (long)ret);
+  }
+}
+
 static void poll_request_loop(HarnessState* state, RuntimeControl* runtime) {
   const uint32_t rf_poll_ms = 120u;
   const uint32_t rf_field_timeout_ms = 12u;
@@ -1652,5 +1750,6 @@ int main(void) {
   run_identity_and_memory_bringup(&state, &diag);
   run_optional_startup_diagnostics(&state, &diag);
   runtime_init(&runtime);
+  process_boot_stored_request(&state, &runtime);
   poll_request_loop(&state, &runtime);
 }

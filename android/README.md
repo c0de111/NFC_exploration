@@ -33,6 +33,41 @@ APK output:
 - `android/InkiNfcTapToBook_androidstudio/app/build/outputs/apk/debug/app-debug.apk`
 - `android/InkiHello_androidstudio/app/build/outputs/apk/debug/app-debug.apk`
 
+## Build + Sync Script (recommended for sideload flow)
+Use the repo script to build and copy APK into your sync folder:
+
+```bash
+# from repo root
+./android/scripts/build_and_sync_apk.sh --app tap
+```
+
+Defaults:
+- app: `tap` (`InkiNfcTapToBook_androidstudio`)
+- sync folder: `~/Sync`
+- output filename: `inki_nfc_tap_to_book-debug.apk`
+
+Examples:
+```bash
+# build + copy hello app
+./android/scripts/build_and_sync_apk.sh --app hello
+
+# build only (no copy)
+./android/scripts/build_and_sync_apk.sh --app tap --no-copy
+
+# custom sync folder
+./android/scripts/build_and_sync_apk.sh --app tap --sync-dir ~/Syncthing/apk
+
+# explicit SDK path override
+./android/scripts/build_and_sync_apk.sh --app tap --sdk-dir ~/Android/Sdk
+```
+
+The script auto-detects:
+- `JAVA_HOME=/snap/android-studio/current/jbr` when available
+- `ANDROID_SDK_ROOT` from, in order: `--sdk-dir`, env var, `$HOME/Android/Sdk`, `/snap/android-studio/current/android-sdk`, `/snap/android-studio/common/android-sdk`
+- and writes `local.properties` in the selected Android Studio project.
+
+If SDK is missing, the script exits early with setup instructions instead of failing later in Gradle.
+
 ## Install without USB cable (Syncthing)
 - Copy the debug APK into a Syncthing-synced folder (e.g. `~/Sync/`).
 - On the phone, open the APK from the synced folder and install.

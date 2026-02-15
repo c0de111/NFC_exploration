@@ -31,6 +31,7 @@ Purpose: capture repo-specific directives agreed in chat so new sessions stay al
 - Don’t reintroduce `context.md` or `codex.md` at repo root.
 - Avoid enabling picotool unless explicitly requested.
 - Keep comments minimal and ASCII; follow existing style.
+- Write git commit messages as exactly one sentence focused on architecture and implementation progress (avoid parameter/value minutiae).
 
 ## Quick commands
 - Build: `make firmware`
