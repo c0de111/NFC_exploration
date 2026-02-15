@@ -38,6 +38,10 @@
 #define NFC_POWER_LED_PIN 25
 #endif
 
+#ifndef NFC_POWER_HOLD_PIN
+#define NFC_POWER_HOLD_PIN 28
+#endif
+
 #ifndef NFC_ST25_VCC_EN_PIN
 #define NFC_ST25_VCC_EN_PIN 18
 #endif
@@ -60,6 +64,14 @@
 
 #ifndef NFC_I2C_OP_TIMEOUT_US
 #define NFC_I2C_OP_TIMEOUT_US 20000
+#endif
+
+#ifndef NFC_ENABLE_WAKE_GPO_CONFIG
+#define NFC_ENABLE_WAKE_GPO_CONFIG 1
+#endif
+
+#ifndef NFC_WAKE_GPO_SELFTEST_STRICT
+#define NFC_WAKE_GPO_SELFTEST_STRICT 0
 #endif
 
 #define COLOR_RESET "\033[0m"
@@ -366,6 +378,14 @@ static const char* st25_current_msg_name(ST25DV_CURRENT_MSG msg) {
   }
 }
 
+static void init_power_hold_early(void) {
+#if (NFC_POWER_HOLD_PIN >= 0)
+  gpio_init(NFC_POWER_HOLD_PIN);
+  gpio_set_dir(NFC_POWER_HOLD_PIN, GPIO_OUT);
+  gpio_put(NFC_POWER_HOLD_PIN, 1);
+#endif
+}
+
 static uint32_t st25_it_pulse_us(ST25DV_PULSE_DURATION pulse) {
   switch (pulse) {
     case ST25DV_302_US:
@@ -387,6 +407,153 @@ static uint32_t st25_it_pulse_us(ST25DV_PULSE_DURATION pulse) {
     default:
       return 0u;
   }
+}
+
+static int32_t st25_write_itpulse_retry(ST25DV_Object_t* st,
+                                        ST25DV_PULSE_DURATION pulse,
+                                        uint32_t timeout_ms,
+                                        uint32_t retry_delay_ms,
+                                        uint32_t* attempts) {
+  const uint32_t t0 = st25_get_tick();
+  uint32_t tries = 0;
+  int32_t ret = NFCTAG_ERROR;
+
+  do {
+    tries++;
+    ret = ST25DV_WriteITPulse(st, pulse);
+    if (ret == NFCTAG_OK) {
+      break;
+    }
+    sleep_ms(retry_delay_ms);
+  } while ((st25_get_tick() - t0) < timeout_ms);
+
+  if (attempts != NULL) {
+    *attempts = tries;
+  }
+  return ret;
+}
+
+static int32_t st25_config_it_retry(ST25DV_Object_t* st,
+                                    uint16_t it_conf,
+                                    uint32_t timeout_ms,
+                                    uint32_t retry_delay_ms,
+                                    uint32_t* attempts) {
+  const uint32_t t0 = st25_get_tick();
+  uint32_t tries = 0;
+  int32_t ret = NFCTAG_ERROR;
+
+  do {
+    tries++;
+    ret = St25Dv_Drv.ConfigIT(st, it_conf);
+    if (ret == NFCTAG_OK) {
+      break;
+    }
+    sleep_ms(retry_delay_ms);
+  } while ((st25_get_tick() - t0) < timeout_ms);
+
+  if (attempts != NULL) {
+    *attempts = tries;
+  }
+  return ret;
+}
+
+static int32_t st25_get_it_status_retry(ST25DV_Object_t* st,
+                                        uint16_t* it_status,
+                                        uint32_t timeout_ms,
+                                        uint32_t retry_delay_ms,
+                                        uint32_t* attempts) {
+  const uint32_t t0 = st25_get_tick();
+  uint32_t tries = 0;
+  int32_t ret = NFCTAG_ERROR;
+
+  do {
+    tries++;
+    ret = St25Dv_Drv.GetITStatus(st, it_status);
+    if (ret == NFCTAG_OK) {
+      break;
+    }
+    sleep_ms(retry_delay_ms);
+  } while ((st25_get_tick() - t0) < timeout_ms);
+
+  if (attempts != NULL) {
+    *attempts = tries;
+  }
+  return ret;
+}
+
+static int32_t st25_read_eh_mode_retry(ST25DV_Object_t* st,
+                                       ST25DV_EH_MODE_STATUS* eh_mode,
+                                       uint32_t timeout_ms,
+                                       uint32_t retry_delay_ms,
+                                       uint32_t* attempts) {
+  const uint32_t t0 = st25_get_tick();
+  uint32_t tries = 0;
+  int32_t ret = NFCTAG_ERROR;
+
+  do {
+    tries++;
+    ret = ST25DV_ReadEHMode(st, eh_mode);
+    if (ret == NFCTAG_OK) {
+      break;
+    }
+    sleep_ms(retry_delay_ms);
+  } while ((st25_get_tick() - t0) < timeout_ms);
+
+  if (attempts != NULL) {
+    *attempts = tries;
+  }
+  return ret;
+}
+
+static bool configure_wake_gpo(ST25DV_Object_t* st) {
+#if NFC_ENABLE_WAKE_GPO_CONFIG
+  bool ok = true;
+  int32_t ret = NFCTAG_OK;
+  const uint32_t cfg_timeout_ms = (uint32_t)ST25DV_WRITE_TIMEOUT + 50u;
+  const uint32_t cfg_retry_delay_ms = 2u;
+  uint32_t attempts = 0;
+
+  ret = st25_write_itpulse_retry(st, ST25DV_302_US, cfg_timeout_ms, cfg_retry_delay_ms, &attempts);
+  if (ret == NFCTAG_OK) {
+    log_ok("Wake GPO pulse set: IT_TIME=0 (~302 us)\n");
+    if (attempts > 1) {
+      log_warn("Wake GPO pulse config retries: %lu\n", (unsigned long)attempts);
+    }
+  } else {
+    log_err("Wake GPO pulse config failed after %lu attempt(s): %ld\n", (unsigned long)attempts, (long)ret);
+    ok = false;
+  }
+
+  const uint16_t wake_conf = (uint16_t)(ST25DV_GPO_ENABLE_MASK | ST25DV_GPO_FIELDCHANGE_MASK | ST25DV_GPO_RFWRITE_MASK);
+  ret = st25_config_it_retry(st, wake_conf, cfg_timeout_ms, cfg_retry_delay_ms, &attempts);
+  if (ret == NFCTAG_OK) {
+    log_ok("Wake GPO sources set: ENABLE + FIELD_CHANGE + RF_WRITE\n");
+    if (attempts > 1) {
+      log_warn("Wake GPO source config retries: %lu\n", (unsigned long)attempts);
+    }
+  } else {
+    log_err("Wake GPO source config failed after %lu attempt(s): %ld\n", (unsigned long)attempts, (long)ret);
+    ok = false;
+  }
+
+  uint16_t gpo_status = 0;
+  ret = st25_get_it_status_retry(st, &gpo_status, cfg_timeout_ms, cfg_retry_delay_ms, &attempts);
+  if (ret == NFCTAG_OK) {
+    log_info("Wake GPO config readback: 0x%02X\n", (unsigned)(gpo_status & 0xFFu));
+    if (attempts > 1) {
+      log_warn("Wake GPO readback retries: %lu\n", (unsigned long)attempts);
+    }
+  } else {
+    log_warn("Wake GPO readback failed after %lu attempt(s): %ld\n", (unsigned long)attempts, (long)ret);
+    ok = false;
+  }
+
+  return ok;
+#else
+  (void)st;
+  log_info("Wake GPO config disabled (NFC_ENABLE_WAKE_GPO_CONFIG=0)\n");
+  return true;
+#endif
 }
 
 static void append_reason(char* reasons, size_t reasons_size, const char* reason) {
@@ -533,6 +700,9 @@ static bool print_dynamic_status(ST25DV_Object_t* st) {
 static bool configure_eh_test_mode(ST25DV_Object_t* st) {
   bool ok = true;
   int32_t ret = NFCTAG_OK;
+  const uint32_t eh_verify_timeout_ms = (uint32_t)ST25DV_WRITE_TIMEOUT + 50u;
+  const uint32_t eh_verify_retry_delay_ms = 2u;
+  uint32_t eh_verify_attempts = 0;
 
   ST25DV_EH_MODE_STATUS eh_mode = ST25DV_EH_ACTIVE_AFTER_BOOT;
   ret = ST25DV_ReadEHMode(st, &eh_mode);
@@ -553,9 +723,12 @@ static bool configure_eh_test_mode(ST25DV_Object_t* st) {
   }
 
   eh_mode = ST25DV_EH_ACTIVE_AFTER_BOOT;
-  ret = ST25DV_ReadEHMode(st, &eh_mode);
+  ret = st25_read_eh_mode_retry(st, &eh_mode, eh_verify_timeout_ms, eh_verify_retry_delay_ms, &eh_verify_attempts);
   if (ret == NFCTAG_OK) {
     log_info("EH mode (after): %s\n", st25_eh_mode_name(eh_mode));
+    if (eh_verify_attempts > 1) {
+      log_warn("EH mode verify retries: %lu\n", (unsigned long)eh_verify_attempts);
+    }
     if (eh_mode != ST25DV_EH_ACTIVE_AFTER_BOOT) {
       log_warn("EH mode verify mismatch\n");
       ok = false;
@@ -874,6 +1047,7 @@ typedef struct {
 typedef struct {
   bool i2c_probe_ok;
   bool init_ok;
+  bool wake_cfg_ok;
   bool id_ok;
   bool mem_ok;
   bool dyn_ok;
@@ -885,6 +1059,7 @@ typedef struct {
 
 static void startup_diag_reset(StartupDiag* diag) {
   memset(diag, 0, sizeof(*diag));
+  diag->wake_cfg_ok = true;
   diag->dyn_ok = true;
   diag->rw_test_ok = true;
 }
@@ -895,6 +1070,11 @@ static void boot_log_banner(void) {
            NFC_I2C_SDA_PIN,
            NFC_I2C_SCL_PIN,
            (unsigned)NFC_I2C_BAUDRATE_HZ);
+#if (NFC_POWER_HOLD_PIN >= 0)
+  log_info("Power latch: GP%u -> HIGH (early)\n", NFC_POWER_HOLD_PIN);
+#else
+  log_warn("Power latch: disabled\n");
+#endif
 }
 
 static void init_power_led(void) {
@@ -1019,6 +1199,7 @@ static void run_identity_and_memory_bringup(HarnessState* state, StartupDiag* di
     log_warn("Diag: ST driver init failed but core I2C diagnostics succeeded\n");
   }
   if (diag->init_ok) {
+    diag->wake_cfg_ok = configure_wake_gpo(&state->st);
     (void)configure_eh_test_mode(&state->st);
   }
   log_info("Expected ST25DV addresses (7-bit): 0x53 (user/dynamic), 0x57 (system)\n");
@@ -1070,6 +1251,15 @@ static void print_selftest_summary(const HarnessState* state, const StartupDiag*
   if (!diag->mem_ok) {
     append_reason(reasons, sizeof(reasons), "read_mem");
   }
+#if NFC_WAKE_GPO_SELFTEST_STRICT
+  if (!diag->wake_cfg_ok) {
+    append_reason(reasons, sizeof(reasons), "wake_gpo");
+  }
+#else
+  if (!diag->wake_cfg_ok) {
+    log_warn("SELFTEST note: wake_gpo boot config incomplete (strict mode off)\n");
+  }
+#endif
   if (!diag->dyn_ok) {
     append_reason(reasons, sizeof(reasons), "dyn_status");
   }
@@ -1255,6 +1445,8 @@ static void poll_request_loop(HarnessState* state) {
 }
 
 int main(void) {
+  init_power_hold_early();
+
   stdio_init_all();
   sleep_ms(1500);
 
