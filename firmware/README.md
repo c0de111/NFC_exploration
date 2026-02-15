@@ -46,9 +46,12 @@ cd firmware && ./scripts/build.sh --clean
 You can override common settings via CMake cache variables:
 ```bash
 cd firmware
-cmake -S . -B build -DPICO_BOARD=pico -DNFC_I2C_SDA_PIN=4 -DNFC_I2C_SCL_PIN=5 -DNFC_STATUS_LED_PIN=15 -DNFC_ST25_VCC_EN_PIN=18 -DNFC_ST25_POWER_ON_DELAY_MS=10 -DNFC_ENABLE_STARTUP_DIAGNOSTICS=1 -DNFC_ENABLE_BOOT_RW_TIMING_TEST=1
+cmake -S . -B build -DPICO_BOARD=pico_w -DNFC_I2C_SDA_PIN=20 -DNFC_I2C_SCL_PIN=21 -DNFC_STATUS_LED_PIN=15 -DNFC_ST25_VCC_EN_PIN=18 -DNFC_ST25_POWER_ON_DELAY_MS=10 -DNFC_ENABLE_STARTUP_DIAGNOSTICS=1 -DNFC_ENABLE_BOOT_RW_TIMING_TEST=1
 cmake --build build -j
 ```
+
+`NFC_POWER_LED_PIN` controls a dedicated power-indicator LED (default `25`, Pico onboard LED). It is set ON at boot and stays ON while firmware is running; set `-DNFC_POWER_LED_PIN=-1` to disable.
+On `pico_w`, the onboard LED is not on RP2040 GPIO; firmware uses CYW43 LED control when built with `PICO_BOARD=pico_w`.
 
 By default the firmware drives `NFC_ST25_VCC_EN_PIN` high (`GP18`) and waits `NFC_ST25_POWER_ON_DELAY_MS` before ST25 I2C accesses. Set `-DNFC_ST25_VCC_EN_PIN=-1` if ST25 VCC is always powered externally.
 At boot it also runs diagnostics (I2C address probe, dynamic status registers, self-test summary). Set `-DNFC_ENABLE_STARTUP_DIAGNOSTICS=0` for production-style minimal boot logs. `NFC_ENABLE_BOOT_RW_TIMING_TEST=1` enables a one-shot request-slot write/read/restore timing test (auto-skipped if a live `INKI` request is present).

@@ -4,8 +4,15 @@
 
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
+#if NFC_HAS_CYW43
+#include "pico/cyw43_arch.h"
+#endif
 
 #include "st25dv.h"
+
+#ifndef NFC_HAS_CYW43
+#define NFC_HAS_CYW43 0
+#endif
 
 #ifndef NFC_I2C_INSTANCE
 #define NFC_I2C_INSTANCE i2c0
@@ -16,15 +23,19 @@
 #endif
 
 #ifndef NFC_I2C_SDA_PIN
-#define NFC_I2C_SDA_PIN 4
+#define NFC_I2C_SDA_PIN 20
 #endif
 
 #ifndef NFC_I2C_SCL_PIN
-#define NFC_I2C_SCL_PIN 5
+#define NFC_I2C_SCL_PIN 21
 #endif
 
 #ifndef NFC_STATUS_LED_PIN
 #define NFC_STATUS_LED_PIN 15
+#endif
+
+#ifndef NFC_POWER_LED_PIN
+#define NFC_POWER_LED_PIN 25
 #endif
 
 #ifndef NFC_ST25_VCC_EN_PIN
@@ -886,7 +897,28 @@ static void boot_log_banner(void) {
            (unsigned)NFC_I2C_BAUDRATE_HZ);
 }
 
+static void init_power_led(void) {
+#if NFC_HAS_CYW43
+  const int ret = cyw43_arch_init();
+  if (ret != 0) {
+    log_warn("Power LED: CYW43 init failed: %d\n", ret);
+    return;
+  }
+  cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
+  log_info("Power LED: CYW43 GPIO%u -> ON\n", (unsigned)CYW43_WL_GPIO_LED_PIN);
+#elif (NFC_POWER_LED_PIN >= 0)
+  gpio_init(NFC_POWER_LED_PIN);
+  gpio_set_dir(NFC_POWER_LED_PIN, GPIO_OUT);
+  gpio_put(NFC_POWER_LED_PIN, 1);
+  log_info("Power LED: GP%u -> ON\n", NFC_POWER_LED_PIN);
+#else
+  log_info("Power LED: disabled\n");
+#endif
+}
+
 static void init_led_and_st25_power(void) {
+  init_power_led();
+
   gpio_init(NFC_STATUS_LED_PIN);
   gpio_set_dir(NFC_STATUS_LED_PIN, GPIO_OUT);
   gpio_put(NFC_STATUS_LED_PIN, 0);

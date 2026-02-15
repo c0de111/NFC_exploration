@@ -28,12 +28,12 @@ Builds the RP2040/Pico NFC harness firmware using the Pico SDK.
 
 Environment:
   PICO_SDK_PATH   Path to pico-sdk (default: $HOME/pico/pico-sdk)
-  PICO_BOARD      Default board if --board is not provided (default: pico)
+  PICO_BOARD      Default board if --board is not provided (default: pico_w)
   --clean         Remove firmware/build and exit (no configure/build)
 EOF
 }
 
-BOARD="${PICO_BOARD:-pico}"
+BOARD="${PICO_BOARD:-pico_w}"
 CLEAN=false
 
 while [[ $# -gt 0 ]]; do
