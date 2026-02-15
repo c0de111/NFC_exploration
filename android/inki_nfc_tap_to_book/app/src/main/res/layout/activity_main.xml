@@ -5,6 +5,32 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/tvCommand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selected command: LED1 slow blink" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCmdLed1Slow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LED1 Slow" />
+
+        <Button
+            android:id="@+id/btnCmdLed2Fast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LED2 Fast" />
+    </LinearLayout>
+
     <CheckBox
         android:id="@+id/cbWriteOnTap"
         android:layout_width="wrap_content"

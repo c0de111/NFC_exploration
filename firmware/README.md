@@ -58,6 +58,8 @@ By default the firmware drives `NFC_ST25_VCC_EN_PIN` high (`GP18`) and waits `NF
 `NFC_ENABLE_WAKE_GPO_CONFIG=1` configures ST25 GPO for wake sources (`FIELD_CHANGE` + `RF_WRITE`) and sets longest pulse (`IT_TIME=0`, ~302 us) during startup.
 `NFC_WAKE_GPO_SELFTEST_STRICT=0` keeps startup `SELFTEST` non-fatal for transient wake-GPO boot configuration failures (recommended while validating real wake behavior). Set it to `1` if you want strict bring-up gating.
 At boot it also runs diagnostics (I2C address probe, dynamic status registers, self-test summary). Set `-DNFC_ENABLE_STARTUP_DIAGNOSTICS=0` for production-style minimal boot logs. `NFC_ENABLE_BOOT_RW_TIMING_TEST=1` enables a one-shot request-slot write/read/restore timing test (auto-skipped if a live `INKI` request is present).
+`NFC_AUTO_POWER_OFF_MS` controls automatic latch release timeout (default `5000` ms). Set `0` to disable automatic power-off.
+`NFC_LED_SLOW_PERIOD_MS` and `NFC_LED_FAST_PERIOD_MS` control blink periods for command-driven LED modes.
 
 ## Flash
 - **USB drag‑and‑drop**: copy `build/nfc_harness.uf2` onto the Pico in BOOTSEL mode.
@@ -68,7 +70,11 @@ At boot it also runs diagnostics (I2C address probe, dynamic status registers, s
   ```
 
 ## What it does
-`main.c` initializes I²C, brings up the ST25DV driver, reads the last 16 bytes of user memory (where the Android app writes the `INKI` request), prints it, and clears it when present.
+`main.c` initializes I²C, brings up the ST25DV driver, reads the last 16 bytes of user memory (where the Android app writes the `INKI` request), applies the command opcode, and clears the request when present.
+
+Current opcode mapping:
+- `0x11` (and legacy `0x01`) -> LED1 slow blink
+- `0x12` -> LED2 fast blink
 
 For ST25DV, you typically expect these 7‑bit I²C addresses:
 - `0x53` (user memory + dynamic regs)

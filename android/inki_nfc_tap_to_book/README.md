@@ -3,7 +3,8 @@
 This folder contains **drop-in Android sources** for a minimal app that can talk to **ISO15693 / NFC-V** tags (e.g. **ST25DV04KC**) using `android.nfc.tech.NfcV`.
 
 The MVP behavior is:
-- when a tag is tapped, the app optionally writes a small **16-byte booking request** into the **last N blocks** of the tag’s user EEPROM (defaults to “last 4 blocks” when the tag reports block count)
+- you choose a command with one of two buttons (**LED1 slow** / **LED2 fast**)
+- when a tag is tapped, the app optionally writes a small **16-byte INKI request** into the **last N blocks** of the tag’s user EEPROM (defaults to “last 4 blocks” when the tag reports block count)
 - then reads back the written blocks to verify
 
 ## How to use
@@ -40,5 +41,5 @@ See `REQUEST_FORMAT.md`.
 - Sideload it to the phone (e.g. via Syncthing). Some devices trigger **Play Protect** scanning for sideloaded NFC apps; after scanning you can usually proceed to install.
 
 ## What you should see
-- App UI: “Write on tap” checkbox + log view.
+- App UI: command selector buttons (`LED1 Slow`, `LED2 Fast`), “Write on tap” checkbox, and log view.
 - Without a NFC‑V tag, tapping random NFC tags will usually print “No NfcV on this tag”.

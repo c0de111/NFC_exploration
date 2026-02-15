@@ -59,6 +59,18 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-02-15: Implemented NFC-command test flow + timed power-off for latch experiments:
+  - Firmware now supports command opcodes in the 16-byte `INKI` payload: `0x11` (LED1 slow blink), `0x12` (LED2 fast blink), plus legacy `0x01` mapped to LED1 slow.
+  - Added runtime-configurable auto power-off by releasing the latch pin after timeout (`NFC_AUTO_POWER_OFF_MS`, default `5000` ms). Timeout is armed at runtime start and re-armed when a supported command is applied.
+  - Added configurable blink periods (`NFC_LED_SLOW_PERIOD_MS`, `NFC_LED_FAST_PERIOD_MS`) and command-driven LED mode handling in `firmware/src/main.c`.
+  - Preserved existing ST25 robustness behavior: request parsing/validation and deferred clear after `RF field` transitions `OFF`.
+  - Android app updated (both source copies: `android/inki_nfc_tap_to_book/` and `android/InkiNfcTapToBook_androidstudio/`) with two command buttons (`LED1 Slow`, `LED2 Fast`) that select opcode written into the `INKI` request payload.
+- 2026-02-15: Captured current PCB wake/latch wiring from live KiCad board file (`pcb/NFC_harness_V0/NFC_harness_V0.kicad_pcb`) for this repo revision:
+  - ST25 `GPO_(OPEN_DRAIN)` is net `38`; it directly drives `Q1` gate (P-MOS high-side switch), with pull-up `R4=1M` to `Vbatt` and RC pulse-stretch via `C5=22n` to GND.
+  - `GPIO28` (`A1` pad 34, net `39`) drives `Q2` base through `R5=100k`; `R9=50k` pulls base to GND; `Q2` collector also sinks net `38`. This is the MCU latch-hold path.
+  - `Q1` source is `Vbatt` and drain feeds Pico `VSYS` (`A1` pad 39), so pulling net `38` low turns board power on.
+  - `GPIO19` is unconnected on this PCB revision (wake path is hardware-latch based, not MCU input sampled).
+  - LED note: no dedicated D1/D2 footprints are present in this revision; command `LED1` uses firmware power LED output (Pico/Pico W onboard path), and `LED2` uses `NFC_STATUS_LED_PIN` (default GP15), which is currently unconnected in the captured PCB netlist unless wired externally.
 - 2026-02-15: Real-hardware validation on battery-powered latch path succeeded: NFC event can power on the circuit and firmware latches power via `GPIO28` (`NFC_POWER_HOLD_PIN`). Boot logs confirm early latch assertion and stable ST25 communication after wake.
 - 2026-02-15: Adjusted startup diagnostics to avoid false-negative bring-up while wake path is proven on hardware: wake-GPO boot configuration remains enabled/retried, but `SELFTEST` now treats `wake_gpo` as non-fatal by default (`NFC_WAKE_GPO_SELFTEST_STRICT=0`). Strict mode can be re-enabled with `NFC_WAKE_GPO_SELFTEST_STRICT=1`.
 - 2026-02-15: Added NFC wake-latch support for the new power path: firmware now asserts `NFC_POWER_HOLD_PIN` (default `GP28`) immediately at boot to keep external power-latch circuitry engaged, and configures ST25 GPO wake behavior at startup (`NFC_ENABLE_WAKE_GPO_CONFIG=1`): pulse length `IT_TIME=0` (~302 us), sources `GPO_ENABLE + FIELD_CHANGE + RF_WRITE`, plus configuration readback logging. This directly supports "NFC event powers on board, MCU latches power via GPIO28".

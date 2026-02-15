@@ -10,6 +10,7 @@ Android pieces are optional for the Pico harness; use them only if you want to e
 - `android/inki_nfc_tap_to_book/` (drop‑in)
   - Minimal source set (Manifest + `MainActivity.kt` + layout + tech filter).
   - Uses `android.nfc.tech.NfcV` with raw ISO15693 commands: Get System Info `0x2B`, Read Single Block `0x20`, Write Single Block `0x21`.
+  - UI includes command buttons (`LED1 Slow`, `LED2 Fast`) that select the opcode written into the 16-byte `INKI` request.
   - Request payload spec: `android/inki_nfc_tap_to_book/REQUEST_FORMAT.md` (16‑byte `INKI` payload, little‑endian fields).
 - `android/InkiNfcTapToBook_androidstudio/` (full project)
   - Android Studio project built from “Empty Views Activity”; sources copied from the drop‑in.

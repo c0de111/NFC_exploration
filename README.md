@@ -13,9 +13,44 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 - ST25DV04KC bring-up over I2C is stable on Pico (`GP20/GP21`), with ST25 power switched by `GP18`.
 - End-to-end NFC-V write from phone to tag user memory is working.
 - Firmware parses 16-byte `INKI` request payloads from the last user-memory slot (`0x01F0` on ST25DV04KC).
+- Firmware command opcode handling is active:
+  - `0x11` -> `LED1` slow blink
+  - `0x12` -> `LED2` fast blink
+  - `0x01` -> legacy alias mapped to `LED1` slow blink
 - Incomplete/invalid `INKI` frames are ignored (to avoid partial-write races).
 - Valid requests are cleared only after `RF field` goes `OFF` (reduces interference with phone-side readback).
+- Power latch is asserted early by Pico on boot (`GP28`) and auto-released after `NFC_AUTO_POWER_OFF_MS` (default `5000` ms).
 - Runtime logging is event-driven: startup diagnostics once, then RF field edges and request actions only.
+
+## Current Wake/Latch Circuitry (PCB: `NFC_harness_V0`)
+- `Q1` (`TSM260P02CX`, P-MOS) is the high-side power switch:
+  - source -> `Vbatt`
+  - drain -> Pico `VSYS`
+- ST25 `GPO_(OPEN_DRAIN)` and the `Q1` gate share the same control net (wake/power-on net).
+- Gate network shaping:
+  - `R4=1M` pull-up to `Vbatt`
+  - `C5=22n` to GND (pulse shaping / hold)
+- Pico latch-hold path:
+  - Pico `GPIO28` (`NFC_POWER_HOLD_PIN`) -> `R5=100k` -> `Q2` base
+  - `R9=50k` pulls base to GND
+  - `Q2` collector also sinks the same gate-control net
+- On this PCB revision, Pico `GPIO19` is unconnected.
+- LED wiring status on this PCB revision:
+  - `LED1` command uses firmware power-LED output (onboard Pico/Pico W path).
+  - `LED2` command uses `NFC_STATUS_LED_PIN` (default `GP15`), which is not routed to a dedicated onboard LED footprint here (external LED/wire may be needed).
+
+## Command Flow (Phone -> ST25 -> Pico)
+1. Board is fully off (`Vbatt` connected, no USB, Pico unpowered).
+2. Phone tap powers ST25 RF side and writes the 16-byte `INKI` payload (including opcode byte) over NFC-V into ST25 EEPROM, while Pico can still be fully off.
+3. ST25 asserts `GPO` low on configured wake events (`FIELD_CHANGE` / `RF_WRITE`), pulling `Q1` gate low and powering Pico.
+4. Pico boots and immediately asserts `GPIO28` high to latch power through `Q2`.
+5. Data transfer from ST25 to Pico happens after boot over I2C (not on GPO):
+   - Pico powers ST25 VCC via `GP18`
+   - firmware reads request bytes from the last ST25 user-memory slot
+6. Firmware validates the payload, applies opcode behavior, queues clear for RF-OFF, and later clears the slot.
+7. Firmware releases the latch after timeout (`NFC_AUTO_POWER_OFF_MS`, default `5000` ms; re-armed on accepted commands).
+
+Note: in current runtime logic, request processing is performed while RF field is ON; clear is deferred to RF field OFF.
 
 ## Repository layout
 - `docs/context.md` – running notes, decisions, history, and solved problems
@@ -90,53 +125,30 @@ See `android/README.md`.
    - copy `firmware/build/nfc_harness.uf2` to Pico in BOOTSEL mode (or use SWD).
 3. Open serial logs:
    - `sudo tio /dev/ttyACM0`
-4. On phone, open the NFC-V app (`InkiNfcTapToBook`) and enable `Write on tap`.
+4. On phone, open the NFC-V app (`InkiNfcTapToBook`):
+   - pick command button: `LED1 Slow` or `LED2 Fast`
+   - enable `Write on tap`
 5. Tap phone to antenna and hold briefly.
 
 Expected runtime log pattern:
 - `RF field: ON`
 - `Request@0x01F0: ...`
 - `INKI request: version=... opcode=... duration_min=...`
+- `Command applied: opcode=... -> ...`
 - `Queued clear after RF field OFF`
 - `RF field: OFF`
 - `Cleared request after RF OFF (...)`
+- `Auto power-off: GP28 -> LOW`
 
 Sample serial log (successful run):
 ```text
-[BOOT] NFC harness (RP2040/Pico) boot
-[INFO] I2C: SDA=GP20 SCL=GP21 @ 100000 Hz
-[INFO] ST25 power: GP18 -> HIGH (wait 10 ms)
-[OK] St25Dv_Drv.Init OK
-[INFO] ICREF: 0x50 (ST25DV04KC)
-[INFO] Memory: blocks=128 bytes_per_block=4 total=512 bytes
-[INFO] Detected part by capacity: ST25DV04KC
-[INFO] ICREV: 0x13
-[INFO] UID: E0025068D0905648
-[INFO] UID product code: 0x50 (ST25DV04KC-IE)
-[OK] Diag: I2C link OK (ID + memory map reads succeeded)
-[INFO] Expected ST25DV addresses (7-bit): 0x53 (user/dynamic), 0x57 (system)
-[INFO] I2C probe (7-bit): 0x53=ACK 0x57=ACK
-[OK] I2C address probe passed
-[INFO] DYN I2C session: CLOSED
-[INFO] DYN EH: EH_EN=OFF EH_ON=OFF FIELD_ON=OFF VCC_ON=ON
-[INFO] DYN RF field: OFF
-[INFO] DYN VCC seen by ST25: ON
-[INFO] DYN RF mngt: RF_DISABLE=OFF RF_SLEEP=OFF
-[INFO] DYN IT status: 0x00
-[INFO] DYN GPO: 0x01
-[INFO] DYN mailbox: MBEN=0 HOSTPUT=0 RFPUT=0 HOSTMISS=0 RFMISS=0 CUR=NO_MSG
-[INFO] DYN mailbox length: 0
-[OK] Dynamic status diagnostics passed
-[INFO] Request@0x01F0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-[OK] Boot R/W timing passed: write=9ms verify=2ms restore=8ms (16 bytes @ 0x01F0)
-[OK] SELFTEST: PASS
 [INFO] RF field: OFF
 [INFO] RF field: ON
-[INFO] Request@0x01F0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-[INFO] RF request slot is empty
-[INFO] Request@0x01F0: 49 4E 4B 49 01 01 3C 00 96 8D 8B 69 0D 35 0B 41
-[OK] INKI request: version=1 opcode=0x01 duration_min=60 unix=1770753430 nonce=0x410B350D
+[INFO] Request@0x01F0: 49 4E 4B 49 01 11 3C 00 ...
+[OK] INKI request: version=1 opcode=0x11 duration_min=60 unix=... nonce=...
+[OK] Command applied: opcode=0x11 -> LED1 slow blink
 [INFO] Queued clear after RF field OFF
 [INFO] RF field: OFF
 [OK] Cleared request after RF OFF (16 bytes @ 0x01F0, attempts=1, 8ms)
+[WARN] Auto power-off: GP28 -> LOW
 ```

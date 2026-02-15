@@ -15,26 +15,44 @@ import java.security.SecureRandom
 import kotlin.math.ceil
 
 class MainActivity : AppCompatActivity() {
+    private companion object {
+        const val OPCODE_LED1_SLOW = 0x11
+        const val OPCODE_LED2_FAST = 0x12
+    }
 
     private var nfcAdapter: NfcAdapter? = null
 
     private lateinit var logView: TextView
+    private lateinit var commandView: TextView
     @Volatile private var writeOnTap: Boolean = false
+    @Volatile private var selectedOpcode: Int = OPCODE_LED1_SLOW
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         logView = findViewById(R.id.tvLog)
+        commandView = findViewById(R.id.tvCommand)
 
         val cbWriteOnTap = findViewById<CheckBox>(R.id.cbWriteOnTap)
         cbWriteOnTap.setOnCheckedChangeListener { _, isChecked ->
             writeOnTap = isChecked
         }
 
+        findViewById<Button>(R.id.btnCmdLed1Slow).setOnClickListener {
+            selectCommand(OPCODE_LED1_SLOW)
+            log("Selected command: ${opcodeLabel(selectedOpcode)}")
+        }
+        findViewById<Button>(R.id.btnCmdLed2Fast).setOnClickListener {
+            selectCommand(OPCODE_LED2_FAST)
+            log("Selected command: ${opcodeLabel(selectedOpcode)}")
+        }
+
         findViewById<Button>(R.id.btnClearLog).setOnClickListener {
             logView.text = ""
         }
+
+        selectCommand(OPCODE_LED1_SLOW)
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
         if (nfcAdapter == null) {
@@ -96,10 +114,12 @@ class MainActivity : AppCompatActivity() {
                 val numBlocks = sys?.numBlocks ?: 128
                 log("SystemInfo: numBlocks=$numBlocks bytesPerBlock=$bytesPerBlock")
 
-                val payload = buildBookingRequest(durationMinutes = 60)
+                val opcode = selectedOpcode
+                val payload = buildBookingRequest(opcode = opcode, durationMinutes = 60)
                 val blocksNeeded = ceil(payload.size / bytesPerBlock.toDouble()).toInt()
                 val startBlock = (numBlocks - blocksNeeded).coerceAtLeast(0)
 
+                log("Command: ${opcodeLabel(opcode)} (0x${"%02X".format(opcode)})")
                 log("Request: ${payload.toHex()}")
                 log("Target: blocks $startBlock..${startBlock + blocksNeeded - 1}")
 
@@ -242,14 +262,14 @@ class MainActivity : AppCompatActivity() {
         return resp
     }
 
-    private fun buildBookingRequest(durationMinutes: Int): ByteArray {
+    private fun buildBookingRequest(opcode: Int, durationMinutes: Int): ByteArray {
         val out = ByteArray(16)
         out[0] = 'I'.code.toByte()
         out[1] = 'N'.code.toByte()
         out[2] = 'K'.code.toByte()
         out[3] = 'I'.code.toByte()
         out[4] = 0x01
-        out[5] = 0x01
+        out[5] = (opcode and 0xFF).toByte()
         out[6] = (durationMinutes and 0xFF).toByte()
         out[7] = ((durationMinutes ushr 8) and 0xFF).toByte()
 
@@ -264,6 +284,19 @@ class MainActivity : AppCompatActivity() {
         System.arraycopy(nonce, 0, out, 12, 4)
 
         return out
+    }
+
+    private fun opcodeLabel(opcode: Int): String {
+        return when (opcode) {
+            OPCODE_LED1_SLOW -> "LED1 slow blink"
+            OPCODE_LED2_FAST -> "LED2 fast blink"
+            else -> "unknown"
+        }
+    }
+
+    private fun selectCommand(opcode: Int) {
+        selectedOpcode = opcode
+        commandView.text = "Selected command: ${opcodeLabel(opcode)}"
     }
 
     private fun getTagExtra(intent: Intent): Tag? {

@@ -74,6 +74,22 @@
 #define NFC_WAKE_GPO_SELFTEST_STRICT 0
 #endif
 
+#ifndef NFC_AUTO_POWER_OFF_MS
+#define NFC_AUTO_POWER_OFF_MS 5000
+#endif
+
+#ifndef NFC_LED_SLOW_PERIOD_MS
+#define NFC_LED_SLOW_PERIOD_MS 800
+#endif
+
+#ifndef NFC_LED_FAST_PERIOD_MS
+#define NFC_LED_FAST_PERIOD_MS 150
+#endif
+
+#define INKI_OPCODE_BOOK_NOW 0x01u
+#define INKI_OPCODE_LED1_SLOW 0x11u
+#define INKI_OPCODE_LED2_FAST 0x12u
+
 #define COLOR_RESET "\033[0m"
 #define COLOR_RED "\033[31m"
 #define COLOR_GREEN "\033[32m"
@@ -156,6 +172,10 @@ static int32_t st25_bus_init(void) {
 static int32_t st25_bus_deinit(void) { return 0; }
 
 static uint32_t st25_get_tick(void) { return (uint32_t)to_ms_since_boot(get_absolute_time()); }
+
+static bool has_elapsed(uint32_t now_ms, uint32_t deadline_ms) {
+  return ((int32_t)(now_ms - deadline_ms) >= 0);
+}
 
 static int32_t st25_is_ready(uint16_t dev_addr, const uint32_t trials) {
   const uint8_t addr7 = st25_addr7(dev_addr);
@@ -1057,6 +1077,26 @@ typedef struct {
   uint8_t req_boot[16];
 } StartupDiag;
 
+typedef enum {
+  LED_MODE_OFF = 0,
+  LED_MODE_ON,
+  LED_MODE_SLOW,
+  LED_MODE_FAST,
+} LedMode;
+
+typedef struct {
+  LedMode mode;
+  bool level;
+  uint32_t next_toggle_ms;
+} LedChannel;
+
+typedef struct {
+  LedChannel led1;
+  LedChannel led2;
+  bool power_off_armed;
+  uint32_t power_off_deadline_ms;
+} RuntimeControl;
+
 static void startup_diag_reset(StartupDiag* diag) {
   memset(diag, 0, sizeof(*diag));
   diag->wake_cfg_ok = true;
@@ -1077,31 +1117,173 @@ static void boot_log_banner(void) {
 #endif
 }
 
-static void init_power_led(void) {
+static bool power_led_ready = false;
+
+static void set_led1_output(bool on) {
+#if NFC_HAS_CYW43
+  if (!power_led_ready) {
+    return;
+  }
+  cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, on ? 1 : 0);
+#elif (NFC_POWER_LED_PIN >= 0)
+  gpio_put(NFC_POWER_LED_PIN, on ? 1 : 0);
+#else
+  (void)on;
+#endif
+}
+
+static void set_led2_output(bool on) {
+#if (NFC_STATUS_LED_PIN >= 0)
+  gpio_put(NFC_STATUS_LED_PIN, on ? 1 : 0);
+#else
+  (void)on;
+#endif
+}
+
+static void init_power_led_output(void) {
 #if NFC_HAS_CYW43
   const int ret = cyw43_arch_init();
   if (ret != 0) {
     log_warn("Power LED: CYW43 init failed: %d\n", ret);
+    power_led_ready = false;
     return;
   }
-  cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
-  log_info("Power LED: CYW43 GPIO%u -> ON\n", (unsigned)CYW43_WL_GPIO_LED_PIN);
+  power_led_ready = true;
+  log_info("Power LED: CYW43 GPIO%u available\n", (unsigned)CYW43_WL_GPIO_LED_PIN);
 #elif (NFC_POWER_LED_PIN >= 0)
   gpio_init(NFC_POWER_LED_PIN);
   gpio_set_dir(NFC_POWER_LED_PIN, GPIO_OUT);
-  gpio_put(NFC_POWER_LED_PIN, 1);
-  log_info("Power LED: GP%u -> ON\n", NFC_POWER_LED_PIN);
+  power_led_ready = true;
+  log_info("Power LED: GP%u available\n", NFC_POWER_LED_PIN);
 #else
+  power_led_ready = false;
   log_info("Power LED: disabled\n");
 #endif
 }
 
-static void init_led_and_st25_power(void) {
-  init_power_led();
-
+static void init_led2_output(void) {
+#if (NFC_STATUS_LED_PIN >= 0)
   gpio_init(NFC_STATUS_LED_PIN);
   gpio_set_dir(NFC_STATUS_LED_PIN, GPIO_OUT);
-  gpio_put(NFC_STATUS_LED_PIN, 0);
+  set_led2_output(false);
+  log_info("LED2: GP%u available\n", NFC_STATUS_LED_PIN);
+#else
+  log_info("LED2: disabled\n");
+#endif
+}
+
+static uint32_t led_mode_period_ms(LedMode mode) {
+  switch (mode) {
+    case LED_MODE_SLOW:
+      return (uint32_t)NFC_LED_SLOW_PERIOD_MS;
+    case LED_MODE_FAST:
+      return (uint32_t)NFC_LED_FAST_PERIOD_MS;
+    default:
+      return 0u;
+  }
+}
+
+static void led_channel_set_mode(LedChannel* channel, LedMode mode, uint32_t now_ms) {
+  channel->mode = mode;
+  if (mode == LED_MODE_OFF) {
+    channel->level = false;
+    channel->next_toggle_ms = 0u;
+    return;
+  }
+  if (mode == LED_MODE_ON) {
+    channel->level = true;
+    channel->next_toggle_ms = 0u;
+    return;
+  }
+
+  channel->level = true;
+  channel->next_toggle_ms = now_ms + led_mode_period_ms(mode);
+}
+
+static void runtime_set_led_modes(RuntimeControl* runtime, LedMode led1_mode, LedMode led2_mode) {
+  const uint32_t now_ms = st25_get_tick();
+  led_channel_set_mode(&runtime->led1, led1_mode, now_ms);
+  led_channel_set_mode(&runtime->led2, led2_mode, now_ms);
+  set_led1_output(runtime->led1.level);
+  set_led2_output(runtime->led2.level);
+}
+
+static void runtime_arm_auto_power_off(RuntimeControl* runtime) {
+#if (NFC_POWER_HOLD_PIN >= 0) && (NFC_AUTO_POWER_OFF_MS > 0)
+  runtime->power_off_armed = true;
+  runtime->power_off_deadline_ms = st25_get_tick() + (uint32_t)NFC_AUTO_POWER_OFF_MS;
+  log_info("Auto power-off armed: %u ms\n", (unsigned)NFC_AUTO_POWER_OFF_MS);
+#else
+  runtime->power_off_armed = false;
+#endif
+}
+
+static void runtime_service_led_channel(LedChannel* channel, uint32_t now_ms, void (*set_output)(bool)) {
+  if (channel->mode != LED_MODE_SLOW && channel->mode != LED_MODE_FAST) {
+    return;
+  }
+  if (!has_elapsed(now_ms, channel->next_toggle_ms)) {
+    return;
+  }
+  channel->level = !channel->level;
+  set_output(channel->level);
+  channel->next_toggle_ms = now_ms + led_mode_period_ms(channel->mode);
+}
+
+static void runtime_release_power_latch(RuntimeControl* runtime) {
+#if (NFC_POWER_HOLD_PIN >= 0)
+  gpio_put(NFC_POWER_HOLD_PIN, 0);
+  log_warn("Auto power-off: GP%u -> LOW\n", NFC_POWER_HOLD_PIN);
+#else
+  (void)runtime;
+#endif
+  runtime->power_off_armed = false;
+}
+
+static void runtime_service(RuntimeControl* runtime, uint32_t now_ms, bool allow_power_off) {
+  runtime_service_led_channel(&runtime->led1, now_ms, set_led1_output);
+  runtime_service_led_channel(&runtime->led2, now_ms, set_led2_output);
+
+#if (NFC_POWER_HOLD_PIN >= 0) && (NFC_AUTO_POWER_OFF_MS > 0)
+  if (allow_power_off && runtime->power_off_armed && has_elapsed(now_ms, runtime->power_off_deadline_ms)) {
+    runtime_release_power_latch(runtime);
+  }
+#else
+  (void)allow_power_off;
+#endif
+}
+
+static void runtime_init(RuntimeControl* runtime) {
+  memset(runtime, 0, sizeof(*runtime));
+  runtime_set_led_modes(runtime, LED_MODE_ON, LED_MODE_OFF);
+  runtime_arm_auto_power_off(runtime);
+}
+
+static bool apply_inki_opcode(RuntimeControl* runtime, uint8_t opcode) {
+  switch (opcode) {
+    case INKI_OPCODE_BOOK_NOW:
+    case INKI_OPCODE_LED1_SLOW:
+      if (opcode == INKI_OPCODE_BOOK_NOW) {
+        log_info("Opcode 0x%02X mapped to LED1 slow blink (legacy)\n", opcode);
+      }
+      runtime_set_led_modes(runtime, LED_MODE_SLOW, LED_MODE_OFF);
+      log_ok("Command applied: opcode=0x%02X -> LED1 slow blink\n", opcode);
+      return true;
+    case INKI_OPCODE_LED2_FAST:
+      runtime_set_led_modes(runtime, LED_MODE_OFF, LED_MODE_FAST);
+      log_ok("Command applied: opcode=0x%02X -> LED2 fast blink\n", opcode);
+      return true;
+    default:
+      log_warn("INKI request ignored: unsupported opcode 0x%02X\n", opcode);
+      return false;
+  }
+}
+
+static void init_led_and_st25_power(void) {
+  init_power_led_output();
+  init_led2_output();
+  set_led1_output(true);
+  set_led2_output(false);
 
 #if (NFC_ST25_VCC_EN_PIN >= 0)
   log_info("ST25 power: GP%u -> HIGH (wait %u ms)\n",
@@ -1116,7 +1298,9 @@ static void init_led_and_st25_power(void) {
 
 static void fatal_blink_forever(void) {
   while (true) {
+#if (NFC_STATUS_LED_PIN >= 0)
     gpio_xor_mask(1u << NFC_STATUS_LED_PIN);
+#endif
     sleep_ms(250);
   }
 }
@@ -1296,7 +1480,7 @@ static void run_optional_startup_diagnostics(HarnessState* state, StartupDiag* d
 #endif
 }
 
-static void poll_request_loop(HarnessState* state) {
+static void poll_request_loop(HarnessState* state, RuntimeControl* runtime) {
   const uint32_t rf_poll_ms = 120u;
   const uint32_t rf_field_timeout_ms = 12u;
   const uint32_t rf_field_retry_delay_ms = 2u;
@@ -1314,9 +1498,11 @@ static void poll_request_loop(HarnessState* state) {
   uint8_t last_req[16] = {0};
 
   while (true) {
+    const uint32_t now_ms = st25_get_tick();
+    runtime_service(runtime, now_ms, !pending_clear);
+
     if (!state->region_ok) {
       log_warn("Request region not available\n");
-      gpio_put(NFC_STATUS_LED_PIN, 0);
       sleep_ms(1000);
       continue;
     }
@@ -1334,7 +1520,6 @@ static void poll_request_loop(HarnessState* state) {
       } else if (rf_field_fail_streak == 5) {
         log_err("RF field read still failing (5 consecutive polls)\n");
       }
-      gpio_put(NFC_STATUS_LED_PIN, 0);
       sleep_ms(rf_poll_ms);
       continue;
     }
@@ -1354,7 +1539,6 @@ static void poll_request_loop(HarnessState* state) {
       }
     }
 
-    gpio_put(NFC_STATUS_LED_PIN, rf_on ? 1 : 0);
     if (!rf_on) {
       if (pending_clear) {
         uint8_t zeros[ST25DV_MAX_WRITE_BYTE] = {0};
@@ -1431,8 +1615,11 @@ static void poll_request_loop(HarnessState* state) {
                parsed.duration_min,
                (unsigned long)parsed.unix_seconds,
                (unsigned long)parsed.nonce);
-        pending_clear = true;
-        log_info("Queued clear after RF field OFF\n");
+        if (apply_inki_opcode(runtime, parsed.opcode)) {
+          pending_clear = true;
+          runtime_arm_auto_power_off(runtime);
+          log_info("Queued clear after RF field OFF\n");
+        }
       } else {
         log_warn("INKI request ignored: invalid/incomplete (%s)\n", invalid_reason != NULL ? invalid_reason : "format");
       }
@@ -1455,6 +1642,7 @@ int main(void) {
 
   HarnessState state = {0};
   StartupDiag diag;
+  RuntimeControl runtime;
   startup_diag_reset(&diag);
 
   if (!st25_register_bus(&state)) {
@@ -1463,5 +1651,6 @@ int main(void) {
 
   run_identity_and_memory_bringup(&state, &diag);
   run_optional_startup_diagnostics(&state, &diag);
-  poll_request_loop(&state);
+  runtime_init(&runtime);
+  poll_request_loop(&state, &runtime);
 }

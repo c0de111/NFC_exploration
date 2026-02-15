@@ -37,6 +37,9 @@ set(NFC_ENABLE_WAKE_GPO_CONFIG 1 CACHE STRING "Configure ST25 GPO for NFC wake e
 set(NFC_WAKE_GPO_SELFTEST_STRICT 0 CACHE STRING "Fail SELFTEST if wake GPO boot config fails")
 set(NFC_ENABLE_STARTUP_DIAGNOSTICS 1 CACHE STRING "Run startup diagnostics (probe/status/selftest)")
 set(NFC_ENABLE_BOOT_RW_TIMING_TEST 1 CACHE STRING "Run one-shot request-slot write/read/restore timing test at boot")
+set(NFC_AUTO_POWER_OFF_MS 5000 CACHE STRING "Release power latch this many ms after boot/command (set 0 to disable)")
+set(NFC_LED_SLOW_PERIOD_MS 800 CACHE STRING "Blink period for slow LED mode")
+set(NFC_LED_FAST_PERIOD_MS 150 CACHE STRING "Blink period for fast LED mode")
 
 target_compile_definitions(nfc_harness PRIVATE
   NFC_I2C_BAUDRATE_HZ=${NFC_I2C_BAUDRATE_HZ}
@@ -52,6 +55,9 @@ target_compile_definitions(nfc_harness PRIVATE
   NFC_WAKE_GPO_SELFTEST_STRICT=${NFC_WAKE_GPO_SELFTEST_STRICT}
   NFC_ENABLE_STARTUP_DIAGNOSTICS=${NFC_ENABLE_STARTUP_DIAGNOSTICS}
   NFC_ENABLE_BOOT_RW_TIMING_TEST=${NFC_ENABLE_BOOT_RW_TIMING_TEST}
+  NFC_AUTO_POWER_OFF_MS=${NFC_AUTO_POWER_OFF_MS}
+  NFC_LED_SLOW_PERIOD_MS=${NFC_LED_SLOW_PERIOD_MS}
+  NFC_LED_FAST_PERIOD_MS=${NFC_LED_FAST_PERIOD_MS}
 )
 
 target_link_libraries(nfc_harness
