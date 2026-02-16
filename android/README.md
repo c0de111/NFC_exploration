@@ -10,7 +10,8 @@ Android pieces are optional for the Pico harness; use them only if you want to e
 - `android/inki_nfc_tap_to_book/` (drop‑in)
   - Minimal source set (Manifest + `MainActivity.kt` + layout + strings + tech filter).
   - Uses `android.nfc.tech.NfcV` with raw ISO15693 commands: Get System Info `0x2B`, Read Single Block `0x20`, Write Single Block `0x21`.
-  - UI includes command buttons (`LED1 Slow`, `LED2 Fast`) that select the opcode written into the 16-byte `INKI` request.
+  - UI uses a single-select command button row (`LED1 Slow`, `LED2 Fast`) with active/inactive states directly on the buttons (no separate “selected command” line).
+  - Command row is horizontally scrollable so additional commands can be added later without changing the tap flow.
   - UI result feedback uses a large auto-hiding popup: red `No Success - Try again!` on failure, green `Success! Slow/Fast` on verified write/readback success.
   - Request payload spec: `android/inki_nfc_tap_to_book/REQUEST_FORMAT.md` (16‑byte `INKI` payload, little‑endian fields).
 - `android/InkiNfcTapToBook_androidstudio/` (full project)

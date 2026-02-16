@@ -59,6 +59,11 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-02-16: Refactored Android command selection for scalable growth in both app source copies:
+  - Replaced separate `Selected command ...` status line with direct active/inactive button state using a single-select `MaterialButtonToggleGroup`.
+  - Added selector-based button styling (checked/unchecked/disabled background, text, stroke) so active action is obvious at a glance.
+  - Wrapped command row in `HorizontalScrollView` to keep the same UX when additional command buttons are added later.
+  - Refactored `MainActivity.kt` command handling to a `CommandSpec` map (`buttonId -> opcode/labels`), reducing hardcoded branching and making future command additions explicit and localized.
 - 2026-02-16: Updated Android result feedback UX to use a single large popup for both outcomes:
   - Removed the inline write-status line from above command buttons.
   - Success now shows a large green popup with opcode-specific message: `Success! Slow` (`0x11`) or `Success! Fast` (`0x12`).

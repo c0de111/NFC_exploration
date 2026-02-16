@@ -3,7 +3,9 @@
 This folder contains **drop-in Android sources** for a minimal app that can talk to **ISO15693 / NFC-V** tags (e.g. **ST25DV04KC**) using `android.nfc.tech.NfcV`.
 
 The MVP behavior is:
-- you choose a command with one of two buttons (**LED1 slow** / **LED2 fast**)
+- you choose a command with one of two large single-select buttons (**LED1 slow** / **LED2 fast**)
+- active/inactive state is shown directly on the buttons (no separate selected-command status line)
+- command buttons are arranged in a horizontally scrollable row so more actions can be added later
 - when a tag is tapped, the app writes a small **16-byte INKI request** into the **last N blocks** of the tag’s user EEPROM (defaults to “last 4 blocks” when the tag reports block count)
 - then reads back the written blocks to verify
 
@@ -41,7 +43,7 @@ See `REQUEST_FORMAT.md`.
 - Sideload it to the phone (e.g. via Syncthing). Some devices trigger **Play Protect** scanning for sideloaded NFC apps; after scanning you can usually proceed to install.
 
 ## What you should see
-- App UI: command selector buttons (`LED1 Slow`, `LED2 Fast`), large result popup, and log view.
+- App UI: single-select command buttons (`LED1 Slow`, `LED2 Fast`) with active/inactive styling, large result popup, and log view.
 - On failures, a large red popup (`No Success - Try again!`) appears for a few seconds and auto-hides.
 - On verified success, a large green popup appears with command-specific text (`Success! Slow` or `Success! Fast`) and auto-hides.
 - Result popup is also cleared immediately when a new tap starts.

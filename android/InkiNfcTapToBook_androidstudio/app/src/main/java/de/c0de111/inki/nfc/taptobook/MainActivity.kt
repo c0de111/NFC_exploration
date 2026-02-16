@@ -11,23 +11,49 @@ import android.os.Handler
 import android.os.Looper
 import android.view.HapticFeedbackConstants
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
 import java.io.IOException
 import java.security.SecureRandom
 import kotlin.math.ceil
 
 class MainActivity : AppCompatActivity() {
+    private data class CommandSpec(
+        val buttonId: Int,
+        val opcode: Int,
+        val logLabel: String,
+        val successMessage: String
+    )
+
     private companion object {
         const val OPCODE_LED1_SLOW = 0x11
         const val OPCODE_LED2_FAST = 0x12
+        const val RESULT_OVERLAY_TIMEOUT_MS = 3000L
     }
+
+    private val commandSpecs = listOf(
+        CommandSpec(
+            buttonId = R.id.btnCmdLed1Slow,
+            opcode = OPCODE_LED1_SLOW,
+            logLabel = "LED1 slow blink",
+            successMessage = "Success! Slow"
+        ),
+        CommandSpec(
+            buttonId = R.id.btnCmdLed2Fast,
+            opcode = OPCODE_LED2_FAST,
+            logLabel = "LED2 fast blink",
+            successMessage = "Success! Fast"
+        )
+    )
+    private val commandSpecByButtonId = commandSpecs.associateBy { it.buttonId }
+    private val commandSpecByOpcode = commandSpecs.associateBy { it.opcode }
 
     private var nfcAdapter: NfcAdapter? = null
 
     private lateinit var logView: TextView
-    private lateinit var commandView: TextView
+    private lateinit var commandToggleGroup: MaterialButtonToggleGroup
     private lateinit var resultOverlayView: TextView
     @Volatile private var selectedOpcode: Int = OPCODE_LED1_SLOW
     @Volatile private var writeInProgress: Boolean = false
@@ -43,23 +69,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         logView = findViewById(R.id.tvLog)
-        commandView = findViewById(R.id.tvCommand)
+        commandToggleGroup = findViewById(R.id.toggleCommand)
         resultOverlayView = findViewById(R.id.tvResultOverlay)
 
-        findViewById<Button>(R.id.btnCmdLed1Slow).setOnClickListener {
-            selectCommand(OPCODE_LED1_SLOW)
-            log("Selected command: ${opcodeLabel(selectedOpcode)}")
-        }
-        findViewById<Button>(R.id.btnCmdLed2Fast).setOnClickListener {
-            selectCommand(OPCODE_LED2_FAST)
-            log("Selected command: ${opcodeLabel(selectedOpcode)}")
+        commandToggleGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
+            if (!isChecked) {
+                return@addOnButtonCheckedListener
+            }
+            commandSpecByButtonId[checkedId]?.let { command ->
+                selectCommand(command.opcode)
+            }
         }
 
-        findViewById<Button>(R.id.btnClearLog).setOnClickListener {
+        findViewById<MaterialButton>(R.id.btnClearLog).setOnClickListener {
             logView.text = ""
         }
 
-        selectCommand(OPCODE_LED1_SLOW)
+        val defaultCommand = commandSpecs.first()
+        commandToggleGroup.check(defaultCommand.buttonId)
+        selectCommand(defaultCommand.opcode)
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
         if (nfcAdapter == null) {
@@ -111,6 +139,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
         writeInProgress = true
+        setCommandSelectionEnabled(false)
         hideResultOverlay()
 
         val uid = tag.id
@@ -124,6 +153,7 @@ class MainActivity : AppCompatActivity() {
             showResultOverlay("No Success - Try again!", success = false)
             signalFailureHaptic()
             writeInProgress = false
+            setCommandSelectionEnabled(true)
             return
         }
 
@@ -158,7 +188,6 @@ class MainActivity : AppCompatActivity() {
                 if (!writeSucceeded) {
                     log("Verify: mismatch (No Success - Try again!)")
                 }
-
             } catch (e: Exception) {
                 log("ERROR: ${e.javaClass.simpleName}: ${e.message}")
             } finally {
@@ -174,6 +203,7 @@ class MainActivity : AppCompatActivity() {
                     signalFailureHaptic()
                 }
                 writeInProgress = false
+                setCommandSelectionEnabled(true)
             }
         }.start()
     }
@@ -321,23 +351,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun opcodeLabel(opcode: Int): String {
-        return when (opcode) {
-            OPCODE_LED1_SLOW -> "LED1 slow blink"
-            OPCODE_LED2_FAST -> "LED2 fast blink"
-            else -> "unknown"
-        }
+        return commandSpecByOpcode[opcode]?.logLabel ?: "unknown"
     }
 
     private fun successMessageForOpcode(opcode: Int): String {
-        return when (opcode) {
-            OPCODE_LED2_FAST -> "Success! Fast"
-            else -> "Success! Slow"
-        }
+        return commandSpecByOpcode[opcode]?.successMessage ?: "Success"
     }
 
     private fun selectCommand(opcode: Int) {
         selectedOpcode = opcode
-        commandView.text = "Selected command: ${opcodeLabel(opcode)}"
+    }
+
+    private fun setCommandSelectionEnabled(enabled: Boolean) {
+        runOnUiThread {
+            commandToggleGroup.isEnabled = enabled
+            commandSpecs.forEach { command ->
+                commandToggleGroup.findViewById<MaterialButton>(command.buttonId)?.isEnabled = enabled
+            }
+            commandToggleGroup.alpha = if (enabled) 1.0f else 0.7f
+        }
     }
 
     private fun signalSuccessHaptic() {
@@ -362,7 +394,7 @@ class MainActivity : AppCompatActivity() {
             )
             resultOverlayView.visibility = View.VISIBLE
             uiHandler.removeCallbacks(hideResultOverlayRunnable)
-            uiHandler.postDelayed(hideResultOverlayRunnable, 3000L)
+            uiHandler.postDelayed(hideResultOverlayRunnable, RESULT_OVERLAY_TIMEOUT_MS)
         }
     }
 
