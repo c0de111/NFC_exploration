@@ -41,5 +41,8 @@ See `REQUEST_FORMAT.md`.
 - Sideload it to the phone (e.g. via Syncthing). Some devices trigger **Play Protect** scanning for sideloaded NFC apps; after scanning you can usually proceed to install.
 
 ## What you should see
-- App UI: command selector buttons (`LED1 Slow`, `LED2 Fast`), status line (`Ready - Tap to write` / `Writing...` / `Done` / `No Success - Try again!`), and log view.
+- App UI: command selector buttons (`LED1 Slow`, `LED2 Fast`), large result popup, and log view.
+- On failures, a large red popup (`No Success - Try again!`) appears for a few seconds and auto-hides.
+- On verified success, a large green popup appears with command-specific text (`Success! Slow` or `Success! Fast`) and auto-hides.
+- Result popup is also cleared immediately when a new tap starts.
 - Without a NFC‑V tag, tapping random NFC tags will usually print “No NfcV on this tag”.

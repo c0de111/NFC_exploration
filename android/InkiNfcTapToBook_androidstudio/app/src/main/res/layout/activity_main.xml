@@ -1,70 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/tvCommand"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Selected command: LED1 slow blink" />
-
-    <TextView
-        android:id="@+id/tvWriteState"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
-        android:text="Ready - Tap to write"
-        android:textStyle="bold" />
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnCmdLed1Slow"
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginEnd="6dp"
-            android:layout_weight="1"
-            android:text="LED1 Slow"
-            android:textAllCaps="false"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnCmdLed2Fast"
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="6dp"
-            android:layout_weight="1"
-            android:text="LED2 Fast"
-            android:textAllCaps="false"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnClearLog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Clear log" />
-
-    <ScrollView
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/tvLog"
+            android:id="@+id/tvBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:typeface="monospace" />
+            android:text="inki"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
-    </ScrollView>
+        <TextView
+            android:id="@+id/tvCommand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Selected command: LED1 slow blink" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCmdLed1Slow"
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="LED1 Slow"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnCmdLed2Fast"
+                android:layout_width="0dp"
+                android:layout_height="86dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="LED2 Fast"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTapHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap phone to tag"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnClearLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear log" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/tvLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textIsSelectable="true"
+                android:typeface="monospace" />
+
+        </ScrollView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvResultOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="#CCB00020"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="No Success - Try again!"
+        android:textColor="#FFFFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+</FrameLayout>

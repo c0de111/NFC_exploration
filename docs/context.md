@@ -47,7 +47,7 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 
 ## Android app: `InkiNfcTapToBook` (launcher label: `inki`)
 - Uses Android reader mode + `NfcV` for ISO15693 tags.
-- UI: command buttons, write status line, and log view (write is always on tag tap).
+- UI: command buttons, large result popup (success/failure), and log view (write is always on tag tap).
 - ISO15693 commands: Get System Info `0x2B`, Read Single Block `0x20`, Write Single Block `0x21`.
 - Main activity: `android/InkiNfcTapToBook_androidstudio/app/src/main/java/.../MainActivity.kt`
 - Drop‑in sources: `android/inki_nfc_tap_to_book/` (same logic, easier to copy).
@@ -59,6 +59,15 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-02-16: Updated Android result feedback UX to use a single large popup for both outcomes:
+  - Removed the inline write-status line from above command buttons.
+  - Success now shows a large green popup with opcode-specific message: `Success! Slow` (`0x11`) or `Success! Fast` (`0x12`).
+  - Failure keeps the large red popup: `No Success - Try again!`.
+  - Popup still auto-hides and is cleared immediately when a new tap starts.
+- 2026-02-16: Refined Android app branding/feedback UX in both source copies:
+  - Added a prominent failure popup (`No Success - Try again!`) with high-contrast red background and large text, auto-hidden after a short timeout.
+  - Popup is explicitly cleared when a new NFC tap starts, so each new attempt begins with a clean UI state.
+  - Updated launcher branding to app name `inki` plus icon from `/home/nicolas/github/inki/docs/assets/images/inki_octopus.png` (`inki_symbol.png` in app resources).
 - 2026-02-16: Updated Android tap app UX defaults for production tap flow:
   - App label changed to `inki`.
   - Removed `Write on tap` toggle from UI/logic; app now always writes on tag tap.

@@ -1,12 +1,16 @@
 package de.c0de111.inki.nfc.taptobook
 
 import android.content.Intent
+import android.graphics.Color
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.NfcV
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.HapticFeedbackConstants
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,20 +24,19 @@ class MainActivity : AppCompatActivity() {
         const val OPCODE_LED2_FAST = 0x12
     }
 
-    private enum class WriteState {
-        READY,
-        WRITING,
-        DONE,
-        FAILED
-    }
-
     private var nfcAdapter: NfcAdapter? = null
 
     private lateinit var logView: TextView
     private lateinit var commandView: TextView
-    private lateinit var writeStateView: TextView
+    private lateinit var resultOverlayView: TextView
     @Volatile private var selectedOpcode: Int = OPCODE_LED1_SLOW
     @Volatile private var writeInProgress: Boolean = false
+    private val uiHandler = Handler(Looper.getMainLooper())
+    private val hideResultOverlayRunnable = Runnable {
+        if (::resultOverlayView.isInitialized) {
+            resultOverlayView.visibility = View.GONE
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         logView = findViewById(R.id.tvLog)
         commandView = findViewById(R.id.tvCommand)
-        writeStateView = findViewById(R.id.tvWriteState)
+        resultOverlayView = findViewById(R.id.tvResultOverlay)
 
         findViewById<Button>(R.id.btnCmdLed1Slow).setOnClickListener {
             selectCommand(OPCODE_LED1_SLOW)
@@ -57,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         selectCommand(OPCODE_LED1_SLOW)
-        setWriteState(WriteState.READY)
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
         if (nfcAdapter == null) {
@@ -83,6 +85,11 @@ class MainActivity : AppCompatActivity() {
         nfcAdapter?.disableReaderMode(this)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        uiHandler.removeCallbacks(hideResultOverlayRunnable)
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleNfcIntent(intent)
@@ -104,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
         writeInProgress = true
-        setWriteState(WriteState.WRITING)
+        hideResultOverlay()
 
         val uid = tag.id
         log("\nTag discovered")
@@ -114,13 +121,14 @@ class MainActivity : AppCompatActivity() {
         val nfcv = NfcV.get(tag)
         if (nfcv == null) {
             log("No NfcV on this tag")
-            setWriteState(WriteState.FAILED)
+            showResultOverlay("No Success - Try again!", success = false)
             signalFailureHaptic()
             writeInProgress = false
             return
         }
 
         Thread {
+            var opcodeUsed = selectedOpcode
             var writeSucceeded = false
             try {
                 nfcv.connect()
@@ -130,12 +138,12 @@ class MainActivity : AppCompatActivity() {
                 val numBlocks = sys?.numBlocks ?: 128
                 log("SystemInfo: numBlocks=$numBlocks bytesPerBlock=$bytesPerBlock")
 
-                val opcode = selectedOpcode
-                val payload = buildBookingRequest(opcode = opcode, durationMinutes = 60)
+                opcodeUsed = selectedOpcode
+                val payload = buildBookingRequest(opcode = opcodeUsed, durationMinutes = 60)
                 val blocksNeeded = ceil(payload.size / bytesPerBlock.toDouble()).toInt()
                 val startBlock = (numBlocks - blocksNeeded).coerceAtLeast(0)
 
-                log("Command: ${opcodeLabel(opcode)} (0x${"%02X".format(opcode)})")
+                log("Command: ${opcodeLabel(opcodeUsed)} (0x${"%02X".format(opcodeUsed)})")
                 log("Request: ${payload.toHex()}")
                 log("Target: blocks $startBlock..${startBlock + blocksNeeded - 1}")
 
@@ -159,10 +167,10 @@ class MainActivity : AppCompatActivity() {
                 } catch (_: Exception) {
                 }
                 if (writeSucceeded) {
-                    setWriteState(WriteState.DONE)
+                    showResultOverlay(successMessageForOpcode(opcodeUsed), success = true)
                     signalSuccessHaptic()
                 } else {
-                    setWriteState(WriteState.FAILED)
+                    showResultOverlay("No Success - Try again!", success = false)
                     signalFailureHaptic()
                 }
                 writeInProgress = false
@@ -320,21 +328,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun successMessageForOpcode(opcode: Int): String {
+        return when (opcode) {
+            OPCODE_LED2_FAST -> "Success! Fast"
+            else -> "Success! Slow"
+        }
+    }
+
     private fun selectCommand(opcode: Int) {
         selectedOpcode = opcode
         commandView.text = "Selected command: ${opcodeLabel(opcode)}"
-    }
-
-    private fun setWriteState(state: WriteState) {
-        val text = when (state) {
-            WriteState.READY -> "Ready - Tap to write"
-            WriteState.WRITING -> "Writing..."
-            WriteState.DONE -> "Done"
-            WriteState.FAILED -> "No Success - Try again!"
-        }
-        runOnUiThread {
-            writeStateView.text = text
-        }
     }
 
     private fun signalSuccessHaptic() {
@@ -346,6 +349,27 @@ class MainActivity : AppCompatActivity() {
     private fun signalFailureHaptic() {
         runOnUiThread {
             window.decorView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+        }
+    }
+
+    private fun showResultOverlay(message: String, success: Boolean) {
+        runOnUiThread {
+            resultOverlayView.text = message
+            resultOverlayView.setBackgroundColor(
+                Color.parseColor(
+                    if (success) "#CC1B8B3A" else "#CCB00020"
+                )
+            )
+            resultOverlayView.visibility = View.VISIBLE
+            uiHandler.removeCallbacks(hideResultOverlayRunnable)
+            uiHandler.postDelayed(hideResultOverlayRunnable, 3000L)
+        }
+    }
+
+    private fun hideResultOverlay() {
+        runOnUiThread {
+            uiHandler.removeCallbacks(hideResultOverlayRunnable)
+            resultOverlayView.visibility = View.GONE
         }
     }
 
