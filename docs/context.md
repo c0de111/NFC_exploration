@@ -45,9 +45,9 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Device selects: `A6h/A7h` (user+dynamic), `AEh/AFh` (system)
 - 7-bit addresses typically: `0x53` (user/dynamic), `0x57` (system)
 
-## Android app: `InkiNfcTapToBook`
+## Android app: `InkiNfcTapToBook` (launcher label: `inki`)
 - Uses Android reader mode + `NfcV` for ISO15693 tags.
-- UI: log view, `Write on tap` toggle, `Clear log`.
+- UI: command buttons, write status line, and log view (write is always on tag tap).
 - ISO15693 commands: Get System Info `0x2B`, Read Single Block `0x20`, Write Single Block `0x21`.
 - Main activity: `android/InkiNfcTapToBook_androidstudio/app/src/main/java/.../MainActivity.kt`
 - Drop‑in sources: `android/inki_nfc_tap_to_book/` (same logic, easier to copy).
@@ -59,12 +59,17 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-02-16: Updated Android tap app UX defaults for production tap flow:
+  - App label changed to `inki`.
+  - Removed `Write on tap` toggle from UI/logic; app now always writes on tag tap.
+  - Enlarged command buttons (`LED1 Slow`, `LED2 Fast`) for easier touch interaction.
+  - Kept explicit state feedback (`Ready - Tap to write` -> `Writing...` -> `Done` / `No Success - Try again!`) and mirrored changes in both source copies.
 - 2026-02-16: Updated root Android helper `build_android.sh` to enforce local workflow defaults: it now passes `--sdk-dir /home/nicolas/Android/Sdk` automatically, errors fast if that default SDK path does not exist, and still allows explicit override via `--sdk-dir /path/to/Android/Sdk`.
 - 2026-02-16: Added root helper script `build_android.sh` for the standard Android sideload path. It invokes `android/scripts/build_and_sync_apk.sh` with defaults `--app tap --sync-dir ~/Sync` so running `./build_android.sh` directly builds and writes the APK into the sync folder.
 - 2026-02-16: Improved Android writer state feedback in both app source copies (`android/InkiNfcTapToBook_androidstudio/` and `android/inki_nfc_tap_to_book/`):
   - Added explicit UI state line: `Ready - Tap to write` -> `Writing...` -> `Done` or `No Success - Try again!`.
   - Added write verification by comparing read-back payload bytes against the written request; mismatches now surface as failure (`No Success - Try again!`) instead of log-only.
-  - Added haptic feedback for success and failure states, and made `Write on tap` enabled by default for the normal tap workflow.
+  - Added haptic feedback for success and failure states.
 - 2026-02-16: Updated wake/power policy for battery test flow:
   - ST25 wake GPO configuration changed to `GPO_ENABLE + RF_WRITE` only (removed `FIELD_CHANGE`) to avoid wake on mere field presence.
   - Boot request handling now powers down immediately when no valid `INKI` request is available and RF field is already OFF.

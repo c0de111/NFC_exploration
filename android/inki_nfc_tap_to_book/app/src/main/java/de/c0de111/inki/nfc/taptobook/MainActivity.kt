@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.io.IOException
@@ -33,7 +32,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var logView: TextView
     private lateinit var commandView: TextView
     private lateinit var writeStateView: TextView
-    @Volatile private var writeOnTap: Boolean = true
     @Volatile private var selectedOpcode: Int = OPCODE_LED1_SLOW
     @Volatile private var writeInProgress: Boolean = false
 
@@ -44,19 +42,6 @@ class MainActivity : AppCompatActivity() {
         logView = findViewById(R.id.tvLog)
         commandView = findViewById(R.id.tvCommand)
         writeStateView = findViewById(R.id.tvWriteState)
-
-        val cbWriteOnTap = findViewById<CheckBox>(R.id.cbWriteOnTap)
-        cbWriteOnTap.isChecked = true
-        cbWriteOnTap.setOnCheckedChangeListener { _, isChecked ->
-            writeOnTap = isChecked
-            if (!writeInProgress) {
-                if (isChecked) {
-                    setWriteState(WriteState.READY)
-                } else {
-                    setWriteState(WriteState.READY, "Ready - Write on tap disabled")
-                }
-            }
-        }
 
         findViewById<Button>(R.id.btnCmdLed1Slow).setOnClickListener {
             selectCommand(OPCODE_LED1_SLOW)
@@ -136,7 +121,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         Thread {
-            val writeRequested = writeOnTap
             var writeSucceeded = false
             try {
                 nfcv.connect()
@@ -155,22 +139,16 @@ class MainActivity : AppCompatActivity() {
                 log("Request: ${payload.toHex()}")
                 log("Target: blocks $startBlock..${startBlock + blocksNeeded - 1}")
 
-                if (writeRequested) {
-                    writePayload(nfcv, uid, startBlock, bytesPerBlock, payload)
-                    log("Write: OK")
-                } else {
-                    log("Write-on-tap disabled; reading only")
-                }
+                writePayload(nfcv, uid, startBlock, bytesPerBlock, payload)
+                log("Write: OK")
 
                 val readBack = readPayload(nfcv, uid, startBlock, bytesPerBlock, blocksNeeded)
                 val readBackPayload = readBack.copyOf(payload.size)
                 log("ReadBack: ${readBackPayload.toHex()}")
 
-                if (writeRequested) {
-                    writeSucceeded = readBackPayload.contentEquals(payload)
-                    if (!writeSucceeded) {
-                        log("Verify: mismatch (No Success - Try again!)")
-                    }
+                writeSucceeded = readBackPayload.contentEquals(payload)
+                if (!writeSucceeded) {
+                    log("Verify: mismatch (No Success - Try again!)")
                 }
 
             } catch (e: Exception) {
@@ -180,16 +158,12 @@ class MainActivity : AppCompatActivity() {
                     nfcv.close()
                 } catch (_: Exception) {
                 }
-                if (writeRequested) {
-                    if (writeSucceeded) {
-                        setWriteState(WriteState.DONE)
-                        signalSuccessHaptic()
-                    } else {
-                        setWriteState(WriteState.FAILED)
-                        signalFailureHaptic()
-                    }
+                if (writeSucceeded) {
+                    setWriteState(WriteState.DONE)
+                    signalSuccessHaptic()
                 } else {
-                    setWriteState(WriteState.READY, "Ready - Write on tap disabled")
+                    setWriteState(WriteState.FAILED)
+                    signalFailureHaptic()
                 }
                 writeInProgress = false
             }
@@ -351,9 +325,9 @@ class MainActivity : AppCompatActivity() {
         commandView.text = "Selected command: ${opcodeLabel(opcode)}"
     }
 
-    private fun setWriteState(state: WriteState, readyText: String = "Ready - Tap to write") {
+    private fun setWriteState(state: WriteState) {
         val text = when (state) {
-            WriteState.READY -> readyText
+            WriteState.READY -> "Ready - Tap to write"
             WriteState.WRITING -> "Writing..."
             WriteState.DONE -> "Done"
             WriteState.FAILED -> "No Success - Try again!"

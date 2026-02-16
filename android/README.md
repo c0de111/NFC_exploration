@@ -8,7 +8,7 @@ Android pieces are optional for the Pico harness; use them only if you want to e
 
 ## Folders (choose based on need)
 - `android/inki_nfc_tap_to_book/` (drop‑in)
-  - Minimal source set (Manifest + `MainActivity.kt` + layout + tech filter).
+  - Minimal source set (Manifest + `MainActivity.kt` + layout + strings + tech filter).
   - Uses `android.nfc.tech.NfcV` with raw ISO15693 commands: Get System Info `0x2B`, Read Single Block `0x20`, Write Single Block `0x21`.
   - UI includes command buttons (`LED1 Slow`, `LED2 Fast`) that select the opcode written into the 16-byte `INKI` request.
   - UI state feedback shows `Ready - Tap to write` -> `Writing...` -> `Done` or `No Success - Try again!` (with read-back verification).
@@ -82,7 +82,7 @@ Convenience copies used during travel testing:
 1) Build: run the CLI build above (or Android Studio → Build APK).  
 2) Copy `app-debug.apk` to your phone (e.g., Syncthing).  
 3) Open the APK; Play Protect may scan NFC apps—proceed after scan.  
-4) Enable “Write on tap” in the app, then tap a physical ISO15693/NFC‑V tag.  
+4) Open the app and tap a physical ISO15693/NFC‑V tag (write happens automatically).  
 
 ## Not needed for Pico-only tests
 If you’re only working on the Pico harness, you can ignore the Android folder; firmware tests don’t depend on it.***

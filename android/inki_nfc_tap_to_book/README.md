@@ -4,7 +4,7 @@ This folder contains **drop-in Android sources** for a minimal app that can talk
 
 The MVP behavior is:
 - you choose a command with one of two buttons (**LED1 slow** / **LED2 fast**)
-- when a tag is tapped, the app optionally writes a small **16-byte INKI request** into the **last N blocks** of the tag’s user EEPROM (defaults to “last 4 blocks” when the tag reports block count)
+- when a tag is tapped, the app writes a small **16-byte INKI request** into the **last N blocks** of the tag’s user EEPROM (defaults to “last 4 blocks” when the tag reports block count)
 - then reads back the written blocks to verify
 
 ## How to use
@@ -18,12 +18,12 @@ The MVP behavior is:
 - `app/src/main/AndroidManifest.xml`
 - `app/src/main/java/de/c0de111/inki/nfc/taptobook/MainActivity.kt`
 - `app/src/main/res/layout/activity_main.xml`
+- `app/src/main/res/values/strings.xml`
 - `app/src/main/res/xml/nfc_tech_filter.xml`
 
 3) Build + install on your phone.
 
-4) Open the app and tap your ISO15693 / NFC-V tag.
-- Enable **“Write on tap”** in the app before tapping if you want it to write.
+4) Open the app and tap your ISO15693 / NFC-V tag (write happens automatically).
 
 ## Request format
 See `REQUEST_FORMAT.md`.
@@ -41,5 +41,5 @@ See `REQUEST_FORMAT.md`.
 - Sideload it to the phone (e.g. via Syncthing). Some devices trigger **Play Protect** scanning for sideloaded NFC apps; after scanning you can usually proceed to install.
 
 ## What you should see
-- App UI: command selector buttons (`LED1 Slow`, `LED2 Fast`), “Write on tap” checkbox, status line (`Ready - Tap to write` / `Writing...` / `Done` / `No Success - Try again!`), and log view.
+- App UI: command selector buttons (`LED1 Slow`, `LED2 Fast`), status line (`Ready - Tap to write` / `Writing...` / `Done` / `No Success - Try again!`), and log view.
 - Without a NFC‑V tag, tapping random NFC tags will usually print “No NfcV on this tag”.

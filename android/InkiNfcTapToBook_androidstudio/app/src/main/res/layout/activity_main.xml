@@ -23,28 +23,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnCmdLed1Slow"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:text="LED1 Slow" />
+            android:text="LED1 Slow"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnCmdLed2Fast"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1"
-            android:text="LED2 Fast" />
+            android:text="LED2 Fast"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
     </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/cbWriteOnTap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Write on tap" />
 
     <Button
         android:id="@+id/btnClearLog"

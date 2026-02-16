@@ -129,9 +129,8 @@ For the common path, you can use `./build_android.sh` (repo root), which default
    - copy `firmware/build/nfc_harness.uf2` to Pico in BOOTSEL mode (or use SWD).
 3. Open serial logs:
    - `sudo tio /dev/ttyACM0`
-4. On phone, open the NFC-V app (`InkiNfcTapToBook`):
+4. On phone, open the NFC-V app (`inki`):
    - pick command button: `LED1 Slow` or `LED2 Fast`
-   - enable `Write on tap`
 5. Tap phone to antenna and hold briefly.
 
 Expected runtime log pattern:
