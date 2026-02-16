@@ -41,6 +41,7 @@ Thumbs.db
 # Android / Gradle
 .gradle/
 **/.gradle/
+**/.kotlin/
 **/.cxx/
 **/.externalNativeBuild/
 **/*.iml
