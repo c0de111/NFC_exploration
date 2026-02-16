@@ -59,6 +59,10 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-02-16: Updated wake/power policy for battery test flow:
+  - ST25 wake GPO configuration changed to `GPO_ENABLE + RF_WRITE` only (removed `FIELD_CHANGE`) to avoid wake on mere field presence.
+  - Boot request handling now powers down immediately when no valid `INKI` request is available and RF field is already OFF.
+  - If RF field is still ON and boot request is not yet valid, firmware defers final decision to runtime; if the field then drops without a valid `INKI` command being seen, firmware powers down immediately.
 - 2026-02-15: Remapped opcode `0x12` (fast command) to the same onboard power LED channel as `0x11` on current single-LED hardware. Firmware now applies `0x11` as LED1 slow blink and `0x12` as LED1 fast blink; no visible behavior depends on `GP15` anymore for this test flow. Updated command log text and README/firmware README mappings accordingly.
 - 2026-02-15: Updated latch timeout default to 10 s for tap tests: `NFC_AUTO_POWER_OFF_MS` changed from `5000` to `10000` in firmware defaults (`firmware/src/main.c`, `firmware/CMakeLists.txt`), build script default/export (`firmware/scripts/build.sh`), and docs (`README.md`, `firmware/README.md`).
 - 2026-02-15: Clarified LED command visibility from live logs (before same-day single-LED remap of `0x12`):

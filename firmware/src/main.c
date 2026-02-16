@@ -544,10 +544,10 @@ static bool configure_wake_gpo(ST25DV_Object_t* st) {
     ok = false;
   }
 
-  const uint16_t wake_conf = (uint16_t)(ST25DV_GPO_ENABLE_MASK | ST25DV_GPO_FIELDCHANGE_MASK | ST25DV_GPO_RFWRITE_MASK);
+  const uint16_t wake_conf = (uint16_t)(ST25DV_GPO_ENABLE_MASK | ST25DV_GPO_RFWRITE_MASK);
   ret = st25_config_it_retry(st, wake_conf, cfg_timeout_ms, cfg_retry_delay_ms, &attempts);
   if (ret == NFCTAG_OK) {
-    log_ok("Wake GPO sources set: ENABLE + FIELD_CHANGE + RF_WRITE\n");
+    log_ok("Wake GPO sources set: ENABLE + RF_WRITE\n");
     if (attempts > 1) {
       log_warn("Wake GPO source config retries: %lu\n", (unsigned long)attempts);
     }
@@ -1095,6 +1095,8 @@ typedef struct {
   LedChannel led2;
   bool power_off_armed;
   uint32_t power_off_deadline_ms;
+  bool valid_inki_seen;
+  bool shutdown_if_no_valid_after_rf_off;
 } RuntimeControl;
 
 static void startup_diag_reset(StartupDiag* diag) {
@@ -1236,6 +1238,21 @@ static void runtime_release_power_latch(RuntimeControl* runtime) {
   log_warn("Auto power-off: GP%u -> LOW\n", NFC_POWER_HOLD_PIN);
 #else
   (void)runtime;
+#endif
+  runtime->power_off_armed = false;
+}
+
+static void runtime_power_off_now(RuntimeControl* runtime, const char* reason) {
+  runtime_set_led_modes(runtime, LED_MODE_OFF, LED_MODE_OFF);
+#if (NFC_POWER_HOLD_PIN >= 0)
+  gpio_put(NFC_POWER_HOLD_PIN, 0);
+  if (reason != NULL && reason[0] != '\0') {
+    log_warn("Immediate power-off: GP%u -> LOW (%s)\n", NFC_POWER_HOLD_PIN, reason);
+  } else {
+    log_warn("Immediate power-off: GP%u -> LOW\n", NFC_POWER_HOLD_PIN);
+  }
+#else
+  (void)reason;
 #endif
   runtime->power_off_armed = false;
 }
@@ -1480,9 +1497,11 @@ static void run_optional_startup_diagnostics(HarnessState* state, StartupDiag* d
 #endif
 }
 
-static void process_boot_stored_request(HarnessState* state, RuntimeControl* runtime) {
+static bool process_boot_stored_request(HarnessState* state, RuntimeControl* runtime) {
   if (!state->region_ok) {
-    return;
+    log_warn("Boot command check failed: request region unavailable\n");
+    runtime_power_off_now(runtime, "request region unavailable");
+    return false;
   }
 
   const uint32_t req_read_timeout_ms = 40u;
@@ -1503,29 +1522,33 @@ static void process_boot_stored_request(HarnessState* state, RuntimeControl* run
                                      NULL,
                                      &req_read_attempts);
   if (ret != NFCTAG_OK) {
-    log_warn("Boot command check skipped: request read failed after %lu attempt(s): %ld\n",
+    log_warn("Boot command check failed: request read failed after %lu attempt(s): %ld\n",
              (unsigned long)req_read_attempts,
              (long)ret);
-    return;
+    runtime_power_off_now(runtime, "request read failed");
+    return false;
   }
+
+  bool valid_request = false;
+  InkiRequest parsed = {0};
+  const char* invalid_reason = "empty";
 
   if (request_is_all_zero(req)) {
     log_info("Boot request slot empty (no stored command)\n");
-    return;
-  }
-
-  log_request_bytes(state->req_addr, req);
-  if (!is_inki_request(req)) {
-    log_warn("Boot request ignored: missing INKI magic\n");
-    return;
-  }
-
-  InkiRequest parsed = {0};
-  (void)decode_inki_request(req, &parsed);
-  const char* invalid_reason = NULL;
-  if (!validate_inki_request(&parsed, &invalid_reason)) {
-    log_warn("Boot request ignored: invalid/incomplete (%s)\n", invalid_reason != NULL ? invalid_reason : "format");
-    return;
+  } else {
+    log_request_bytes(state->req_addr, req);
+    if (!is_inki_request(req)) {
+      invalid_reason = "missing INKI magic";
+      log_warn("Boot request ignored: missing INKI magic\n");
+    } else {
+      (void)decode_inki_request(req, &parsed);
+      invalid_reason = NULL;
+      if (!validate_inki_request(&parsed, &invalid_reason)) {
+        log_warn("Boot request ignored: invalid/incomplete (%s)\n", invalid_reason != NULL ? invalid_reason : "format");
+      } else {
+        valid_request = true;
+      }
+    }
   }
 
   ST25DV_FIELD_STATUS field = ST25DV_FIELD_OFF;
@@ -1533,14 +1556,25 @@ static void process_boot_stored_request(HarnessState* state, RuntimeControl* run
   ret = st25_get_rf_field_retry(
       &state->st, &field, rf_field_timeout_ms, rf_field_retry_delay_ms, &rf_field_attempts);
   if (ret != NFCTAG_OK) {
-    log_warn("Boot request deferred: RF field state unreadable after %lu attempt(s)\n",
+    log_warn("Boot request check failed: RF field state unreadable after %lu attempt(s)\n",
              (unsigned long)rf_field_attempts);
-    return;
+    runtime_power_off_now(runtime, "RF field unreadable");
+    return false;
   }
 
   if (field == ST25DV_FIELD_ON) {
-    log_info("Boot request is valid but RF field is ON; deferring command handling to live RF loop\n");
-    return;
+    if (valid_request) {
+      log_info("Boot request is valid but RF field is ON; deferring command handling to live RF loop\n");
+    } else {
+      runtime->shutdown_if_no_valid_after_rf_off = true;
+      log_info("Boot request is not valid and RF field is ON; waiting for RF OFF before shutdown decision\n");
+    }
+    return true;
+  }
+
+  if (!valid_request) {
+    runtime_power_off_now(runtime, "no valid INKI request");
+    return false;
   }
 
   log_info("Boot request is valid and RF field is OFF; applying stored command now\n");
@@ -1551,9 +1585,12 @@ static void process_boot_stored_request(HarnessState* state, RuntimeControl* run
          (unsigned long)parsed.unix_seconds,
          (unsigned long)parsed.nonce);
   if (!apply_inki_opcode(runtime, parsed.opcode)) {
-    return;
+    runtime_power_off_now(runtime, "unsupported opcode");
+    return false;
   }
 
+  runtime->valid_inki_seen = true;
+  runtime->shutdown_if_no_valid_after_rf_off = false;
   runtime_arm_auto_power_off(runtime);
 
   uint8_t zeros[ST25DV_MAX_WRITE_BYTE] = {0};
@@ -1576,6 +1613,8 @@ static void process_boot_stored_request(HarnessState* state, RuntimeControl* run
   } else {
     log_err("Boot stored request clear failed after %lu attempt(s): %ld\n", (unsigned long)clear_attempts, (long)ret);
   }
+
+  return true;
 }
 
 static void poll_request_loop(HarnessState* state, RuntimeControl* runtime) {
@@ -1638,6 +1677,14 @@ static void poll_request_loop(HarnessState* state, RuntimeControl* runtime) {
     }
 
     if (!rf_on) {
+      if (runtime->shutdown_if_no_valid_after_rf_off && !runtime->valid_inki_seen && !pending_clear) {
+        log_warn("No valid INKI request seen before RF OFF; shutting down immediately\n");
+        runtime_power_off_now(runtime, "no valid INKI request after wake");
+        while (true) {
+          sleep_ms(1000);
+        }
+      }
+
       if (pending_clear) {
         uint8_t zeros[ST25DV_MAX_WRITE_BYTE] = {0};
         uint32_t clear_elapsed_ms = 0;
@@ -1714,6 +1761,8 @@ static void poll_request_loop(HarnessState* state, RuntimeControl* runtime) {
                (unsigned long)parsed.unix_seconds,
                (unsigned long)parsed.nonce);
         if (apply_inki_opcode(runtime, parsed.opcode)) {
+          runtime->valid_inki_seen = true;
+          runtime->shutdown_if_no_valid_after_rf_off = false;
           pending_clear = true;
           runtime_arm_auto_power_off(runtime);
           log_info("Queued clear after RF field OFF\n");
@@ -1750,6 +1799,10 @@ int main(void) {
   run_identity_and_memory_bringup(&state, &diag);
   run_optional_startup_diagnostics(&state, &diag);
   runtime_init(&runtime);
-  process_boot_stored_request(&state, &runtime);
+  if (!process_boot_stored_request(&state, &runtime)) {
+    while (true) {
+      sleep_ms(1000);
+    }
+  }
   poll_request_loop(&state, &runtime);
 }

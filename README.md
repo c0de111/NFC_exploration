@@ -42,7 +42,7 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 ## Command Flow (Phone -> ST25 -> Pico)
 1. Board is fully off (`Vbatt` connected, no USB, Pico unpowered).
 2. Phone tap powers ST25 RF side and writes the 16-byte `INKI` payload (including opcode byte) over NFC-V into ST25 EEPROM, while Pico can still be fully off.
-3. ST25 asserts `GPO` low on configured wake events (`FIELD_CHANGE` / `RF_WRITE`), pulling `Q1` gate low and powering Pico.
+3. ST25 asserts `GPO` low on configured wake event (`RF_WRITE`), pulling `Q1` gate low and powering Pico.
 4. Pico boots and immediately asserts `GPIO28` high to latch power through `Q2`.
 5. Data transfer from ST25 to Pico happens after boot over I2C (not on GPO):
    - Pico powers ST25 VCC via `GP18`
@@ -53,6 +53,7 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 Note:
 - Runtime-loop request processing still runs while RF field is ON, with clear deferred to RF field OFF.
 - Additionally, at boot firmware now checks for a stored valid request. If RF field is already OFF, it applies the command immediately and clears it at boot.
+- If no valid `INKI` request is found after wake and RF is already OFF, firmware releases the power latch immediately.
 
 ## Repository layout
 - `docs/context.md` – running notes, decisions, history, and solved problems
