@@ -138,7 +138,9 @@ Flash options:
 
 ### Root make targets (quick reference)
 - `make firmware` – configure & build firmware into `firmware/build/`
+- `make firmware-tune` – build dedicated antenna tuning firmware (`nfc_tune`)
 - `make firmware-flash` – flash over SWD (OpenOCD + CMSIS‑DAP)
+- `make firmware-tune-flash` – flash tuning firmware ELF over SWD
 - `make clean` – remove `firmware/build/` only
 
 ## CAM workflow (pcb2gcode)

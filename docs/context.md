@@ -59,6 +59,60 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-03-02: Reduced `nfc_tune` RF state debounce default to `1` report (`NFC_TUNE_DEBOUNCE_COUNT`) so short single-phone interactions can still be classified as `RF=ON`.
+- 2026-03-01: Increased `nfc_tune` detector bandwidth defaults for strong-signal tuning runs:
+  - `NFC_TUNE_SAMPLE_COUNT`: `1024 -> 256`
+  - `NFC_TUNE_REPORT_INTERVAL_MS`: `200 -> 100`
+  - `NFC_TUNE_EMA_ALPHA`: `0.25 -> 0.50`
+  - `NFC_TUNE_DEBOUNCE_COUNT`: `3 -> 2`
+- 2026-03-01: Increased `nfc_tune` graph vertical scale default to `0..3000 mV` (`NFC_TUNE_GRAPH_MAX_MV`) to visualize EH-level signals without constant saturation at the top row.
+- 2026-03-01: Tightened `nfc_tune` EH behavior to treat EH enable as mandatory:
+  - Boot now aborts with an error if `EH_EN` cannot be latched after retries.
+  - Added EH re-arm sequence (`EH_EN` reset + `EH_MODE=ACTIVE_AFTER_BOOT` + re-enable) for recovery.
+  - Runtime now attempts EH recovery not only when `EH_EN=0`, but also when `FIELD_ON=1` and `EH_ON=0`.
+- 2026-03-01: Hardened `nfc_tune` EH activation after observing `EH_EN=0` under RF field:
+  - Added EH enforcement routine with retries that re-attempts dynamic `EH_EN` enable and falls back to writing `EH_MODE=ACTIVE_AFTER_BOOT`.
+  - Added periodic runtime re-check (`NFC_TUNE_EH_RECHECK_MS`) to re-assert EH enable if it drops.
+  - Goal: keep `EH_EN=1` consistently so `V_EH` behavior reflects real harvesting opportunities instead of disabled-state noise.
+- 2026-03-01: Changed `nfc_tune` graph vertical scale default from `20 mV` to `15 mV` (`NFC_TUNE_GRAPH_MAX_MV`) for finer visibility around phone-coupling deltas.
+- 2026-03-01: Reduced `nfc_tune` EMA alpha default from `0.40` to `0.25` to lower visible noise in live RF plots while keeping the 1024-sample burst averaging.
+- 2026-03-01: Increased `nfc_tune` default ADC averaging window from `512` to `1024` samples per report (`NFC_TUNE_SAMPLE_COUNT`) for improved low-level RF noise rejection.
+- 2026-03-01: Refined `nfc_tune` graph/runtime behavior after bench feedback:
+  - Graph redraw now uses ANSI home-screen mode (`ESC[H` + clear-to-end), improving compatibility versus cursor-up-only redraw.
+  - `d` in status line is now signed (`+/- mV`), while RF detection still uses positive delta (`ema - baseline`, clipped at zero).
+  - Increased default integration for weak signals: `NFC_TUNE_SAMPLE_COUNT=512`, `NFC_TUNE_BASELINE_SAMPLES=4000`.
+  - Added startup settling delay before baseline capture: `NFC_TUNE_BASELINE_SETTLE_MS=400`.
+  - Reduced visible redraw artifacts by removing per-line clear escapes and hiding the cursor during graph mode.
+- 2026-03-01: Upgraded `nfc_tune` terminal visualization from inline mini-plot to a fixed in-place graph panel:
+  - Added colored ANSI bar graph with default size `72x20` (`NFC_TUNE_GRAPH_WIDTH`, `NFC_TUNE_GRAPH_HEIGHT`) and scale `0..20 mV` (`NFC_TUNE_GRAPH_MAX_MV`).
+  - Graph updates without vertical scrolling (ANSI in-place redraw), with newest samples at the right edge and simple ON/OFF threshold guide lines.
+  - Kept the legacy single-line status directly below the graph for exact numeric values.
+- 2026-03-01: Increased `nfc_tune` smoothing filter bandwidth by 2x for faster RF response updates:
+  - Default `NFC_TUNE_EMA_ALPHA` changed from `0.20` to `0.40` (in CMake and source fallback).
+  - Effect: detector output (`ema`/`d`) tracks rapid coupling changes more quickly with less lag.
+- 2026-03-01: Added a small in-terminal ASCII plot to `nfc_tune` for faster bench feedback:
+  - Status line now includes `plot[...]`, a scrolling history of delta (`d`, mV) levels.
+  - Plot defaults: width `24` samples, scale `0..20 mV` (`NFC_TUNE_PLOT_WIDTH`, `NFC_TUNE_PLOT_MAX_MV`).
+  - Keeps single-line overwrite behavior so terminal remains compact during live tuning.
+- 2026-03-01: Tuned `nfc_tune` defaults for phone-coupling experiments:
+  - Baseline freeze is now ON by default (`NFC_TUNE_FREEZE_BASELINE=1`).
+  - RF detection default threshold changed to `NFC_TUNE_FIELD_ON_MV=9` (strictly above 8 mV).
+  - RF OFF threshold set to `NFC_TUNE_FIELD_OFF_MV=4` to preserve hysteresis margin.
+- 2026-03-01: Added `nfc_tune` baseline freeze mode for RF-threshold experiments where drift adaptation is undesirable:
+  - New compile-time knob `NFC_TUNE_FREEZE_BASELINE` (`0` default, `1` to freeze baseline after startup capture).
+  - When frozen, `baseline_v` is not updated in the runtime loop; when not frozen, existing slow tracking while `RF=OFF` remains (`NFC_TUNE_BASELINE_TRACK_ALPHA`).
+  - Startup logs now print active baseline mode (`FROZEN_AFTER_STARTUP` vs `TRACK_WHILE_RF_OFF`) to avoid ambiguity during bench tuning.
+- 2026-03-01: `nfc_tune` now includes dedicated RF detection behavior for `V_EH`-based tuning (after fixing board bring-up by tying Pico `ADC_VREF` pin 35 to `3V3` pin 36):
+  - Simplified ADC runtime path to steady channel reads (no per-sample ADC re-init), preserving one-line colored terminal output.
+  - Added startup baseline capture, EMA smoothing, ON/OFF hysteresis, and debounce to produce stable `RF=ON/OFF` state from `V_EH` delta.
+  - Added per-session peak-delta tracking (`peak mV`) so trimmer/copper-turn tuning has a direct numeric target.
+  - Live status line now combines ADC metrics (`raw`, `v`, `ema`, `base`, `delta`, `peak`) with ST25 EH dynamic bits (`EH_EN`, `EH_ON`, `FIELD`, `VCC`) for cross-checking.
+  - New tune knobs: `NFC_TUNE_BASELINE_SAMPLES`, `NFC_TUNE_FIELD_ON_MV`, `NFC_TUNE_FIELD_OFF_MV`, `NFC_TUNE_DEBOUNCE_COUNT`.
+- 2026-03-01: Added a dedicated Pico tuning firmware target (`nfc_tune`) for antenna resonance work without changing the production tap flow:
+  - New source `firmware/src/tune_main.c` reuses the ST25 bus/driver path, enables EH mode (`EH_MODE=ACTIVE_AFTER_BOOT`, dynamic `EH_EN` ON), and continuously reports averaged ADC measurements over USB serial for `V_EH` tuning.
+  - Added CMake target `nfc_tune` alongside existing `nfc_harness`, with tune-specific cache options (`NFC_TUNE_ADC_INPUT`, `NFC_TUNE_SAMPLE_COUNT`, `NFC_TUNE_REPORT_INTERVAL_MS`, `NFC_TUNE_SAMPLE_DELAY_US`).
+  - Extended build/flash entry points: `firmware/scripts/build.sh --target tune`, root `make firmware-tune`, and root `make firmware-tune-flash`.
+  - Kept existing `nfc_harness` behavior and defaults unchanged.
 - 2026-02-16: Refactored Android command selection for scalable growth in both app source copies:
   - Replaced separate `Selected command ...` status line with direct active/inactive button state using a single-select `MaterialButtonToggleGroup`.
   - Added selector-based button styling (checked/unchecked/disabled background, text, stroke) so active action is obvious at a glance.
