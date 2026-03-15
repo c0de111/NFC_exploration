@@ -33,6 +33,14 @@ Process notes (keep private):
   - `PBx_RAW` includes the cathodes of `DBIAS` and `DISO` and the switch contact, but not the MCU pin.
   - `PBx_GPIO` includes the anode of `DISO`, the 1 k/100 nF, and the Pico pin.
 
+## Session documentation directive
+- At the end of each significant chat session, create or update a `context.md` file in the relevant directory (e.g. `docs/context.md` for this repo) with the main results, decisions, numbers, and open questions from the session.
+- Include enough detail so that a future session (possibly with a different agent) can resume without re-deriving everything.
+- Record key technical findings (measurements, datasheet specs, energy budgets) as concrete numbers, not vague summaries.
+- Record rejected alternatives and why they were rejected, so they are not re-explored.
+- Record the chosen direction and its rationale.
+- Keep chronological log entries concise (one paragraph per session max) but link to detailed sections where needed.
+
 ## Work cadence directive
 - Before each small implementation step, show the exact source files/sections you plan to change and briefly explain scope/approach. Do not start editing until this is shown and agreed.
 - After larger refactors or cross-use-case changes, build-test all firmware use cases (`--seatsurfing`, `--historian`, `--homematic`, `--weathermap`) before declaring the repo ready.

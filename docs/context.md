@@ -1,12 +1,134 @@
 # context – NFC_exploration
 
-Sandbox repo to explore **ST25DV04KC (ISO15693 / NFC‑V)** “tap‑to‑trigger / tap‑to‑book” flows for inki. This file is the single source for detailed notes, history, and solved problems.
+Sandbox repo to explore **ST25DV04KC (ISO15693 / NFC‑V)** “tap‑to‑trigger / tap‑to‑book” flows for inki, and **NFC energy harvesting** for batteryless devices. This file is the single source for detailed notes, history, and solved problems.
 
-## Goal
+## Goals
+
+### Goal 1: Tap-to-trigger (validated)
 Validate an end‑to‑end flow where:
 - a phone writes a small “request” into ST25DV EEPROM over RF (tag VCC can be off)
 - the device wakes (via RF field / EH / GPO strategy)
 - MCU reads the request over I²C, acts on it, then clears/acks and sleeps again
+
+### Goal 2: NFC energy harvesting — batteryless mechanical counter (active)
+Build a batteryless device powered entirely from a phone's NFC field that actuates a mechanical counter. Target: **Hackaday Green Powered Challenge** (deadline 2026-04-24).
+
+Contest categories:
+- “Anything But PV” — electromagnetic harvesting at 13.56 MHz
+- “Least Power” — standby consumption is literally 0 watts (no battery, no power source)
+
+## Future Projects (Canonical)
+
++----+-------------------------------------------+-----------+-----------+
+| ID | Future Topic                              | Status    | Source    |
++----+-------------------------------------------+-----------+-----------+
+| F1 | NFC mechanical counter (Green Powered)    | ACTIVE    | 2026-03   |
+| F2 | V_EH load test (measure real mA from phone) | PLANNED | 2026-03   |
+| F3 | Solenoid/counter mechanism sourcing        | PLANNED   | 2026-03   |
+| F4 | Batteryless e-paper (stretch goal)         | IDEA      | 2026-03   |
+| F5 | NFC phone energy benchmark tool            | IDEA      | 2026-03   |
++----+-------------------------------------------+-----------+-----------+
+
+---
+
+## NFC Energy Harvesting — Research & Decisions
+
+### ST25DV04KC V_EH specifications (from datasheet DS13519 Rev 8)
+- **V_EH pin**: Unregulated analog output, power direction = output
+- **Voltage**: Varies with field strength, up to ~4V (clamped)
+- **Power**: Datasheet footnote says “some µW”; practical tests show more
+- **Condition**: Power delivered only when harvested energy exceeds tag's own needs
+- **EH_MODE register**: 0 = EH forced after boot (EH_EN=1), 1 = on demand (EH_EN=0)
+- **Caution**: Communication not guaranteed during EH delivery (see AN4913)
+- **RF communication impact**: High EH load reduces read/write reliability
+
+### V_EH practical power levels (from research, AN4913, AN5233, community posts)
+
++------------------------------------------+----------+----------+
+| Scenario                                 | Current  | Power    |
++------------------------------------------+----------+----------+
+| ST25DV V_EH + smartphone (typical)       | 1-2 mA   | 2-5 mW   |
+| ST25DV V_EH + smartphone (good coupling) | 2-4 mA   | 5-12 mW  |
+| ST25DV V_EH + dedicated reader           | 4-7 mA   | 10-20 mW |
+| Max characterized by ST (5 A/m field)    | 4 mA@3V  | ~12 mW   |
+| Max practical (strong reader)            | ~7 mA    | ~20 mW   |
++------------------------------------------+----------+----------+
+
+Key finding: Phones transmit NFC continuously while held near the tag (confirmed by nfc_tune observation). This gives a sustained energy source, not just a brief pulse.
+
+### Bench measurements from this repo
+- **2026-02-10**: V_EH measured ~30 mV with phone tap (before antenna tuning, poor coupling)
+- **2026-03-01**: After nfc_tune development and antenna tuning, graph scale raised to 3000 mV — indicating V_EH now reaches into the volt range with optimized antenna
+- **TODO (F2)**: Measure actual V_EH current delivery into a known load resistor
+
+### NFC energy harvesting IC comparison
+
++------------------+------+----------+--------+---------+
+| IC               | Mfr  | Max I_EH | V_EH   | ~P_max  |
++------------------+------+----------+--------+---------+
+| ST25DV04KC       | ST   | ~6 mA    | unreg  | ~20 mW  |
+| NTAG 5 link      | NXP  | 12.5 mA  | 2.4V   | ~30 mW  |
+| AS3955           | ams  | 5 mA     | 4.5V   | ~22 mW  |
+| SIC4310          | SiCr | 10 mA    | 3.3V   | ~33 mW  |
+| NGC1081          | Inf  | ~10 mA   | 3.3V   | 20-50mW |
+| RF430FRL152H     | TI   | N/A      | 3V     | ~10 mW  |
++------------------+------+----------+--------+---------+
+
+Decision: Stay with ST25DV04KC (already in hand, proven in this repo, sufficient for target application). Higher-power ICs noted for possible future work.
+
+### Proven NFC energy harvesting projects (from research)
+
+- **NFC PCB Business Card**: STM8L MCU + 2 LEDs from ST25DV64K, PCB trace antenna
+- **NFC temp keychain**: ATtiny1626 + TMP117, fully batteryless
+- **STM32L031 blinky**: LED ran 9 minutes after NFC field removed (supercap)
+- **Battery-free food monitor**: MSP430G2553 + pressure sensor, 330 µA active
+- **Waveshare NFC e-paper**: 1.54” display works from phone NFC alone
+- **ST AN5233 reference**: STM32L476 + e-paper, driven from ST25DV energy harvesting
+
+### Energy budget: mechanical counter actuation
+
+Supply side (phone NFC, conservative):
+- V_EH average: ~3 mW continuous while phone is held
+- Phone hold 10s → 30 mJ, 20s → 60 mJ, 30s → 90 mJ
+
+Demand side (solenoid pulse):
+- Small 3-5V solenoid: 25-50 mJ per actuation
+- Electromagnetic pulse counter: ~50-100 mJ per increment
+
+Supercap sizing:
+- 10 mF @ 3.3V stores 54 mJ — enough for one small solenoid pulse
+- 47 mF @ 3.3V stores 256 mJ — comfortable margin
+- First charge (10 mF, 0→3.3V @ 3mA): ~11 seconds
+- Recharge after pulse (50 mJ @ 3mA): ~5 seconds
+
+Verdict: **Feasible with 10-20 second phone hold** using 10-47 mF supercap.
+
+### Chosen project: NFC-powered mechanical counter
+
+Architecture (pure analog variant, no MCU):
+1. ST25DV04KC harvests NFC energy on V_EH pin
+2. Schottky diode → supercap (10-47 mF) accumulates charge
+3. Voltage comparator/supervisor fires at ~3.0V threshold
+4. N-MOSFET dumps supercap energy into solenoid
+5. Solenoid pulls ratchet pawl, advancing mechanical counter digit
+6. Counter holds position indefinitely (mechanical memory, 0 watts standby)
+
+Narrative: “A tally counter that runs on nothing but the NFC signal from your phone. No batteries, no solar, no charging. Tap and count. The counter never forgets (mechanical), never runs out (harvested), and never needs maintenance.”
+
+### Rejected alternatives and rationale
+- **Pico W as MCU**: Boot current ~25 mA, drains supercap faster than V_EH fills it. Too power-hungry for NFC-only power.
+- **Direct V_EH wake (no supercap)**: V_EH is unregulated and too noisy for reliable solenoid drive. Supercap smooths and accumulates.
+- **E-paper as primary project**: Feasible for 1.54” display (~30 mJ refresh) but needs tiny MCU (ATtiny/STM32L0), more complex BOM. Kept as stretch goal (F4).
+- **Sensor-only tag**: Technically simpler but less visually impressive for a contest. NFC sensor readback noted as easy add-on.
+- **NFC phosphorescent graffiti**: Cool concept but harder to document reproducibly.
+
+### Open questions
+- What is the actual V_EH current at the load point? (needs bench measurement, F2)
+- Specific solenoid part number / mechanical counter mechanism? (F3)
+- Can the pure-analog variant work, or does a tiny MCU improve reliability? (TBD after prototype)
+- Should the counter also write count digitally to ST25DV EEPROM for phone readback?
+
+---
 
 ## Key artifacts
 - ST docs:
@@ -59,6 +181,7 @@ Power ST25DV VCC only when the MCU needs I²C; keep RF functionality when VCC is
 - Validate on real tag: RF writes, wake behavior, timing, robustness.
 
 ## Log (chronological)
+- 2026-03-11: NFC energy harvesting exploration session. Researched ST25DV V_EH capabilities (datasheet + AN5733 + AN4913/AN5233), surveyed alternative NFC harvesting ICs (NTAG 5 link, AS3955, NGC1081, etc.), collected proven project examples (NFC business card, temp keychain, STM32L031 blinky with 9-min supercap run, Waveshare NFC e-paper). Calculated energy budgets for phone-powered scenarios (3 mW avg → 30-90 mJ per 10-30s hold). Evaluated project concepts: e-paper update, batteryless sensor tag, mechanical counter, phosphorescent graffiti, phone energy benchmark, NFC Tamagotchi. **Decided on: NFC-powered batteryless mechanical counter** for Hackaday Green Powered Challenge (deadline 2026-04-24). Architecture: ST25DV V_EH → supercap → voltage comparator → MOSFET → solenoid → ratchet counter. Pure analog variant (no MCU) preferred for elegance. Added session documentation directive to AGENTS.md.
 - 2026-03-02: Reduced `nfc_tune` RF state debounce default to `1` report (`NFC_TUNE_DEBOUNCE_COUNT`) so short single-phone interactions can still be classified as `RF=ON`.
 - 2026-03-01: Increased `nfc_tune` detector bandwidth defaults for strong-signal tuning runs:
   - `NFC_TUNE_SAMPLE_COUNT`: `1024 -> 256`
