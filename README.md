@@ -22,6 +22,36 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 - Power latch is asserted early by Pico on boot (`GP28`) and auto-released after `NFC_AUTO_POWER_OFF_MS` (default `10000` ms).
 - Runtime logging is event-driven: startup diagnostics once, then RF field edges and request actions only.
 
+## EH tuning mode (antenna / power characterization)
+The firmware includes an energy-harvesting test mode for real-time characterization of the ST25DV `V_EH` output and RF coupling quality.
+When enabled, the firmware configures `EH_MODE = ACTIVE_AFTER_BOOT` and sets the dynamic `EH_EN` flag, then logs the EH control register state on every boot so you can observe harvesting behavior live over serial.
+
+Key registers reported:
+- `EH_EN` – harvester enabled by firmware
+- `EH_ON` – harvester actively producing output (indicates adequate RF coupling)
+- `FIELD_ON` – RF carrier detected by tag
+- `VCC_ON` – tag VCC rail is powered
+
+### Enabling / disabling
+EH test mode is controlled by the CMake flag `NFC_ENABLE_EH_TEST_MODE` (default `1` = enabled).
+To disable:
+```bash
+cd firmware && cmake -B build -DNFC_ENABLE_EH_TEST_MODE=0 . && cmake --build build
+```
+
+### Tuning workflow
+1. Flash firmware with EH test mode enabled (default).
+2. Open serial terminal: `sudo tio /dev/ttyACM0`
+3. Tap phone to antenna — observe boot diagnostics:
+   ```text
+   [OK]   EH mode write: ACTIVE_AFTER_BOOT
+   [OK]   EH test mode: dynamic EH_EN set ON
+   [INFO] EH state: EH_EN=ON EH_ON=OFF FIELD_ON=ON VCC_ON=ON
+   ```
+4. `EH_ON=OFF` with `FIELD_ON=ON` means field is present but coupling is too weak for harvesting — adjust antenna matching (C2/C3 on `NFC_harness_V0`).
+5. `EH_ON=ON` confirms `V_EH` exceeds the tag threshold — harvesting is working.
+6. For scope correlation, the GPO pulse timing (`IT_TIME`, default ~302 µs) is also logged and can be probed on the GPO pin.
+
 ## Current Wake/Latch Circuitry (PCB: `NFC_harness_V0`)
 - `Q1` (`TSM260P02CX`, P-MOS) is the high-side power switch:
   - source -> `Vbatt`
