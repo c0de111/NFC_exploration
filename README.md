@@ -33,11 +33,12 @@ Key registers reported:
 - `VCC_ON` – tag VCC rail is powered
 
 ### Enabling / disabling
-EH test mode is controlled by the CMake flag `NFC_ENABLE_EH_TEST_MODE` (default `1` = enabled).
-To disable:
+EH test mode is controlled by the CMake cache variable `NFC_ENABLE_EH_TEST_MODE` (default `1` = enabled).
+To disable, reconfigure and rebuild:
 ```bash
 cd firmware && cmake -B build -DNFC_ENABLE_EH_TEST_MODE=0 . && cmake --build build
 ```
+Or from repo root after setting the cache variable once: `make firmware`.
 
 ### Tuning workflow
 1. Flash firmware with EH test mode enabled (default).
