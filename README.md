@@ -22,36 +22,38 @@ Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP20
 - Power latch is asserted early by Pico on boot (`GP28`) and auto-released after `NFC_AUTO_POWER_OFF_MS` (default `10000` ms).
 - Runtime logging is event-driven: startup diagnostics once, then RF field edges and request actions only.
 
-## EH tuning mode (antenna / power characterization)
-The firmware includes an energy-harvesting test mode for real-time characterization of the ST25DV `V_EH` output and RF coupling quality.
-When enabled, the firmware configures `EH_MODE = ACTIVE_AFTER_BOOT` and sets the dynamic `EH_EN` flag, then logs the EH control register state on every boot so you can observe harvesting behavior live over serial.
+## Tuning firmware (antenna / power characterization)
+A dedicated firmware (`nfc_tune`, source: `firmware/src/tune_main.c`) for real-time RF energy-harvesting characterization. It samples the ST25DV `V_EH` output via Pico ADC and renders a live scrolling bar graph in the terminal showing harvested power delta above baseline.
 
-Key registers reported:
-- `EH_EN` – harvester enabled by firmware
-- `EH_ON` – harvester actively producing output (indicates adequate RF coupling)
-- `FIELD_ON` – RF carrier detected by tag
-- `VCC_ON` – tag VCC rail is powered
+### What it measures
+- ADC voltage on `V_EH` pin (default ADC1 = `GP27`), averaged and EMA-smoothed
+- Delta above a startup baseline capture (no-RF reference)
+- RF field state derived from voltage thresholds (configurable ON/OFF hysteresis)
+- ST25 EH control register state (`EH_EN`, `EH_ON`, `FIELD_ON`, `VCC_ON`) via I2C
 
-### Enabling / disabling
-EH test mode is controlled by the CMake cache variable `NFC_ENABLE_EH_TEST_MODE` (default `1` = enabled).
-To disable, reconfigure and rebuild:
+### Build and flash
 ```bash
-cd firmware && cmake -B build -DNFC_ENABLE_EH_TEST_MODE=0 . && cmake --build build
+make firmware-tune                    # build nfc_tune
+# then either:
+make firmware-tune-flash              # flash via SWD
+# or drag-and-drop firmware/build/nfc_tune.uf2 in BOOTSEL mode
 ```
-Or from repo root after setting the cache variable once: `make firmware`.
 
 ### Tuning workflow
-1. Flash firmware with EH test mode enabled (default).
-2. Open serial terminal: `sudo tio /dev/ttyACM0`
-3. Tap phone to antenna — observe boot diagnostics:
-   ```text
-   [OK]   EH mode write: ACTIVE_AFTER_BOOT
-   [OK]   EH test mode: dynamic EH_EN set ON
-   [INFO] EH state: EH_EN=ON EH_ON=OFF FIELD_ON=ON VCC_ON=ON
-   ```
-4. `EH_ON=OFF` with `FIELD_ON=ON` means field is present but coupling is too weak for harvesting — adjust antenna matching (C2/C3 on `NFC_harness_V0`).
-5. `EH_ON=ON` confirms `V_EH` exceeds the tag threshold — harvesting is working.
-6. For scope correlation, the GPO pulse timing (`IT_TIME`, default ~302 µs) is also logged and can be probed on the GPO pin.
+1. Connect Pico via USB (serial + power).
+2. Open terminal: `sudo tio /dev/ttyACM0`
+3. Wait for baseline capture (keep RF away for ~2 seconds at boot).
+4. Tap phone to antenna — the live graph shows `V_EH` delta in mV, RF ON/OFF transitions, session peak, and EH register state.
+5. Adjust antenna matching (C2/C3 on `NFC_harness_V0`) and re-tap to compare coupling.
+6. `Ctrl+C` to stop.
+
+### Key CMake tuning parameters
+All defaults are in `firmware/CMakeLists.txt`:
+- `NFC_TUNE_ADC_INPUT` – ADC channel (default `1` = `GP27`)
+- `NFC_TUNE_FIELD_ON_MV` / `NFC_TUNE_FIELD_OFF_MV` – RF detection hysteresis thresholds (default `9` / `4` mV)
+- `NFC_TUNE_GRAPH_WIDTH` / `NFC_TUNE_GRAPH_HEIGHT` – terminal graph dimensions (default `72x20`)
+- `NFC_TUNE_GRAPH_MAX_MV` – vertical scale (default `3000` mV)
+- `NFC_TUNE_SAMPLE_COUNT` / `NFC_TUNE_REPORT_INTERVAL_MS` – samples per report and update rate
 
 ## Current Wake/Latch Circuitry (PCB: `NFC_harness_V0`)
 - `Q1` (`TSM260P02CX`, P-MOS) is the high-side power switch:
@@ -89,7 +91,7 @@ Note:
 ## Repository layout
 - `docs/context.md` – running notes, decisions, history, and solved problems
 - `firmware/` – Pico SDK firmware scaffold (RP2040) for ST25 I²C exploration  
-  - `src/` app entry (`main.c`) and bus adapter  
+  - `src/` app entry (`main.c` harness, `tune_main.c` tuning) and bus adapter
   - `third_party/st25dv/` vendored ST25DV driver (git subtree)  
   - `scripts/` build/flash/reset helpers  
   - `cmake/` Pico SDK import helper  
