@@ -1,0 +1,83 @@
+# Combined milling profiles for the NFC harness board.
+# Sections are parsed by pcb/tools/run_pcb2gcode.sh. The first [[board]] block
+# handles the standard isolation/drill/outline workflow, while [[paste]]
+# generates the solder-paste stencil.
+
+[[board]]
+# pcb2gcode configuration for the NFC harness main PCB.
+# Export Gerbers/Excellon into pcb/NFC_harness_V0/cam/pcb2gcode/input/ before running the helper.
+
+# Gerber sources (relative to repo root)
+front=pcb/NFC_harness_V0/cam/pcb2gcode/input/NFC_harness_V0-F_Cu.gbr
+outline=pcb/NFC_harness_V0/cam/pcb2gcode/input/NFC_harness_V0-Edge_Cuts.gbr
+drill=pcb/NFC_harness_V0/cam/pcb2gcode/input/NFC_harness_V0-PTH.drl
+
+# Controller compatibility (GRBL-focused desktop routers)
+nog64=true
+nom6=true
+nog81=true
+
+# Units / motion
+metric=true
+metricoutput=true
+zero-start=true
+optimise=0.0050
+mirror-absolute=true
+zsafe=.5
+zchange=.5
+
+# Front isolation (adjust diameters for your V-bit)
+mill-diameters=0.5mm
+zwork=-0.15 #-0.10 (for sharp / new gravel)
+mill-feed=50 # changed 260102
+mill-vertfeed=10
+mill-speed=10000
+mill-infeed=0.03mm
+
+# Drill parameters
+drill-feed=10
+drill-speed=10000
+zdrill=-1.8
+
+# Outline milling parameters
+cutter-diameter=1.5
+cut-feed=10
+cut-speed=12000
+cut-side=auto
+cut-infeed=.5
+zcut=-1.5000
+
+# Output filenames ( pcb2gcode --output-dir handles directories )
+front-output=NFC_harness_V0_front.nc
+outline-output=NFC_harness_V0_outline.nc
+drill-output=NFC_harness_V0_drill.nc
+
+[[paste]]
+# pcb2gcode profile for milling a solder-paste stencil off NFC_harness_V0 data.
+# Point pcb/tools/run_pcb2gcode.sh at the default profile—this block runs automatically.
+
+front=pcb/NFC_harness_V0/cam/pcb2gcode/input/NFC_harness_V0-F_Paste.gbr
+# No outline/drill stages for stencils.
+
+nog64=true
+nom6=true
+nog81=true
+
+metric=true
+metricoutput=true
+zero-start=true
+optimise=0.0020
+mirror-absolute=true
+zsafe=.5
+zchange=.5
+
+# Shallow skim cut; adjust zwork to match stencil stock thickness.
+mill-diameters=0.5mm
+zwork=-0.6
+mill-feed=20 # changed 260105
+mill-vertfeed=30
+mill-speed=12000
+mill-infeed=0.05mm
+invert-gerbers=true
+
+front-output=NFC_harness_V0_paste.nc

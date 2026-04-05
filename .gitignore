@@ -1,0 +1,59 @@
+# Build artifacts
+build/
+*.elf
+*.hex
+*.map
+
+# KiCad generated files
+*.bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-backups/
+fp-info-cache
+sym-lib-table-bak
+**/#auto_saved_files#
+**/_autosave-*.kicad_sch
+**/_autosave-*.kicad_pcb
+*.kicad_prl
+
+# FreeCAD backup files
+*.FCBak
+
+# CAM outputs
+pcb/*/cam/pcb2gcode/output/
+pcb/*/cam/pcb2gcode/input/*.gbr
+pcb/*/cam/pcb2gcode/input/*.drl
+pcb/*/cam/pcb2gcode/input/*.nc
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# KiCad lock files
+*.lck
+
+# Android / Gradle
+.gradle/
+**/.gradle/
+**/.kotlin/
+**/.cxx/
+**/.externalNativeBuild/
+**/*.iml
+**/local.properties
+**/captures/
+
+# Android project build outputs (nested)
+**/build/
+
+# Downloaded UF2 helper (picotool-free)
+firmware/scripts/uf2conv.py
+firmware/scripts/uf2families.json
+
+# Public export staging area
+out/

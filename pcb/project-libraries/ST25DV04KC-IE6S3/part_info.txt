@@ -1,0 +1,9 @@
+Manufacturer=STMicroelectronics
+PartNumber=ST25DV04KC-IE6S3
+PartCategory=Integrated Circuit
+PackageCategory=Small Outline Packages
+PinCount=8
+Version=3.1
+Released=2022-02-21 08:16:08
+Downloaded=2026-01-28 13:06:35
+3D=Y
