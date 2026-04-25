@@ -1,6 +1,6 @@
 # NFC exploration
 
-Internal sandbox repo to explore **ST25DV04KC (ISO15693 / NFC-V)** tap-to-trigger flows for inki.
+Sandbox repo to explore **ST25DV04KC (ISO15693 / NFC-V)** tap-to-trigger flows for power control and waking circuits such as inki.
 
 ## Goal
 Build a small, reproducible test platform (ST25DV04KC + **Raspberry Pi Pico/RP2040** + antenna + simple enclosure) to validate:
