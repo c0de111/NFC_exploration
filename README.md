@@ -153,10 +153,6 @@ pcb/tools/run_pcb2gcode.sh -b NFC_harness_V0
 ```
 The profile lives at `pcb/NFC_harness_V0/cam/pcb2gcode/profiles/default.millprojects` and uses repo-relative paths.
 
-## Android NFC‑V app
-Recommended Android workflow on this repo is CLI build plus sideload copy: run `./android/scripts/build_and_sync_apk.sh --app tap` from repo root (optionally add `--sdk-dir ~/Android/Sdk`). The script builds the debug APK from `android/InkiNfcTapToBook_androidstudio/`, auto-detects Android Studio JBR/SDK when available, and copies the APK to `~/Sync` by default so it can be installed on the phone without USB debugging. Full details and options are in `android/README.md`.
-For the common path, you can use `./build_android.sh` (repo root), which defaults to building `tap`, using SDK path `/home/nicolas/Android/Sdk`, and copying directly to `~/Sync` (override with `--sdk-dir /path/to/Android/Sdk`).
-
 ## Quick RF test (phone + Pico)
 1. Connect a loop antenna to `J3` (`AC0`/`AC1`) on the PCB.
 2. Build and flash firmware:
